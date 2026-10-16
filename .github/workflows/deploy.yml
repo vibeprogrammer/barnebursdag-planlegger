@@ -41,7 +41,8 @@ jobs:
       - name: Build production artifact
         run: npm run build:production
         env:
-          # Optional: VITE_ADSENSE_CLIENT: ${{ vars.ADSENSE_CLIENT }}   # e.g. ca-pub-6118980043742623 (enable after the CMP message is live)
+          # AdSense is on by default (ca-pub-6118980043742623, units 4250080584 in-article + 3563684870 multiplex).
+          # Optional kill switch: VITE_ADSENSE_CLIENT: off
           # Optional: VITE_CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}     # shown on /kontakt
           VITE_ANALYTICS_ENABLED: ${{ vars.ANALYTICS_ENABLED }}
           VITE_APPLICATIONINSIGHTS_CONNECTION_STRING: ${{ vars.ANALYTICS_ENABLED == '1' && secrets.APPINSIGHTS_CONNECTION_STRING || '' }}

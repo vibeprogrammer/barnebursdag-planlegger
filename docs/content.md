@@ -59,6 +59,8 @@ the whole site as one page — the direct cause of the AdSense "low value conten
 
 Optional build-time env:
 
-- `VITE_ADSENSE_CLIENT=ca-pub-…` — injects the AdSense loader (`adsbygoogle.js`) and the
-  `google-adsense-account` meta into every page. Leave unset until the consent message (CMP) is enabled in AdSense.
+- `VITE_ADSENSE_CLIENT` — AdSense publisher; defaults to `ca-pub-6118980043742623` (set `off` to build without ads).
+  Injects the loader (`adsbygoogle.js`, once per page) and the `google-adsense-account` meta into every page, and
+  the in-article (4250080584) + multiplex (3563684870) units into guides and recipes (`withAds` in
+  `scripts/prerender.mjs`). Publish the AdSense consent message (CMP) before deploying.
 - `VITE_CONTACT_EMAIL=…` — shows an e-mail address on `/kontakt`.

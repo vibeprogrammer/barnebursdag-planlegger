@@ -10,7 +10,11 @@ const dist = path.resolve('dist');
 const indexHtml = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 const cssLinks = [...indexHtml.matchAll(/<link rel="stylesheet"[^>]*>/g)].map((m) => m[0]).join('\n    ');
 if (!cssLinks) throw new Error('prerender: no stylesheet link found in dist/index.html');
-const adsenseClient = process.env.VITE_ADSENSE_CLIENT || '';
+// AdSense publisher (same account and units as bpmtech.no). Set VITE_ADSENSE_CLIENT=off to build without ads.
+const DEFAULT_ADSENSE_CLIENT = 'ca-pub-6118980043742623';
+const adsenseEnv = (process.env.VITE_ADSENSE_CLIENT ?? '').trim();
+const adsenseClient = /^(off|false|0|none)$/i.test(adsenseEnv) ? '' : adsenseEnv || DEFAULT_ADSENSE_CLIENT;
+const AD_SLOTS = { inArticle: '4250080584', multiplex: '3563684870' };
 const contactEmail = process.env.VITE_CONTACT_EMAIL || '';
 const today = new Date().toISOString().slice(0, 10);
 
@@ -20,6 +24,49 @@ const all = [...pages.map((p) => ({ ...p, html: renderBody(p, bySlug) })), ...hu
 const adsenseTag = adsenseClient
   ? `<meta name="google-adsense-account" content="${esc(adsenseClient)}" />\n    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${esc(adsenseClient)}" crossorigin="anonymous"></script>`
   : '';
+
+// Ad units: only on guides and recipes (never on trust pages, hubs, the 404 or the calculator).
+// One in-article unit mid-article, one multiplex unit at the end. Each is labelled «Annonse», has its
+// height reserved in CSS (no layout shift) and is only activated when it nears the viewport.
+const AD_SECTIONS = new Set(['guider', 'oppskrifter']);
+function adUnit(kind) {
+  const attrs = kind === 'inArticle'
+    ? `style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid"`
+    : `style="display:block" data-ad-format="autorelaxed"`;
+  return `<aside class="ad-slot ad-slot--${kind === 'inArticle' ? 'in-article' : 'multiplex'}" aria-label="Annonse"><p class="ad-label">Annonse</p><ins class="adsbygoogle-lazy" ${attrs} data-ad-client="${esc(adsenseClient)}" data-ad-slot="${AD_SLOTS[kind]}"></ins></aside>`;
+}
+/** Inserts the in-article unit before the h2 nearest the middle of the article prose (outside the recipe card,
+ *  FAQ, sources and «Les også»), and the multiplex unit at the very end. Short articles get no in-article unit. */
+function withAds(page, html) {
+  if (!adsenseClient || !AD_SECTIONS.has(page.section)) return html;
+  const tail = html.search(/<section class="content-(faq|sources)"|<aside class="content-related"/);
+  const proseEnd = tail === -1 ? html.length : tail;
+  const card = html.indexOf('<section class="recipe-card"');
+  const cardEnd = card === -1 ? -1 : html.indexOf('</section>', card);
+  const h2s = [...html.slice(0, proseEnd).matchAll(/<h2[\s>]/g)].map((m) => m.index)
+    .filter((i) => !(card !== -1 && i > card && i < cardEnd) && i > proseEnd * 0.3 && i < proseEnd * 0.8);
+  let out = html;
+  if (h2s.length) {
+    const at = h2s.reduce((best, i) => (Math.abs(i - proseEnd / 2) < Math.abs(best - proseEnd / 2) ? i : best));
+    out = out.slice(0, at) + adUnit('inArticle') + out.slice(at);
+  }
+  return out + adUnit('multiplex');
+}
+const adScript = `<script>
+      (function () {
+        var slots = [].slice.call(document.querySelectorAll('ins.adsbygoogle-lazy'));
+        function fill(el) { el.className = 'adsbygoogle'; (window.adsbygoogle = window.adsbygoogle || []).push({}); }
+        if (!('IntersectionObserver' in window)) { slots.forEach(fill); return; }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); fill(e.target); } });
+        }, { rootMargin: '300px 0px' });
+        slots.forEach(function (el) { io.observe(el); });
+        // Loader blocked (ad blocker / offline): collapse the empty slots instead of showing blank boxes.
+        window.addEventListener('load', function () {
+          setTimeout(function () { if (!(window.adsbygoogle && window.adsbygoogle.loaded)) document.documentElement.classList.add('ads-off'); }, 3000);
+        });
+      })();
+    </script>`;
 
 const footer = `<footer class="foot">
       <p>Kakeklar er gratis · ingen innlogging · for norske foreldre. Mengdene er anbefalinger – juster fritt.</p>
@@ -87,19 +134,23 @@ function document(page) {
         <p>${esc(page.lead || page.description)}</p>
         ${dates ? `<p class="content-meta">${esc(dates)}</p>` : ''}
       </header>
-      <main class="content-body">${html}</main>
+      <main class="content-body">${withAds(page, html)}</main>
       ${footer}
     </div>
+    ${adsenseClient && AD_SECTIONS.has(page.section) ? adScript : ''}
   </body>
 </html>
 `;
 }
 
 let count = 0;
+let adPages = 0;
 for (const page of all) {
   const dir = path.join(dist, page.path.replace(/^\//, ''));
   fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, 'index.html'), document(page));
+  const doc = document(page);
+  fs.writeFileSync(path.join(dir, 'index.html'), doc);
+  if (doc.includes('adsbygoogle-lazy')) adPages++;
   count++;
 }
 
@@ -138,4 +189,4 @@ base.trailingSlash = 'never';
 base.responseOverrides = { ...(base.responseOverrides || {}), 404: { rewrite: '/404.html', statusCode: 404 } };
 fs.writeFileSync(path.join(dist, 'staticwebapp.config.json'), JSON.stringify(base, null, 2) + '\n');
 
-console.log(`prerender: ${count} pages, sitemap ${urls.length} urls, ${routes.length} routes${adsenseClient ? ', AdSense tag on' : ', AdSense tag off (set VITE_ADSENSE_CLIENT)'}${contactEmail ? ', contact e-mail on' : ''}`);
+console.log(`prerender: ${count} pages, sitemap ${urls.length} urls, ${routes.length} routes${adsenseClient ? `, AdSense on (${adsenseClient}), ad units on ${adPages} pages` : ', AdSense off (VITE_ADSENSE_CLIENT=off)'}${contactEmail ? ', contact e-mail on' : ''}`);

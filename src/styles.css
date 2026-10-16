@@ -824,3 +824,12 @@ input[type='range']::-moz-range-thumb {
 .hub-section + .hub-section { margin-top: 10px; }
 @media (max-width: 560px) { .recipe-ingredients { columns: 1; } .content-header h1 { font-size: clamp(1.8rem, 8vw, 2.6rem); } }
 @media print { .site-nav, .breadcrumbs, .content-related, .foot, .content-faq summary::marker { display: none; } .content-faq details { display: block; } }
+
+/* Ad slots (guides and recipes only): labelled, height reserved to avoid layout shift. */
+.ad-slot { margin: 28px 0; padding-top: 6px; border-top: 1px solid var(--line); max-width: 100%; overflow: hidden; contain: layout; }
+.ad-label { margin: 0 0 6px; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+.ad-slot ins { display: block; width: 100%; }
+.ad-slot--in-article { min-height: 280px; }
+.ad-slot--multiplex { min-height: 340px; margin-top: 36px; }
+.ad-slot:has(ins[data-ad-status="unfilled"]), .ads-off .ad-slot { display: none; }
+@media print { .ad-slot { display: none; } }

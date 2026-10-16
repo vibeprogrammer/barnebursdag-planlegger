@@ -66,7 +66,10 @@ https://kakeklar.no/ads.txt — keep it; verify the publisher ID matches the one
 
 ## Re-apply checklist (Maxim)
 
-1. **Merge and deploy** this PR. The workflow now also runs on `content/**` changes (`.md` files were ignored before).
+1. **Before merging — AdSense → Privacy & messaging**: create and publish the GDPR (European regulations) consent
+   message (Google's own certified CMP; it is delivered by `adsbygoogle.js`, which this PR loads on every page). Choose
+   the "Ad serving if no consent" behaviour you prefer.
+   Then **merge and deploy** this PR. The workflow now also runs on `content/**` changes (`.md` files were ignored before).
 2. **Verify the live site** (replace nothing, just open):
    - `https://kakeklar.no/guider` and 3–4 guides: each has its own `<title>`, canonical and visible content with JS disabled
      (`curl -s https://kakeklar.no/guider/hvor-mye-mat-til-barnebursdag | grep -c '<h2'` should be > 3).
@@ -81,11 +84,13 @@ https://kakeklar.no/ads.txt — keep it; verify the publisher ID matches the one
    Inspection → "Request indexing" on `/`, `/guider`, `/oppskrifter` and 3–5 guides. Wait until Pages → Indexed
    shows the new URLs (typically days to 2–3 weeks). Fix anything under "Not indexed" → "Duplicate, Google chose
    different canonical" / "Soft 404" — there should be none now.
-5. **AdSense → Privacy & messaging**: create and publish the GDPR (European regulations) message. Also set the
-   "Ad serving if no consent" behaviour you prefer.
-6. **Turn the ad code on**: set the Actions variable `ADSENSE_CLIENT=ca-pub-6118980043742623` and pass it as
-   `VITE_ADSENSE_CLIENT` in `deploy.yml` (see the commented line), redeploy. The loader then appears on every page.
-   Do not add manual ad units yet; let Auto ads run after approval, then tune.
+5. **Check the consent message shows** on https://kakeklar.no/ from an EU browser profile (incognito).
+6. **Ad code is already on** (same account and units as bpmtech.no): the loader
+   `adsbygoogle.js?client=ca-pub-6118980043742623` is in every page's `<head>` once; guides and recipes carry one
+   in-article unit (slot 4250080584) mid-article and one multiplex unit (slot 3563684870) at the end, each labelled
+   «Annonse», height reserved and lazy-activated near the viewport. No units on Om/Kontakt/Personvern/Vilkår, hubs,
+   the 404 or the calculator. Units stay blank until the site is approved. Kill switch: build with
+   `VITE_ADSENSE_CLIENT=off`. Optionally enable Auto ads after approval and tune from there.
 7. **Request review**: AdSense → Sites → kakeklar.no → "Request review" (only after steps 1–6 and after the new
    pages are indexed; the review typically takes a few days, up to 2–4 weeks).
 8. While waiting: add real photos to the recipes (`recipe.image` in the front matter) — Recipe rich results

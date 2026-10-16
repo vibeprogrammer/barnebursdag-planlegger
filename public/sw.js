@@ -1,4 +1,4 @@
-const CACHE = 'bursdag-v4';
+const CACHE = 'bursdag-v5';
 const ASSETS = ['/', '/index.html', '/icon.svg', '/manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
@@ -15,6 +15,7 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
+  if (url.origin !== self.location.origin) return; // third-party (e.g. AdSense) goes straight to the network
   if (url.pathname.startsWith('/api/')) return; // never cache API
   if (e.request.method !== 'GET') return;
 
