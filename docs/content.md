@@ -38,7 +38,8 @@ Lead paragraph …
 ```
 
 - `{{recipe}}` on its own line marks where the ingredient/step card is rendered from the `recipe` object.
-- `{{contact_email}}` (kontakt page only) becomes a mailto paragraph when `VITE_CONTACT_EMAIL` is set at build time.
+- `{{contact_email}}` (kontakt page only) becomes a mailto paragraph when `VITE_CONTACT_EMAIL` is set at build time,
+  or links to GitHub/LinkedIn when unset. The shared renderer resolves it for both static HTML and `content.json`.
 - Internal links (`/guider/...`, `/oppskrifter/...`) and `related` slugs are validated at build time; an unknown
   target fails the build (set `CONTENT_LENIENT=1` to warn instead while drafting).
 
@@ -47,6 +48,7 @@ Lead paragraph …
 ```
 npm run content      # content/**/*.md → public/content.json (dev server + SPA fallback renderer)
 npm run build        # prebuild: content → vite build → postbuild: scripts/prerender.mjs
+npm run test:content # contact rendering and service-worker cache regression tests
 ```
 
 `scripts/prerender.mjs` writes one static HTML document per page into `dist/<path>/index.html` with its own
@@ -63,4 +65,12 @@ Optional build-time env:
   Injects the loader (`adsbygoogle.js`, once per page) and the `google-adsense-account` meta into every page, and
   the in-article (4250080584) + multiplex (3563684870) units into guides and recipes (`withAds` in
   `scripts/prerender.mjs`). Publish the AdSense consent message (CMP) before deploying.
-- `VITE_CONTACT_EMAIL=…` — shows an e-mail address on `/kontakt`.
+- `VITE_CONTACT_EMAIL=…` — shows an e-mail address on `/kontakt`. Production builds receive the Actions
+  variable `CONTACT_EMAIL`; no address is invented when it is unset.
+
+Legacy guide redirects are shared in `scripts/content-routes.mjs` so Static Web Apps and Express/Docker
+return the same 301 responses before serving content.
+
+The Docker build context must include `scripts/` and `content/**/*.md` for prerendering. Its runtime
+copies only the dependency-free redirect module alongside the Express adapter. CI builds and
+smoke-tests the compatibility container (health, content, redirect and 404) before deploying to Static Web Apps.

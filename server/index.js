@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import apiHandlers from '../api/shared/handlers.cjs';
+import { REDIRECTS } from '../scripts/content-routes.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -41,6 +42,9 @@ app.use('/api', (_req, res) => {
 });
 
 // --- Static SPA ---
+for (const [from, to] of Object.entries(REDIRECTS)) {
+  app.get(from, (_req, res) => res.redirect(301, to));
+}
 app.use(express.static(DIST, { maxAge: '1h', index: 'index.html', redirect: false }));
 // Prerendered content pages live at dist/<path>/index.html; anything else is a real 404 (no SPA catch-all).
 app.get('*', (req, res) => {

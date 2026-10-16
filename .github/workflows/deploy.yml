@@ -27,6 +27,8 @@ jobs:
 
       - run: npm run test:api
 
+      - run: npm run test:content
+
       - run: npm run typecheck
 
       - run: npm run build
@@ -38,12 +40,22 @@ jobs:
 
       - run: npm run test:e2e
 
+      - name: Verify Docker compatibility build
+        run: |
+          docker build --tag kakeklar:compatibility .
+          docker run --detach --rm --publish 8081:8080 --name kakeklar-compatibility kakeklar:compatibility
+          trap 'docker stop kakeklar-compatibility' EXIT
+          curl --fail --silent --show-error --retry 10 --retry-all-errors --retry-delay 1 http://localhost:8081/api/health > /dev/null
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://localhost:8081/guider/barnehagebursdag)" = 200
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://localhost:8081/barnehagebursdag)" = 301
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://localhost:8081/en-side-som-ikke-finnes)" = 404
+
       - name: Build production artifact
         run: npm run build:production
         env:
           # AdSense is on by default (ca-pub-6118980043742623, units 4250080584 in-article + 3563684870 multiplex).
           # Optional kill switch: VITE_ADSENSE_CLIENT: off
-          # Optional: VITE_CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}     # shown on /kontakt
+          VITE_CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
           VITE_ANALYTICS_ENABLED: ${{ vars.ANALYTICS_ENABLED }}
           VITE_APPLICATIONINSIGHTS_CONNECTION_STRING: ${{ vars.ANALYTICS_ENABLED == '1' && secrets.APPINSIGHTS_CONNECTION_STRING || '' }}
           VITE_FEATURE_MENY_CART: ${{ vars.FEATURE_MENY_CART }}

@@ -1,5 +1,5 @@
-const CACHE = 'bursdag-v5';
-const ASSETS = ['/', '/index.html', '/icon.svg', '/manifest.webmanifest'];
+const CACHE = 'bursdag-v6';
+const ASSETS = ['/', '/icon.svg', '/manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));
@@ -20,18 +20,18 @@ self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
 
   if (e.request.mode === 'navigate') {
+    const cacheKey = url.pathname === '/' || url.pathname === '/index.html' ? '/' : e.request;
     e.respondWith(
       fetch(e.request)
-        .then((response) => {
+        .then(async (response) => {
           if (response.ok) {
-            const copy = response.clone();
-            // Every page is its own static document now (guides, recipes, trust pages), so cache
-            // navigations under their own URL; '/index.html' stays the offline fallback for the app.
-            caches.open(CACHE).then((cache) => cache.put(url.pathname === '/' ? '/index.html' : e.request, copy));
+            // Home aliases share one key; content documents keep their own URL.
+            const cache = await caches.open(CACHE);
+            await cache.put(cacheKey, response.clone());
           }
           return response;
         })
-        .catch(() => caches.match(e.request).then((hit) => hit || caches.match('/index.html')))
+        .catch(() => caches.match(cacheKey).then((hit) => hit || caches.match('/')))
     );
     return;
   }
@@ -46,7 +46,7 @@ self.addEventListener('fetch', (e) => {
             caches.open(CACHE).then((c) => c.put(e.request, copy));
             return r;
           })
-          .catch(() => caches.match('/index.html'))
+          .catch(() => caches.match('/'))
     )
   );
 });

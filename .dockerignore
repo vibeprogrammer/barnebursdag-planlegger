@@ -5,11 +5,9 @@ dist
 .env
 .env.*
 .source-docs
-scripts
 *.log
 npm-debug.log*
 .vscode
 .idea
 README.md
-**/*.md
 docs

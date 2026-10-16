@@ -4,6 +4,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { marked } from 'marked';
+import { REDIRECTS } from './content-routes.mjs';
+
+export { REDIRECTS };
 
 export const SITE = 'https://kakeklar.no';
 export const SITE_NAME = 'Kakeklar';
@@ -19,13 +22,6 @@ export const CATEGORIES = {
   oppskrifter: 'Oppskrifter'
 };
 export const CATEGORY_ORDER = ['mengder', 'planlegging', 'barnehage', 'allergier', 'aktiviteter', 'oppskrifter'];
-
-/** Old URLs that moved under /guider (301 in staticwebapp.config.json). */
-export const REDIRECTS = {
-  '/slik-beregner-kakeklar': '/guider/slik-beregner-kakeklar',
-  '/barnehagebursdag': '/guider/barnehagebursdag',
-  '/allergier-i-barnebursdag': '/guider/allergier-i-barnebursdag'
-};
 
 marked.setOptions({ gfm: true, breaks: false });
 
@@ -124,8 +120,15 @@ function relatedHtml(page, bySlug) {
 }
 
 /** Renders the inner article HTML (shared by the prerendered page and the SPA fallback). */
-export function renderBody(page, bySlug) {
+export function renderBody(page, bySlug, contactEmail = process.env.VITE_CONTACT_EMAIL || '') {
   let html = marked.parse(page.body);
+  if (page.path === '/kontakt') {
+    const contact = contactEmail.trim();
+    const paragraph = contact
+      ? `<p>Send gjerne en e-post til <a href="mailto:${esc(contact)}">${esc(contact)}</a>. Vi svarer normalt innen noen dager.</p>`
+      : `<p>Den raskeste veien er <a href="https://github.com/webmaxru/barnebursdag-planlegger/issues">GitHub Issues</a>, eller en melding til utvikleren på <a href="https://www.linkedin.com/in/webmax/" rel="noopener noreferrer">LinkedIn</a>.</p>`;
+    html = html.replace(/<p>\{\{contact_email\}\}<\/p>|\{\{contact_email\}\}/g, paragraph);
+  }
   const card = recipeCard(page.recipe);
   if (html.includes('{{recipe}}')) html = html.replace(/<p>\{\{recipe\}\}<\/p>|\{\{recipe\}\}/, card);
   else if (card) html += card;

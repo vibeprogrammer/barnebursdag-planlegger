@@ -79,12 +79,7 @@ const footer = `<footer class="foot">
 function document(page) {
   const url = SITE + page.path;
   const { eyebrow, dates } = pageMeta(page);
-  let html = page.html;
-  if (page.path === '/kontakt') {
-    html = html.replace('{{contact_email}}', contactEmail
-      ? `<p>Send gjerne en e-post til <a href="mailto:${esc(contactEmail)}">${esc(contactEmail)}</a>. Vi svarer normalt innen noen dager.</p>`
-      : `<p>Den raskeste veien er <a href="https://github.com/webmaxru/barnebursdag-planlegger/issues">GitHub Issues</a>, eller en melding til utvikleren på <a href="https://www.linkedin.com/in/webmax/" rel="noopener noreferrer">LinkedIn</a>.</p>`);
-  }
+  const html = page.html;
   const ld = JSON.stringify(jsonLd(page, bySlug)).replace(/</g, '\\u003c');
   const ogType = page.section === 'guider' || page.section === 'oppskrifter' ? 'article' : 'website';
   return `<!doctype html>

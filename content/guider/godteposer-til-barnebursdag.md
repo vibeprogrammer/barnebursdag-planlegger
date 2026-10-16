@@ -103,7 +103,7 @@ En pose med to–tre slike ting og litt godteri føles ofte mer gjennomtenkt enn
 
 ## Hva koster en godtepose?
 
-Selve posene koster vanligvis fra rundt 29 til 59 kroner for en pakke à 6, altså 5–10 kroner per pose. Innholdet avhenger av hva du velger. Smågodt i løsvekt varierer mye i pris mellom butikker og sorter, så det enkleste er å gange antall gram med kiloprisen der du handler. En liten ikke-godteri-ting koster typisk 10–30 kroner.
+Selve posene koster vanligvis fra rundt 29 til 59 kroner for en pakke à 6, altså 5–10 kroner per pose. Innholdet avhenger av hva du velger. Smågodt i løsvekt varierer mye i pris mellom butikker og sorter, så del antall gram på 1 000 før du ganger med kiloprisen der du handler. For eksempel koster 100 gram med en kilopris på 150 kroner 15 kroner (100 / 1 000 × 150). En liten ikke-godteri-ting koster typisk 10–30 kroner.
 
 Et grovt overslag for 10 barn på 6 år: 1 kg smågodt, 2 pakker poser og eventuelt 10 småting. Bruk gjerne [guiden om budsjett for barnebursdag](/guider/budsjett-for-barnebursdag) til å se hvordan godteposene passer inn i totalen.
 

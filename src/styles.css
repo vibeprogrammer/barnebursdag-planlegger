@@ -785,9 +785,11 @@ input[type='range']::-moz-range-thumb {
 /* ---- Content pages (guides, recipes, trust pages; prerendered by scripts/prerender.mjs) ---- */
 .site-nav { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; padding-top: 4px; }
 .site-nav a { color: var(--berry-deep); font-weight: 700; text-decoration: none; }
+.site-nav a, .breadcrumbs a { display: inline-flex; align-items: center; min-height: 40px; padding: 8px 4px; }
 .site-nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 4px; }
 .breadcrumbs { margin-top: 22px; font-size: 0.9rem; color: var(--ink-soft); }
 .breadcrumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px; }
+.breadcrumbs li { display: inline-flex; align-items: center; }
 .breadcrumbs li + li::before { content: "›"; margin: 0 6px 0 2px; color: var(--ink-soft); }
 .breadcrumbs a { color: var(--berry-deep); text-decoration: none; }
 .content-header { padding: 28px 0 24px; }

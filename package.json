@@ -20,6 +20,7 @@
     "start:local": "node --env-file=.env server/index.js",
     "preview": "vite preview",
     "test:api": "node --test api/test/handlers.test.cjs",
+    "test:content": "node --test scripts/test/*.test.mjs",
     "typecheck": "tsc --noEmit",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
