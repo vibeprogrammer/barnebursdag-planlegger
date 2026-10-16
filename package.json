@@ -12,7 +12,7 @@
     "dev:client": "vite",
     "dev:server": "node --watch --env-file=.env server/index.js",
     "build": "vite build",
-    "build:production": "node scripts/validate-build-env.mjs && vite build",
+    "build:production": "node scripts/validate-build-env.mjs && node scripts/build-content.mjs && vite build && node scripts/prerender.mjs",
     "verify:production-build": "node scripts/verify-production-build.mjs",
     "icons": "node scripts/gen-icons.mjs",
     "insights": "pwsh -NoProfile -File scripts/insights.ps1",
@@ -22,7 +22,11 @@
     "test:api": "node --test api/test/handlers.test.cjs",
     "typecheck": "tsc --noEmit",
     "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui"
+    "test:e2e:ui": "playwright test --ui",
+    "content": "node scripts/build-content.mjs",
+    "predev": "node scripts/build-content.mjs",
+    "prebuild": "node scripts/build-content.mjs",
+    "postbuild": "node scripts/prerender.mjs"
   },
   "dependencies": {
     "express": "^4.21.2"
@@ -36,6 +40,7 @@
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
     "concurrently": "^9.1.0",
+    "marked": "^15.0.12",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "typescript": "^5.6.3",
