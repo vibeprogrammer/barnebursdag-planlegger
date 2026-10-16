@@ -1,4 +1,4 @@
-const CACHE = 'bursdag-v3';
+const CACHE = 'bursdag-v4';
 const ASSETS = ['/', '/index.html', '/icon.svg', '/manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
@@ -24,11 +24,13 @@ self.addEventListener('fetch', (e) => {
         .then((response) => {
           if (response.ok) {
             const copy = response.clone();
-            caches.open(CACHE).then((cache) => cache.put('/index.html', copy));
+            // Every page is its own static document now (guides, recipes, trust pages), so cache
+            // navigations under their own URL; '/index.html' stays the offline fallback for the app.
+            caches.open(CACHE).then((cache) => cache.put(url.pathname === '/' ? '/index.html' : e.request, copy));
           }
           return response;
         })
-        .catch(() => caches.match('/index.html'))
+        .catch(() => caches.match(e.request).then((hit) => hit || caches.match('/index.html')))
     );
     return;
   }

@@ -5,7 +5,9 @@ export default function Footer() {
       <nav className="foot-nav" aria-label="Informasjon">
         <a href="/om-kakeklar">Om Kakeklar</a>
         <a href="/guider">Guider</a>
+        <a href="/oppskrifter">Oppskrifter</a>
         <a href="/personvern">Personvern</a>
+        <a href="/vilkar">Vilkår</a>
         <a href="/kontakt">Kontakt</a>
       </nav>
       <p className="foot-credit">

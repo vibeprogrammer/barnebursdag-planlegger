@@ -1,4 +1,5 @@
 import express from 'express';
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import apiHandlers from '../api/shared/handlers.cjs';
@@ -40,8 +41,13 @@ app.use('/api', (_req, res) => {
 });
 
 // --- Static SPA ---
-app.use(express.static(DIST, { maxAge: '1h', index: false }));
-app.get('*', (_req, res) => res.sendFile(path.join(DIST, 'index.html')));
+app.use(express.static(DIST, { maxAge: '1h', index: 'index.html', redirect: false }));
+// Prerendered content pages live at dist/<path>/index.html; anything else is a real 404 (no SPA catch-all).
+app.get('*', (req, res) => {
+  const page = path.join(DIST, req.path.replace(/\/$/, ''), 'index.html');
+  if (req.path !== '/' && page.startsWith(DIST) && fs.existsSync(page)) return res.sendFile(page);
+  res.status(404).sendFile(path.join(DIST, '404.html'), (err) => err && res.sendFile(path.join(DIST, 'index.html')));
+});
 
 app.listen(PORT, () => {
   console.log(`🎂 Kakeklar kjører på http://0.0.0.0:${PORT}  (kassal: ${process.env.KASSAL_API_KEY ? 'på' : 'av'})`);
