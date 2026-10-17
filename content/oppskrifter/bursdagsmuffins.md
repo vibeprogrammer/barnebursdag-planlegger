@@ -7,6 +7,14 @@
   "category": "oppskrifter",
   "date": "2026-10-17",
   "updated": "2026-10-17",
+  "image": {
+    "src": "/img/oppskrifter/bursdagsmuffins.svg",
+    "png": "/img/oppskrifter/bursdagsmuffins.png",
+    "width": 1200,
+    "height": 800,
+    "alt": "Tegning av tre muffins med rosa glasur og strøssel, den midterste med et bursdagslys",
+    "caption": "Illustrasjon: Kakeklar"
+  },
   "related": [
     "hvor-stor-bursdagskake",
     "barnehagebursdag",

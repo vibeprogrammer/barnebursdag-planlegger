@@ -74,3 +74,14 @@ return the same 301 responses before serving content.
 The Docker build context must include `scripts/` and `content/**/*.md` for prerendering. Its runtime
 copies only the dependency-free redirect module alongside the Express adapter. CI builds and
 smoke-tests the compatibility container (health, content, redirect and 404) before deploying to Static Web Apps.
+
+## Round 2 additions
+
+- `image` (recipes): `{ "src": "/img/...svg", "png": "/img/...png", "width": 1200, "height": 800, "alt": "...", "caption": "..." }` —
+  `src` is shown on the page, `png` goes into the Recipe/Article JSON-LD and `og:image`. Use only your own images or
+  images whose licence you have checked; the current ones are Kakeklar's own SVG illustrations.
+- `photo` (author page): `{ "src": "/img/maxim.jpg", "alt": "Maxim Salnikov" }`.
+- HTML comments (`<!-- ... -->`) in markdown are editor notes and are stripped from the build.
+- Every guide and recipe gets: «Sist oppdatert» date line, byline linked to `/om-forfatteren`, a calculator box after the
+  first paragraph (presets per slug in `CALC_PRESETS`, `scripts/content.mjs`) and an author box before «Les også».
+- Bump `updated` whenever you change a page's substance; the date shows on the page, in JSON-LD and in the sitemap.

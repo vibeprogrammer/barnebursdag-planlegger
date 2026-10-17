@@ -31,7 +31,7 @@ test('content is crawlable with unique metadata and real not-found responses', a
   expect(missing.status()).toBe(404);
   expect(await missing.text()).toContain('Fant ikke siden');
   const sitemap = await request.get('/sitemap.xml');
-  expect((await sitemap.text()).match(/<loc>/g)).toHaveLength(29);
+  expect((await sitemap.text()).match(/<loc>/g)).toHaveLength(30);
   await context.close();
 });
 

@@ -64,7 +64,7 @@ export default function Wizard({ cfg, onChange, onFinish, onSkip }: Props) {
         </button>
       </header>
 
-      <div className="wizard-progress" aria-label={`Steg ${step} av 3`}>
+      <div className="wizard-progress" role="progressbar" aria-label={`Steg ${step} av 3`} aria-valuemin={1} aria-valuemax={3} aria-valuenow={step}>
         {[1, 2, 3].map((n) => (
           <span key={n} className={n <= step ? 'active' : ''} />
         ))}
