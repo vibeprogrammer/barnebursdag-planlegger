@@ -132,7 +132,7 @@ const CALC_PRESETS = {
   'polsefest-barnebursdag': { q: '?gjester=12&alder=6', text: 'Kalkulatoren regner ut pølser, lomper og pølsebrød for antall barn og alder, og runder opp til hele pakker.' },
   'barnehagebursdag': { q: '?gjester=16&alder=4&type=barnehage', text: 'Velg barnehage i kalkulatoren, så tilpasses listen til en kort feiring i barnehagen.' },
   'fruktspyd-og-sunn-bursdagsmat': { q: '?gjester=16&alder=4&type=barnehage', text: 'Skal du ha med noe til barnehagen? Kalkulatoren regner ut mengder for hele gruppen.' },
-  'hvor-mye-drikke-til-barnebursdag': { q: '', text: 'Kalkulatoren regner ut saft, vann og kaffe for voksne ut fra antall gjester, alder og hvor lenge festen varer.' },
+  'hvor-mye-drikke-til-barnebursdag': { q: '', text: 'Kalkulatoren regner ut saft og brus ut fra antall gjester og barnas alder, rundet opp til hele pakninger. Vann og kaffe planlegger du selv.' },
   'hvor-stor-bursdagskake': { q: '', text: 'Kalkulatoren foreslår kake, muffins og resten av handlelisten ut fra antall gjester og alder.' }
 };
 export function calcCtaHtml(page) {

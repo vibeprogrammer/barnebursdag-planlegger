@@ -13,6 +13,15 @@ test('every guide and recipe gets a calculator box and an author box', () => {
   }
 });
 
+test('drink calculator box only promises supported calculations', () => {
+  const html = renderBody(bySlug.get('hvor-mye-drikke-til-barnebursdag'), bySlug);
+  const box = html.match(/<aside class="calc-cta"[\s\S]*?<\/aside>/)?.[0];
+  assert.ok(box);
+  assert.match(box, /saft og brus/);
+  assert.match(box, /Vann og kaffe planlegger du selv/);
+  assert.doesNotMatch(box, /hvor lenge|varighet/);
+});
+
 test('meta line shows «Sist oppdatert» with a machine-readable date and an author link', () => {
   const p = bySlug.get('hvor-mye-mat-til-barnebursdag');
   const html = metaHtml(p);

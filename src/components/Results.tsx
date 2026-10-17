@@ -141,10 +141,11 @@ export default function Results({
 }) {
   const [checked, setChecked] = useState<Record<string, boolean>>(() => loadChecked());
   const [copied, setCopied] = useState(false);
+  const [storageUnavailable, setStorageUnavailable] = useState(false);
   const toggle = (id: string) => {
     const next = { ...checked, [id]: !checked[id] };
     setChecked(next);
-    saveChecked(next);
+    setStorageUnavailable(!saveChecked(next));
   };
   const doneCount = plan.groups.reduce((n, g) => n + g.items.filter((it) => checked[it.id]).length, 0);
   const hasAffiliates = plan.groups.some((g) => affiliateLinksFor(g.category).length > 0);
@@ -166,7 +167,7 @@ export default function Results({
   };
   const resetChecked = () => {
     setChecked({});
-    saveChecked({});
+    setStorageUnavailable(!saveChecked({}));
   };
 
   return (
@@ -232,6 +233,9 @@ export default function Results({
             </button>
           )}
         </div>
+        {storageUnavailable && (
+          <p role="alert">Avkrysningen kunne ikke lagres på enheten. Listen virker fortsatt her, men avkrysningen kan gå tapt når du laster siden på nytt.</p>
+        )}
         <p className="sr-only" aria-live="polite">{copied ? 'Listen er kopiert' : ''}</p>
       </div>
 

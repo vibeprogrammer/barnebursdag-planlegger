@@ -870,7 +870,7 @@ input[type='range']::-moz-range-thumb {
 .aff-links li { margin: 4px 0; }
 .method-note { margin: 8px 0 0; font-size: 0.86rem; color: var(--ink-soft); }
 .method-note a { color: var(--berry-deep); font-weight: 600; }
-.row-check { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; min-height: 32px; }
+.row-check { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; min-height: 40px; }
 .row-check input { width: 22px; height: 22px; accent-color: var(--berry); flex: none; margin: 0; }
 .row--done .row-name { text-decoration: line-through; color: var(--ink-soft); }
 .export-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
