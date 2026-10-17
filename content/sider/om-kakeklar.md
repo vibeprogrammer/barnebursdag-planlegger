@@ -18,7 +18,7 @@ Målet er ikke å treffe på gram. Målet er en liste som gjør at det ikke går
 
 ## Hvem står bak
 
-Kakeklar er et selvstendig, norsk prosjekt laget av [Maxim Salnikov](https://www.linkedin.com/in/webmax/), utvikler bosatt i Oslo og selv småbarnsforelder. Prosjektet utvikles åpent: kildekoden ligger på [GitHub](https://github.com/webmaxru/barnebursdag-planlegger), og du kan melde fra om feil, foreslå nye varer eller rette i en guide der.
+Kakeklar er et selvstendig, norsk prosjekt laget av [Maxim Salnikov](/om-forfatteren), utvikler bosatt i Oslo og selv forelder. Prosjektet utvikles åpent: kildekoden ligger på [GitHub](https://github.com/webmaxru/barnebursdag-planlegger), og du kan melde fra om feil, foreslå nye varer eller rette i en guide der.
 
 Innholdet i guidene og oppskriftene er skrevet og redigert av oss, basert på egen erfaring med norske barnebursdager, informasjon fra produsentenes pakninger og vanlige norske pakningsstørrelser. Vi lenker til kilden når vi bygger på råd fra offentlige etater eller andre.
 
@@ -30,7 +30,7 @@ Rådene er bevisste tommelfingerregler, ikke fasit. Barn spiser ulikt, og en fei
 
 ## Hvordan Kakeklar finansieres
 
-Kakeklar er gratis å bruke, uten konto og uten betalingsmur. For å dekke drift kan nettstedet vise annonser levert av Google AdSense, og priseoppslaget «Sjekk pris» bruker den åpne tjenesten Kassal.app. Annonser påvirker ikke hva vi anbefaler i guidene, og vi merker eventuelle sponsede innslag tydelig. Les mer om informasjonskapsler og samtykke i [personvernerklæringen](/personvern).
+Kakeklar er gratis å bruke, uten konto og uten betalingsmur. For å dekke drift kan nettstedet vise annonser levert av Google AdSense, og priseoppslaget «Sjekk pris» bruker den åpne tjenesten Kassal.app. Annonser påvirker ikke hva vi anbefaler i guidene. Hvis vi lenker til butikker gjennom et affiliate-program og kan få provisjon, merkes lenken «Annonselenke». Les mer om informasjonskapsler og samtykke i [personvernerklæringen](/personvern).
 
 ## Kontakt og tilbakemelding
 

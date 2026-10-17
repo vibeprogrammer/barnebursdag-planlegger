@@ -7,6 +7,14 @@
   "category": "barnehage",
   "date": "2026-10-17",
   "updated": "2026-10-17",
+  "image": {
+    "src": "/img/oppskrifter/fruktspyd-og-sunn-bursdagsmat.svg",
+    "png": "/img/oppskrifter/fruktspyd-og-sunn-bursdagsmat.png",
+    "width": 1200,
+    "height": 800,
+    "alt": "Tegning av tre fruktspyd med druer, melon, jordbær, banan og blåbær på et fat",
+    "caption": "Illustrasjon: Kakeklar"
+  },
   "related": [
     "barnehagebursdag",
     "hvor-mye-mat-til-barnebursdag",

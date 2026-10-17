@@ -62,11 +62,16 @@ the whole site as one page — the direct cause of the AdSense "low value conten
 Optional build-time env:
 
 - `VITE_ADSENSE_CLIENT` — AdSense publisher; defaults to `ca-pub-6118980043742623` (set `off` to build without ads).
-  Injects the loader (`adsbygoogle.js`, once per page) and the `google-adsense-account` meta into every page, and
+  Injects the account meta into every page, but the loader (`adsbygoogle.js`, once per page) only into guides and recipes, with
   the in-article (4250080584) + multiplex (3563684870) units into guides and recipes (`withAds` in
   `scripts/prerender.mjs`). Publish the AdSense consent message (CMP) before deploying.
 - `VITE_CONTACT_EMAIL=…` — shows an e-mail address on `/kontakt`. Production builds receive the Actions
   variable `CONTACT_EMAIL`; no address is invented when it is unset.
+
+The privacy page's consent button loads Google's consent manager on demand through `public/consent.js`,
+independently of the ad loader. The same helper supports the React fallback. It queues revocation until
+`CONSENT_DATA_READY`, reports load failures/timeouts, and never adds ad units to the privacy page.
+Withdrawal remains available when ads are disabled, since earlier consent cookies may still exist.
 
 Legacy guide redirects are shared in `scripts/content-routes.mjs` so Static Web Apps and Express/Docker
 return the same 301 responses before serving content.
@@ -74,3 +79,18 @@ return the same 301 responses before serving content.
 The Docker build context must include `scripts/` and `content/**/*.md` for prerendering. Its runtime
 copies only the dependency-free redirect module alongside the Express adapter. CI builds and
 smoke-tests the compatibility container (health, content, redirect and 404) before deploying to Static Web Apps.
+
+## Round 2 additions
+
+- `image` (recipes): `{ "src": "/img/...svg", "png": "/img/...png", "width": 1200, "height": 800, "alt": "...", "caption": "..." }` —
+  `src` is shown on the page, `png` goes into the Recipe/Article JSON-LD and `og:image`. Use only your own images or
+  images whose licence you have checked; the current ones are Kakeklar's own SVG illustrations.
+- `photo` (author page): `{ "src": "/img/maxim.jpg", "alt": "Maxim Salnikov" }`.
+- HTML comments (`<!-- ... -->`) in markdown are editor notes and are stripped from the build.
+- Every guide and recipe gets: «Sist oppdatert» date line, byline linked to `/om-forfatteren`, a calculator box after the
+  first paragraph (presets per slug in `CALC_PRESETS`, `scripts/content.mjs`) and an author box before «Les også».
+- Bump `updated` whenever you change a page's substance; the date shows on the page, in JSON-LD and in the sitemap.
+
+Shopping-list TXT/copy and CSV exports preserve item notes, including allergy warnings. CSV uses semicolons,
+a BOM, whole-kroner numeric prices and a `Merknad` column. Formula-leading catalog strings are prefixed with
+an apostrophe before CSV escaping. Checklist storage failures leave the in-memory list usable and show a warning.

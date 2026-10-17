@@ -7,6 +7,14 @@
   "category": "oppskrifter",
   "date": "2026-10-17",
   "updated": "2026-10-17",
+  "image": {
+    "src": "/img/oppskrifter/sjokoladekake-i-langpanne.svg",
+    "png": "/img/oppskrifter/sjokoladekake-i-langpanne.png",
+    "width": 1200,
+    "height": 800,
+    "alt": "Tegning av sjokoladekake i langpanne med strøssel, skåret i ruter",
+    "caption": "Illustrasjon: Kakeklar"
+  },
   "related": [
     "hvor-stor-bursdagskake",
     "blotkake-til-barnebursdag",

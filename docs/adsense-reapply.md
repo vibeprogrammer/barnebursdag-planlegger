@@ -67,7 +67,7 @@ https://kakeklar.no/ads.txt — keep it; verify the publisher ID matches the one
 ## Re-apply checklist (Maxim)
 
 1. **Before merging — AdSense → Privacy & messaging**: create and publish the GDPR (European regulations) consent
-   message (Google's own certified CMP; it is delivered by `adsbygoogle.js`, which this PR loads on every page). Choose
+   message (Google's own certified CMP; it is delivered by `adsbygoogle.js`, which is loaded on guide and recipe pages — the pages with ad units). Choose
    the "Ad serving if no consent" behaviour you prefer.
    Then **merge and deploy** this PR. The workflow now also runs on `content/**` changes (`.md` files were ignored before).
 2. **Verify the live site** (replace nothing, just open):
@@ -85,14 +85,19 @@ https://kakeklar.no/ads.txt — keep it; verify the publisher ID matches the one
    Inspection → "Request indexing" on `/`, `/guider`, `/oppskrifter` and 3–5 guides. Wait until Pages → Indexed
    shows the new URLs (typically days to 2–3 weeks). Fix anything under "Not indexed" → "Duplicate, Google chose
    different canonical" / "Soft 404" — there should be none now.
-5. **Check the consent message shows** on https://kakeklar.no/ from an EU browser profile (incognito).
-6. **Ad code is already on** (same account and units as bpmtech.no): the loader
-   `adsbygoogle.js?client=ca-pub-6118980043742623` is in every page's `<head>` once; guides and recipes carry one
+5. **Check the consent message shows** on a guide, e.g. https://kakeklar.no/guider/hvor-mye-mat-til-barnebursdag, from an EU browser profile (incognito). The home page/calculator, hubs and trust pages load no ad script (only the `google-adsense-account` meta tag), so no consent banner appears there.
+6. **Ad code is already on** (same account and units as bpmtech.no): every page carries the
+   `google-adsense-account` meta tag (site connection, support.google.com/adsense/answer/7584263); the loader
+   `adsbygoogle.js?client=ca-pub-6118980043742623` is loaded once, only on guides and recipes, which carry one
    in-article unit (slot 4250080584) mid-article and one multiplex unit (slot 3563684870) at the end, each labelled
-   «Annonse», height reserved and lazy-activated near the viewport. No units on Om/Kontakt/Personvern/Vilkår, hubs,
+   «Annonser» (one of the two labels AdSense allows in Norwegian: «Annonser» or «Sponsede linker», support.google.com/adsense/answer/1346295?hl=no), height reserved and lazy-activated near the viewport. No units on Om/Kontakt/Personvern/Vilkår, hubs,
    the 404 or the calculator. Units stay blank until the site is approved. Kill switch: build with
    `VITE_ADSENSE_CLIENT=off`. Optionally enable Auto ads after approval and tune from there.
 7. **Request review**: AdSense → Sites → kakeklar.no → "Request review" (only after steps 1–6 and after the new
    pages are indexed; the review typically takes a few days, up to 2–4 weeks).
-8. While waiting: add real photos to the recipes (`recipe.image` in the front matter) — Recipe rich results
-   require an image — and keep publishing: one new guide every week or two beats a one-off batch.
+8. While waiting: the four recipes now carry Kakeklar's own illustrations (SVG on the page, PNG in the Recipe
+   schema). Real photos of your own bakes would be even better — replace `image` in the front matter. Keep
+   publishing: one new guide every week or two beats a one-off batch.
+9. **E-E-A-T** (round 2): every guide and recipe shows «Sist oppdatert», a byline linking to `/om-forfatteren`
+   and an author box. Fill in the TODO comments in `content/sider/om-forfatteren.md` (they are stripped from the
+   build, so nothing half-finished ships) and read through the guides — they carry your name.

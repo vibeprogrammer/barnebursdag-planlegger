@@ -4,7 +4,7 @@
 // crawlers the whole site was one page. Google needs each page's own HTML, title and canonical.
 import fs from 'node:fs';
 import path from 'node:path';
-import { loadPages, renderBody, hubPages, jsonLd, breadcrumbsHtml, pageMeta, esc, SITE, SITE_NAME, REDIRECTS } from './content.mjs';
+import { loadPages, renderBody, hubPages, jsonLd, breadcrumbsHtml, pageMeta, metaHtml, esc, SITE, SITE_NAME, REDIRECTS, AUTHOR } from './content.mjs';
 
 const dist = path.resolve('dist');
 const indexHtml = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
@@ -17,23 +17,34 @@ const adsenseClient = /^(off|false|0|none)$/i.test(adsenseEnv) ? '' : adsenseEnv
 const AD_SLOTS = { inArticle: '4250080584', multiplex: '3563684870' };
 const contactEmail = process.env.VITE_CONTACT_EMAIL || '';
 const today = new Date().toISOString().slice(0, 10);
+// Affiliate «Hvor kjøpe» boxes: OFF unless VITE_AFFILIATE_LINKS=1, and only entries with a url (content/affiliates.json).
+const affiliatesOn = (process.env.VITE_AFFILIATE_LINKS ?? '').trim() === '1';
+const affiliates = JSON.parse(fs.readFileSync(path.resolve('content/affiliates.json'), 'utf8'));
+// Preload the two latin web fonts so text does not reflow when they arrive (CLS on the home page was 0.117).
+const fontFiles = fs.readdirSync(path.join(dist, 'assets')).filter((f) => /^(hanken-grotesk|bricolage-grotesque)-latin-wght-normal-.*\.woff2$/.test(f));
+const fontPreloads = fontFiles.map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`).join('\n    ');
 
 const { pages, bySlug } = loadPages();
 const all = [...pages.map((p) => ({ ...p, html: renderBody(p, bySlug) })), ...hubPages(pages)];
 
-const adsenseTag = adsenseClient
-  ? `<meta name="google-adsense-account" content="${esc(adsenseClient)}" />\n    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${esc(adsenseClient)}" crossorigin="anonymous"></script>`
+// The account meta tag goes on every page (site connection/verification, support.google.com/adsense/answer/7584263).
+// The loader script only goes on pages that actually carry ad units (guides and recipes), so trust pages, hubs and the
+// calculator never get ads, not even Auto ads, and the home page does not pay the loader's main-thread cost.
+const adsenseMeta = adsenseClient ? `<meta name="google-adsense-account" content="${esc(adsenseClient)}" />` : '';
+const adsenseLoader = adsenseClient
+  ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${esc(adsenseClient)}" crossorigin="anonymous"></script>`
   : '';
 
 // Ad units: only on guides and recipes (never on trust pages, hubs, the 404 or the calculator).
-// One in-article unit mid-article, one multiplex unit at the end. Each is labelled «Annonse», has its
+// One in-article unit mid-article, one multiplex unit at the end. Each is labelled «Annonser», has its
+// Label «Annonser» is one of the two labels AdSense allows in Norwegian (support.google.com/adsense/answer/1346295?hl=no).
 // height reserved in CSS (no layout shift) and is only activated when it nears the viewport.
 const AD_SECTIONS = new Set(['guider', 'oppskrifter']);
 function adUnit(kind) {
   const attrs = kind === 'inArticle'
     ? `style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid"`
     : `style="display:block" data-ad-format="autorelaxed"`;
-  return `<aside class="ad-slot ad-slot--${kind === 'inArticle' ? 'in-article' : 'multiplex'}" aria-label="Annonse"><p class="ad-label">Annonse</p><ins class="adsbygoogle-lazy" ${attrs} data-ad-client="${esc(adsenseClient)}" data-ad-slot="${AD_SLOTS[kind]}"></ins></aside>`;
+  return `<aside class="ad-slot ad-slot--${kind === 'inArticle' ? 'in-article' : 'multiplex'}" aria-label="Annonser"><p class="ad-label">Annonser</p><ins class="adsbygoogle-lazy" ${attrs} data-ad-client="${esc(adsenseClient)}" data-ad-slot="${AD_SLOTS[kind]}"></ins></aside>`;
 }
 /** Inserts the in-article unit before the h2 nearest the middle of the article prose (outside the recipe card,
  *  FAQ, sources and «Les også»), and the multiplex unit at the very end. Short articles get no in-article unit. */
@@ -51,6 +62,20 @@ function withAds(page, html) {
     out = out.slice(0, at) + adUnit('inArticle') + out.slice(at);
   }
   return out + adUnit('multiplex');
+}
+function affiliateBox(page) {
+  if (!affiliatesOn) return '';
+  const links = (affiliates.guides?.[page.slug] || []).filter((l) => l.url && l.label);
+  if (!links.length) return '';
+  return `<aside class="affiliate-box" aria-labelledby="aff-h"><p class="affiliate-title" id="aff-h">Hvor kjøpe</p><ul>${links
+    .map((l) => `<li><span class="aff-label">Annonselenke</span> <a href="${esc(l.url)}" rel="sponsored nofollow noopener" target="_blank">${esc(l.label)}${l.merchant ? ` hos ${esc(l.merchant)}` : ''}</a></li>`).join('')}</ul><p class="affiliate-note">${esc(affiliates.disclosure || '')}</p></aside>`;
+}
+/** Affiliate box goes after the article prose, before FAQ/sources (never next to an ad unit). */
+function withAffiliates(page, html) {
+  const box = affiliateBox(page);
+  if (!box) return html;
+  const tail = html.search(/<section class="content-(faq|sources)"|<aside class="author-box"|<aside class="content-related"/);
+  return tail === -1 ? html + box : html.slice(0, tail) + box + html.slice(tail);
 }
 const adScript = `<script>
       (function () {
@@ -71,9 +96,9 @@ const adScript = `<script>
 const footer = `<footer class="foot">
       <p>Kakeklar er gratis · ingen innlogging · for norske foreldre. Mengdene er anbefalinger – juster fritt.</p>
       <nav class="foot-nav" aria-label="Informasjon">
-        <a href="/om-kakeklar">Om Kakeklar</a><a href="/guider">Guider</a><a href="/oppskrifter">Oppskrifter</a><a href="/personvern">Personvern</a><a href="/vilkar">Vilkår</a><a href="/kontakt">Kontakt</a>
+        <a href="/om-kakeklar">Om Kakeklar</a><a href="/om-forfatteren">Om forfatteren</a><a href="/guider">Guider</a><a href="/oppskrifter">Oppskrifter</a><a href="/personvern">Personvern</a><a href="/vilkar">Vilkår</a><a href="/kontakt">Kontakt</a>
       </nav>
-      <p class="foot-credit">Made in Norway by <a href="https://www.linkedin.com/in/webmax/" target="_blank" rel="noopener noreferrer">Maxim Salnikov</a> · <a href="https://github.com/webmaxru/barnebursdag-planlegger" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+      <p class="foot-credit">Made in Norway by <a href="/om-forfatteren">Maxim Salnikov</a> · <a href="https://github.com/webmaxru/barnebursdag-planlegger" target="_blank" rel="noopener noreferrer">GitHub</a></p>
     </footer>`;
 
 function document(page) {
@@ -81,6 +106,8 @@ function document(page) {
   const { eyebrow, dates } = pageMeta(page);
   const html = page.html;
   const ld = JSON.stringify(jsonLd(page, bySlug)).replace(/</g, '\\u003c');
+  const ogImage = page.image?.png ? SITE + page.image.png : `${SITE}/og-image.png`;
+  const hasAds = adsenseClient && AD_SECTIONS.has(page.section);
   const ogType = page.section === 'guider' || page.section === 'oppskrifter' ? 'article' : 'website';
   return `<!doctype html>
 <html lang="nb">
@@ -104,16 +131,19 @@ function document(page) {
     <meta property="og:title" content="${esc(page.title)}" />
     <meta property="og:description" content="${esc(page.description)}" />
     <meta property="og:url" content="${url}" />
-    <meta property="og:image" content="${SITE}/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image" content="${ogImage}" />
+    <meta property="og:image:width" content="${page.image?.png ? 1200 : 1200}" />
+    <meta property="og:image:height" content="${page.image?.png ? 800 : 630}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${esc(page.title)}" />
     <meta name="twitter:description" content="${esc(page.description)}" />
-    <meta name="twitter:image" content="${SITE}/og-image.png" />
+    <meta name="twitter:image" content="${ogImage}" />
+    ${fontPreloads}
     ${cssLinks}
     <script type="application/ld+json">${ld}</script>
-    ${adsenseTag}
+    ${adsenseMeta}
+    ${hasAds ? adsenseLoader : ''}
+    ${page.path === '/personvern' ? `<script defer src="/consent.js" data-publisher="${esc((adsenseClient || DEFAULT_ADSENSE_CLIENT).replace(/^ca-/, ''))}"></script>` : ''}
   </head>
   <body>
     <div class="content-page">
@@ -127,12 +157,12 @@ function document(page) {
         <p class="hero-eyebrow">${esc(eyebrow)}</p>
         <h1>${esc(page.title)}</h1>
         <p>${esc(page.lead || page.description)}</p>
-        ${dates ? `<p class="content-meta">${esc(dates)}</p>` : ''}
+        ${metaHtml(page)}
       </header>
-      <main class="content-body">${withAds(page, html)}</main>
+      <main class="content-body">${withAds(page, withAffiliates(page, html))}</main>
       ${footer}
     </div>
-    ${adsenseClient && AD_SECTIONS.has(page.section) ? adScript : ''}
+    ${hasAds ? adScript : ''}
   </body>
 </html>
 `;
@@ -155,10 +185,9 @@ fs.writeFileSync(path.join(dist, '404.html'), document({
   lead: 'Siden er flyttet eller har aldri eksistert.', html: `<p>Prøv <a href="/">kalkulatoren på forsiden</a>, eller finn det du leter etter i <a href="/guider">guidene</a> og <a href="/oppskrifter">oppskriftene</a>.</p>`
 }).replace('<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />', '<meta name="robots" content="noindex" />').replace(/<link rel="canonical"[^>]*>\n/, ''));
 
-// Inject the AdSense tag into the app shell too (only when VITE_ADSENSE_CLIENT is set at build time).
-if (adsenseTag) {
-  fs.writeFileSync(path.join(dist, 'index.html'), indexHtml.replace('</head>', `    ${adsenseTag}\n  </head>`));
-}
+// App shell (dist/index.html).
+// App shell: font preloads + the AdSense account meta tag only. No loader: the calculator carries no ad units.
+fs.writeFileSync(path.join(dist, 'index.html'), indexHtml.replace('</head>', `    ${fontPreloads}\n${adsenseMeta ? `    ${adsenseMeta}\n` : ''}  </head>`));
 
 // sitemap.xml: home + every content page, with real lastmod dates.
 const urls = [{ loc: SITE + '/', lastmod: all.reduce((m, p) => (p.updated || p.date) > m ? (p.updated || p.date) : m, '2026-08-07'), priority: '1.0' },

@@ -7,6 +7,14 @@
   "category": "oppskrifter",
   "date": "2026-10-17",
   "updated": "2026-10-17",
+  "image": {
+    "src": "/img/oppskrifter/blotkake-til-barnebursdag.svg",
+    "png": "/img/oppskrifter/blotkake-til-barnebursdag.png",
+    "width": 1200,
+    "height": 800,
+    "alt": "Tegning av en bløtkake med krem, jordbær og tre bursdagslys",
+    "caption": "Illustrasjon: Kakeklar"
+  },
   "related": [
     "hvor-stor-bursdagskake",
     "sjokoladekake-i-langpanne",

@@ -43,9 +43,10 @@ Besøkende fra EØS, Storbritannia og Sveits får et samtykkevalg før annonsein
 
 Du kan når som helst endre eller trekke tilbake samtykket ditt:
 
-<p><button type="button" class="btn btn--secondary" data-consent-revoke onclick="window.googlefc&&window.googlefc.callbackQueue&&window.googlefc.callbackQueue.push({CONSENT_DATA_READY:function(){window.googlefc.showRevocationMessage()}})">Endre samtykke til annonser</button></p>
+<p><button type="button" class="btn btn--secondary" data-consent-revoke>Endre samtykke til annonser</button></p>
+<p role="status" data-consent-status></p>
 
-Hvis knappen ikke åpner et valg, vises det ingen annonser på siden akkurat nå, og ingen annonseinformasjonskapsler er satt.
+Knappen laster samtykkeløsningen ved behov, uten å laste annonser på denne siden. Hvis valget ikke kan åpnes, får du en feilmelding. Tidligere samtykke og informasjonskapsler kan fortsatt være lagret selv om ingen annonser vises her.
 
 Informasjonskapsler kan også slettes og blokkeres i nettleserens innstillinger. Nettstedet fungerer uten dem.
 

@@ -1,0 +1,71 @@
+{
+  "_les_meg": "Affiliate-lenker («Hvor kjøpe»). AV som standard: vises bare når bygget kjøres med VITE_AFFILIATE_LINKS=1, og bare oppføringer med utfylt url vises. Hver lenke merkes «Annonselenke» og får rel=\"sponsored nofollow noopener\". Fyll inn sporingslenker fra affiliate-nettverket (f.eks. Adtraction) når avtalen med butikken er godkjent. Se docs/affiliate.md.",
+  "disclosure": "Kakeklar kan få provisjon hvis du handler via lenker merket «Annonselenke». Det koster deg ikke noe ekstra, og det påvirker ikke hvilke mengder eller varer vi anbefaler.",
+  "guides": {
+    "godteposer-til-barnebursdag": [
+      {
+        "label": "Godteposer, papirposer og småleker til fylling",
+        "merchant": "",
+        "url": ""
+      }
+    ],
+    "leker-til-barnebursdag-3-5-ar": [
+      {
+        "label": "Premier og småleker til bursdagsleker",
+        "merchant": "",
+        "url": ""
+      }
+    ],
+    "leker-til-barnebursdag-6-9-ar": [
+      {
+        "label": "Premier, skattejakt-utstyr og småleker",
+        "merchant": "",
+        "url": ""
+      }
+    ],
+    "invitasjon-til-barnebursdag": [
+      {
+        "label": "Invitasjonskort til barnebursdag",
+        "merchant": "",
+        "url": ""
+      }
+    ],
+    "utebursdag-og-grillfest": [
+      {
+        "label": "Engangsservise og utstyr til utebursdag",
+        "merchant": "",
+        "url": ""
+      }
+    ],
+    "hvor-stor-bursdagskake": [
+      {
+        "label": "Kakeformer, langpanne og kakepynt",
+        "merchant": "",
+        "url": ""
+      }
+    ]
+  },
+  "calculator": {
+    "servise": [
+      {
+        "label": "Papptallerkener, kopper og servietter",
+        "merchant": "",
+        "url": ""
+      }
+    ],
+    "pynt": [
+      {
+        "label": "Ballonger, girlandere og bursdagspynt",
+        "merchant": "",
+        "url": ""
+      }
+    ],
+    "godteri": [
+      {
+        "label": "Godteposer og papirposer",
+        "merchant": "",
+        "url": ""
+      }
+    ]
+  }
+}

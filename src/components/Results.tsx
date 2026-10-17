@@ -7,6 +7,10 @@ import { fetchPrices, type KassalProduct } from '../lib/kassal';
 import { CHECKLIST, TIMELINE, BARNEHAGE_NOTE } from '../lib/checklist';
 import { track } from '../lib/analytics';
 import ActionToolbar from './ActionToolbar';
+import { loadChecked, saveChecked, planToText, planToCsv, downloadFile, fileStem } from '../lib/exportList';
+import { affiliateLinksFor, AFFILIATE_DISCLOSURE } from '../lib/affiliates';
+import { shareUrl } from '../lib/store';
+import type { Category } from '../lib/types';
 
 function PriceLookup({ search }: { search: string }) {
   const [state, setState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
@@ -50,11 +54,14 @@ function PriceLookup({ search }: { search: string }) {
   );
 }
 
-function Row({ it }: { it: LineItem }) {
+function Row({ it, done, onToggle }: { it: LineItem; done: boolean; onToggle: () => void }) {
   return (
-    <li className="row">
+    <li className={`row${done ? ' row--done' : ''}`}>
       <div className="row-main">
-        <span className="row-name">{it.emoji ? `${it.emoji} ` : ''}{it.name}</span>
+        <label className="row-check">
+          <input type="checkbox" checked={done} onChange={onToggle} />
+          <span className="row-name">{it.emoji ? `${it.emoji} ` : ''}{it.name}</span>
+        </label>
         <span className="row-qty">{n1(it.neededQty)} {it.unit}</span>
       </div>
       <div className="row-sub">
@@ -67,6 +74,23 @@ function Row({ it }: { it: LineItem }) {
       {it.note && <p className="row-note">{it.note.startsWith('Trygt') ? '✅' : '⚠️'} {it.note}</p>}
       {it.kassalSearch && <PriceLookup search={it.kassalSearch} />}
     </li>
+  );
+}
+
+function WhereToBuy({ category }: { category: Category }) {
+  const links = affiliateLinksFor(category);
+  if (!links.length) return null;
+  return (
+    <ul className="aff-links no-print">
+      {links.map((l) => (
+        <li key={l.url}>
+          <span className="aff-label">Annonselenke</span>{' '}
+          <a href={l.url} target="_blank" rel="sponsored nofollow noopener" onClick={() => track('affiliate_click', { category, merchant: l.merchant })}>
+            {l.label}{l.merchant ? ` hos ${l.merchant}` : ''}
+          </a>
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -115,6 +139,37 @@ export default function Results({
   onShare: () => void;
   onPrint: () => void;
 }) {
+  const [checked, setChecked] = useState<Record<string, boolean>>(() => loadChecked());
+  const [copied, setCopied] = useState(false);
+  const [storageUnavailable, setStorageUnavailable] = useState(false);
+  const toggle = (id: string) => {
+    const next = { ...checked, [id]: !checked[id] };
+    setChecked(next);
+    setStorageUnavailable(!saveChecked(next));
+  };
+  const doneCount = plan.groups.reduce((n, g) => n + g.items.filter((it) => checked[it.id]).length, 0);
+  const hasAffiliates = plan.groups.some((g) => affiliateLinksFor(g.category).length > 0);
+  const copyText = async () => {
+    const text = planToText(plan, cfg, checked, shareUrl(cfg));
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2200);
+    } catch {
+      downloadFile(`${fileStem(cfg)}.txt`, text, 'text/plain;charset=utf-8');
+    }
+    track('plan_exported', { format: 'clipboard', guests: cfg.guests, age: cfg.age });
+  };
+  const download = (format: 'txt' | 'csv') => {
+    if (format === 'txt') downloadFile(`${fileStem(cfg)}.txt`, planToText(plan, cfg, checked, shareUrl(cfg)), 'text/plain;charset=utf-8');
+    else downloadFile(`${fileStem(cfg)}.csv`, planToCsv(plan, checked), 'text/csv;charset=utf-8');
+    track('plan_exported', { format, guests: cfg.guests, age: cfg.age });
+  };
+  const resetChecked = () => {
+    setChecked({});
+    setStorageUnavailable(!saveChecked({}));
+  };
+
   return (
     <section className="results">
       <div className="result-head">
@@ -129,6 +184,11 @@ export default function Results({
         {plan.hasPrice && (
           <p className="total">Estimert kostnad: <strong>{krRange(plan.priceMin, plan.priceMax)}</strong></p>
         )}
+        <p className="method-note" data-testid="method-note">
+          Slik regner vi: hver vare har en mengde per barn (etter aldersgruppe), per gjest eller per bord. Voksne regnes med der
+          de spiser, og alt rundes opp til hele pakker. Prisene er omtrentlige spenn, ikke dagens butikkpris.{' '}
+          <a href="/guider/slik-beregner-kakeklar">Les hele metoden</a>
+        </p>
       </div>
 
       <ActionToolbar position="over" onShare={onShare} onPrint={onPrint} onCustomize={onOpenConfig} />
@@ -140,13 +200,44 @@ export default function Results({
           <h3>{CATEGORY_EMOJI[g.category]} {CATEGORY_LABEL[g.category]}</h3>
           <ul className="rows">
             {g.items.map((it) => (
-              <Row key={it.id} it={it} />
+              <Row key={it.id} it={it} done={!!checked[it.id]} onToggle={() => toggle(it.id)} />
             ))}
           </ul>
+          <WhereToBuy category={g.category} />
         </div>
       ))}
 
       <ActionToolbar position="under" onShare={onShare} onPrint={onPrint} onCustomize={onOpenConfig} />
+
+      {hasAffiliates && <p className="aff-note no-print">{AFFILIATE_DISCLOSURE}</p>}
+
+      <div className="block export no-print" data-testid="export-block">
+        <h2>Ta med listen</h2>
+        <p className="muted">
+          Kryss av det du har kjøpt. Avkrysningen lagres på denne enheten, så listen er klar når du åpner Kakeklar i butikken.
+          {doneCount > 0 && <> {doneCount} av {plan.itemCount} varer er krysset av.</>}
+        </p>
+        <div className="export-actions">
+          <button type="button" className="btn btn--secondary" onClick={copyText} data-testid="export-copy">
+            {copied ? '✓ Kopiert' : '📋 Kopier som tekst'}
+          </button>
+          <button type="button" className="btn btn--secondary" onClick={() => download('txt')} data-testid="export-txt">
+            ⬇️ Last ned (.txt)
+          </button>
+          <button type="button" className="btn btn--secondary" onClick={() => download('csv')} data-testid="export-csv">
+            📊 Regneark (.csv)
+          </button>
+          {doneCount > 0 && (
+            <button type="button" className="link-btn" onClick={resetChecked} data-testid="export-reset">
+              Nullstill avkrysning
+            </button>
+          )}
+        </div>
+        {storageUnavailable && (
+          <p role="alert">Avkrysningen kunne ikke lagres på enheten. Listen virker fortsatt her, men avkrysningen kan gå tapt når du laster siden på nytt.</p>
+        )}
+        <p className="sr-only" aria-live="polite">{copied ? 'Listen er kopiert' : ''}</p>
+      </div>
 
       <div className="block checklist">
         <h2>Sjekkliste</h2>
@@ -161,6 +252,17 @@ export default function Results({
           </details>
         ))}
       </div>
+
+      <nav className="block guide-links no-print" aria-labelledby="guide-links-h">
+        <h2 id="guide-links-h">Nyttige guider</h2>
+        <ul>
+          <li><a href="/guider/hvor-mye-mat-til-barnebursdag">Hvor mye mat trenger du til barnebursdag?</a></li>
+          <li><a href="/guider/hvor-mye-drikke-til-barnebursdag">Hvor mye drikke går med?</a></li>
+          <li><a href="/guider/hvor-stor-bursdagskake">Hvor stor bursdagskake trenger du?</a></li>
+          <li><a href="/guider/planlegg-barnebursdag-steg-for-steg">Planlegg barnebursdagen steg for steg</a></li>
+          <li><a href="/oppskrifter">Oppskrifter på kake og bursdagsmat</a></li>
+        </ul>
+      </nav>
 
       <div className="block timeline">
         <h2>Tidsplan</h2>
