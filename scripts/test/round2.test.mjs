@@ -30,7 +30,7 @@ test('meta line shows «Sist oppdatert» with a machine-readable date and an aut
 });
 
 test('editor notes in markdown never reach the rendered page', () => {
-  const author = bySlug.get('om-forfatteren');
+  const author = bySlug.get('om-utvikleren');
   assert.ok(author, 'author page exists');
   assert.doesNotMatch(renderBody(author, bySlug), /TODO|<!--/);
 });

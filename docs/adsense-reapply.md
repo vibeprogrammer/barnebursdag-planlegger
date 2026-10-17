@@ -98,6 +98,6 @@ https://kakeklar.no/ads.txt — keep it; verify the publisher ID matches the one
 8. While waiting: the four recipes now carry Kakeklar's own illustrations (SVG on the page, PNG in the Recipe
    schema). Real photos of your own bakes would be even better — replace `image` in the front matter. Keep
    publishing: one new guide every week or two beats a one-off batch.
-9. **E-E-A-T** (round 2): every guide and recipe shows «Sist oppdatert», a byline linking to `/om-forfatteren`
-   and an author box. Fill in the TODO comments in `content/sider/om-forfatteren.md` (they are stripped from the
+9. **E-E-A-T** (round 2): every guide and recipe shows «Sist oppdatert», a byline linking to `/om-utvikleren`
+   and an author box. Fill in the TODO comments in `content/sider/om-utvikleren.md` (they are stripped from the
    build, so nothing half-finished ships) and read through the guides — they carry your name.

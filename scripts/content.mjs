@@ -12,8 +12,8 @@ export const SITE = 'https://kakeklar.no';
 export const SITE_NAME = 'Kakeklar';
 export const AUTHOR = {
   name: 'Maxim Salnikov',
-  path: '/om-forfatteren',
-  url: 'https://kakeklar.no/om-forfatteren',
+  path: '/om-utvikleren',
+  url: 'https://kakeklar.no/om-utvikleren',
   sameAs: ['https://www.linkedin.com/in/webmax/', 'https://github.com/webmaxru'],
   bio: 'Maxim Salnikov er forelder, utvikler i Oslo og laget Kakeklar for å slippe hoderegning før barnebursdager. Han skriver og vedlikeholder guidene og kalkulatoren.'
 };
@@ -144,7 +144,7 @@ export function calcCtaHtml(page) {
 
 export function authorBoxHtml(page) {
   if (page.section !== 'guider' && page.section !== 'oppskrifter') return '';
-  return `<aside class="author-box" aria-label="Om forfatteren"><p class="author-box-name">Skrevet av <a href="${AUTHOR.path}" rel="author">${esc(AUTHOR.name)}</a></p><p>${esc(AUTHOR.bio)} <a href="${AUTHOR.path}">Les mer om forfatteren</a> eller se <a href="/guider/slik-beregner-kakeklar">hvordan mengdene beregnes</a>.</p></aside>`;
+  return `<aside class="author-box" aria-label="Om utvikleren"><p class="author-box-name">Skrevet av <a href="${AUTHOR.path}" rel="author">${esc(AUTHOR.name)}</a></p><p>${esc(AUTHOR.bio)} <a href="${AUTHOR.path}">Les mer om utvikleren</a> eller se <a href="/guider/slik-beregner-kakeklar">hvordan mengdene beregnes</a>.</p></aside>`;
 }
 
 /** Recipe illustration (own SVG, no third-party licence needed). Width/height set to avoid layout shift. */

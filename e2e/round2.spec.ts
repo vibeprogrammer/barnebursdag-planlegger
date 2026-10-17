@@ -4,26 +4,32 @@ test('articles carry a dated byline linked to the author page and a calculator b
   await page.goto('/guider/hvor-mye-mat-til-barnebursdag');
   await expect(page.locator('.content-meta time').first()).toHaveAttribute('datetime', /^\d{4}-\d{2}-\d{2}$/);
   await expect(page.locator('.content-meta')).toContainText('Sist oppdatert');
-  await expect(page.locator('.content-byline a[rel="author"]')).toHaveAttribute('href', '/om-forfatteren');
+  await expect(page.locator('.content-byline a[rel="author"]')).toHaveAttribute('href', '/om-utvikleren');
   await expect(page.locator('.calc-cta a')).toHaveAttribute('href', /^\//);
-  await expect(page.locator('.author-box a[href="/om-forfatteren"]').first()).toBeVisible();
+  await expect(page.locator('.author-box a[href="/om-utvikleren"]').first()).toBeVisible();
 });
 
 test('author page is a ProfilePage and leaks no editor notes', async ({ page, request }) => {
-  const res = await request.get('/om-forfatteren');
+  const res = await request.get('/om-utvikleren');
   expect(res.status()).toBe(200);
   const html = await res.text();
   expect(html).toContain('"@type":"ProfilePage"');
   expect(html).not.toContain('TODO');
-  await page.goto('/om-forfatteren');
+  await page.goto('/om-utvikleren');
   await expect(page.locator('h1')).toContainText('Maxim Salnikov');
+});
+
+test('legacy author URL redirects permanently to the developer page', async ({ request }) => {
+  const res = await request.get('/om-forfatteren', { maxRedirects: 0 });
+  expect(res.status()).toBe(301);
+  expect(res.headers()['location']).toBe('/om-utvikleren');
 });
 
 test('ad slots use an AdSense-approved Norwegian label and stay off trust pages, hubs and the calculator', async ({ request }) => {
   const guide = await (await request.get('/guider/hvor-mye-mat-til-barnebursdag')).text();
   expect(guide).toContain('<p class="ad-label">Annonser</p>');
   expect(guide).toContain('adsbygoogle.js');
-  for (const path of ['/', '/om-kakeklar', '/om-forfatteren', '/personvern', '/vilkar', '/kontakt', '/guider', '/oppskrifter']) {
+  for (const path of ['/', '/om-kakeklar', '/om-utvikleren', '/personvern', '/vilkar', '/kontakt', '/guider', '/oppskrifter']) {
     const html = await (await request.get(path)).text();
     expect(html, path).not.toContain('adsbygoogle.js');
     expect(html, path).not.toContain('ad-slot');

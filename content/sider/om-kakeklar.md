@@ -18,7 +18,7 @@ Målet er ikke å treffe på gram. Målet er en liste som gjør at det ikke går
 
 ## Hvem står bak
 
-Kakeklar er et selvstendig, norsk prosjekt laget av [Maxim Salnikov](/om-forfatteren), utvikler bosatt i Oslo og selv forelder. Prosjektet utvikles åpent: kildekoden ligger på [GitHub](https://github.com/webmaxru/barnebursdag-planlegger), og du kan melde fra om feil, foreslå nye varer eller rette i en guide der.
+Kakeklar er et selvstendig, norsk prosjekt laget av [Maxim Salnikov](/om-utvikleren), utvikler bosatt i Oslo og selv forelder. Prosjektet utvikles åpent: kildekoden ligger på [GitHub](https://github.com/webmaxru/barnebursdag-planlegger), og du kan melde fra om feil, foreslå nye varer eller rette i en guide der.
 
 Innholdet i guidene og oppskriftene er skrevet og redigert av oss, basert på egen erfaring med norske barnebursdager, informasjon fra produsentenes pakninger og vanlige norske pakningsstørrelser. Vi lenker til kilden når vi bygger på råd fra offentlige etater eller andre.
 

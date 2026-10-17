@@ -87,7 +87,7 @@ smoke-tests the compatibility container (health, content, redirect and 404) befo
   images whose licence you have checked; the current ones are Kakeklar's own SVG illustrations.
 - `photo` (author page): `{ "src": "/img/maxim.jpg", "alt": "Maxim Salnikov" }`.
 - HTML comments (`<!-- ... -->`) in markdown are editor notes and are stripped from the build.
-- Every guide and recipe gets: «Sist oppdatert» date line, byline linked to `/om-forfatteren`, a calculator box after the
+- Every guide and recipe gets: «Sist oppdatert» date line, byline linked to `/om-utvikleren`, a calculator box after the
   first paragraph (presets per slug in `CALC_PRESETS`, `scripts/content.mjs`) and an author box before «Les også».
 - Bump `updated` whenever you change a page's substance; the date shows on the page, in JSON-LD and in the sitemap.
 

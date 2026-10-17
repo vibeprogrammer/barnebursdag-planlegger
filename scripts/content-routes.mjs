@@ -2,5 +2,6 @@
 export const REDIRECTS = {
   '/slik-beregner-kakeklar': '/guider/slik-beregner-kakeklar',
   '/barnehagebursdag': '/guider/barnehagebursdag',
-  '/allergier-i-barnebursdag': '/guider/allergier-i-barnebursdag'
+  '/allergier-i-barnebursdag': '/guider/allergier-i-barnebursdag',
+  '/om-forfatteren': '/om-utvikleren'
 };

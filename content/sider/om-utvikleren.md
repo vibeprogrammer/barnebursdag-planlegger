@@ -1,11 +1,11 @@
 ---
 {
-  "title": "Om forfatteren: Maxim Salnikov",
+  "title": "Om utvikleren: Maxim Salnikov",
   "description": "Maxim Salnikov er forelder i Oslo og utvikleren bak Kakeklar. Her er hvem han er, hvorfor han laget kalkulatoren og hvordan innholdet lages.",
   "date": "2026-10-17",
   "updated": "2026-10-17",
   "section": "sider",
-  "slug": "om-forfatteren",
+  "slug": "om-utvikleren",
   "lead": "Forelder, utvikler i Oslo og mannen bak kalkulatoren, guidene og oppskriftene på Kakeklar."
 }
 ---
