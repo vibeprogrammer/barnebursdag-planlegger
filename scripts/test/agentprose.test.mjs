@@ -3,11 +3,11 @@ import fs from 'node:fs';
 import { test } from 'node:test';
 import { AGENTPROSE_KEY, AGENTPROSE_SNIPPET } from '../content.mjs';
 
-test('agentprose snippet is the registered Cloud snippet: pinned major, public key, deferred', () => {
+test('agentprose snippet is the registered Cloud snippet: evergreen 0.x channel, public key, deferred', () => {
   assert.match(AGENTPROSE_KEY, /^pk_[A-Za-z0-9_-]{8,}$/);
   assert.equal(
     AGENTPROSE_SNIPPET,
-    `<script src="https://cdn.jsdelivr.net/npm/agentprose@0.1/dist/agentprose.min.js" data-cloud="https://agentprose.cloud" data-key="${AGENTPROSE_KEY}" defer></script>`
+    `<script src="https://agentprose.cloud/v/0/agentprose.min.js" data-cloud="https://agentprose.cloud" data-key="${AGENTPROSE_KEY}" defer></script>`
   );
 });
 

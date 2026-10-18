@@ -28,6 +28,11 @@ Every page loads the [agentprose](https://agentprose.cloud) snippet once in `<he
 tools (search, list, get article, citations) next to the calculator's own `plan_birthday_party` /
 `get_shopping_list`, and powers hosted search for agents.
 
+The script comes from agentprose Cloud's evergreen 0.x channel (`https://agentprose.cloud/v/0/agentprose.min.js`):
+it always serves the latest compatible 0.x release and is cached for about an hour, so library fixes reach the site
+within ~1 h with no code change or deploy. Breaking changes ship on a new major channel (`/v/1/`) that you opt into.
+To pin an exact version instead, change the URL to e.g. `/v/0.1.0/` (immutable, never updates).
+
 `npm run build` ends with `npm run index:agents` (`agentprose build dist --base-url https://kakeklar.no/ --inline`),
 which writes `dist/agentprose.json`: all guides and recipes with dates, categories and full Markdown. agentprose
 Cloud reads that file first when it indexes the site, and the snippet uses it for `list_posts` / `get_post`.
