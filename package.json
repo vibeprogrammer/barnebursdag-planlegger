@@ -12,7 +12,7 @@
     "dev:client": "vite",
     "dev:server": "node --watch --env-file=.env server/index.js",
     "build": "vite build",
-    "build:production": "node scripts/validate-build-env.mjs && node scripts/build-content.mjs && vite build && node scripts/prerender.mjs",
+    "build:production": "node scripts/validate-build-env.mjs && node scripts/build-content.mjs && vite build && node scripts/prerender.mjs && npm run index:agents",
     "verify:production-build": "node scripts/verify-production-build.mjs",
     "icons": "node scripts/gen-icons.mjs",
     "insights": "pwsh -NoProfile -File scripts/insights.ps1",
@@ -25,9 +25,10 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "content": "node scripts/build-content.mjs",
+    "index:agents": "agentprose build dist --base-url https://kakeklar.no/ --inline",
     "predev": "node scripts/build-content.mjs",
     "prebuild": "node scripts/build-content.mjs",
-    "postbuild": "node scripts/prerender.mjs"
+    "postbuild": "node scripts/prerender.mjs && npm run index:agents"
   },
   "dependencies": {
     "express": "^4.21.2"
@@ -40,6 +41,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
+    "agentprose": "^0.1.0",
     "concurrently": "^9.1.0",
     "marked": "^15.0.12",
     "react": "^18.3.1",

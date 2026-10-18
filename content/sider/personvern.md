@@ -3,7 +3,7 @@
   "title": "Personvernerklæring",
   "description": "Hva Kakeklar lagrer, hvilke informasjonskapsler som brukes, hvordan annonser fra Google AdSense fungerer og hvordan du endrer samtykket ditt.",
   "date": "2026-08-07",
-  "updated": "2026-10-17",
+  "updated": "2026-10-18",
   "section": "sider",
   "slug": "personvern"
 }
@@ -27,6 +27,12 @@ Produksjonssiden kan bruke Microsoft Application Insights for enkel, cookieløs 
 ## Prisoppslag og eksterne tjenester
 
 Hvis du velger «Sjekk pris», sendes søkeordet (varenavnet) til vår server og videre til [Kassal.app](https://kassal.app). Hvis du bruker MENY-funksjonen, kan du bli sendt til meny.no, og nettleseren din kommuniserer da med den tjenesten. Disse tjenestene har egne personvernregler.
+
+## Innhold for AI-agenter (agentprose)
+
+Sidene laster et lite skript fra [agentprose](https://agentprose.cloud) via jsDelivr (cdn.jsdelivr.net). Det gjør guidene og oppskriftene lesbare for AI-assistenter som bruker nettleseren din (WebMCP), og gir dem et søk i innholdet på kakeklar.no. Skriptet setter ingen informasjonskapsler og lagrer ingenting i nettleseren.
+
+Skriptet sender bare noe når en AI-agent faktisk bruker et av verktøyene: da sendes navnet på verktøyet, hvor lang tid det tok, adressen til siden og eventuelt søkeordet agenten brukte til agentprose.cloud, sammen med nettstedets offentlige nøkkel. Det sendes ikke navn, kontaktinformasjon eller annet som identifiserer deg. Når du laster skriptet, ser jsDelivr IP-adressen din slik alle nettjenester gjør.
 
 ## Annonser fra Google AdSense
 

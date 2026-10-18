@@ -1,10 +1,11 @@
 // Post-build prerender: writes a real, static HTML document for every content page into dist/,
 // plus sitemap.xml, 404.html, llms.txt and the Static Web Apps route config.
+// agentprose.json (the AI-agent index) is written after this step by `npm run index:agents`.
 // Why: the SPA served the same index.html (same <title>, canonical → "/") for every URL, so to
 // crawlers the whole site was one page. Google needs each page's own HTML, title and canonical.
 import fs from 'node:fs';
 import path from 'node:path';
-import { loadPages, renderBody, hubPages, jsonLd, breadcrumbsHtml, pageMeta, metaHtml, esc, SITE, SITE_NAME, REDIRECTS, AUTHOR } from './content.mjs';
+import { loadPages, renderBody, hubPages, jsonLd, breadcrumbsHtml, pageMeta, metaHtml, esc, SITE, SITE_NAME, REDIRECTS, AUTHOR, AGENTPROSE_SNIPPET } from './content.mjs';
 
 const dist = path.resolve('dist');
 const indexHtml = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
@@ -143,6 +144,7 @@ function document(page) {
     <script type="application/ld+json">${ld}</script>
     ${adsenseMeta}
     ${hasAds ? adsenseLoader : ''}
+    ${AGENTPROSE_SNIPPET}
     ${page.path === '/personvern' ? `<script defer src="/consent.js" data-publisher="${esc((adsenseClient || DEFAULT_ADSENSE_CLIENT).replace(/^ca-/, ''))}"></script>` : ''}
   </head>
   <body>
@@ -186,8 +188,8 @@ fs.writeFileSync(path.join(dist, '404.html'), document({
 }).replace('<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />', '<meta name="robots" content="noindex" />').replace(/<link rel="canonical"[^>]*>\n/, ''));
 
 // App shell (dist/index.html).
-// App shell: font preloads + the AdSense account meta tag only. No loader: the calculator carries no ad units.
-fs.writeFileSync(path.join(dist, 'index.html'), indexHtml.replace('</head>', `    ${fontPreloads}\n${adsenseMeta ? `    ${adsenseMeta}\n` : ''}  </head>`));
+// App shell: font preloads, the AdSense account meta tag and the agentprose snippet. No ad loader: the calculator carries no ad units.
+fs.writeFileSync(path.join(dist, 'index.html'), indexHtml.replace('</head>', `    ${fontPreloads}\n${adsenseMeta ? `    ${adsenseMeta}\n` : ''}    ${AGENTPROSE_SNIPPET}\n  </head>`));
 
 // sitemap.xml: home + every content page, with real lastmod dates.
 const urls = [{ loc: SITE + '/', lastmod: all.reduce((m, p) => (p.updated || p.date) > m ? (p.updated || p.date) : m, '2026-08-07'), priority: '1.0' },

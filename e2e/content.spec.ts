@@ -87,3 +87,18 @@ test('offline home aliases use the shell refreshed by an online visit', async ({
     await expect(page.getByTestId('wizard').or(page.getByTestId('app'))).toBeVisible();
   }
 });
+
+test('agentprose: snippet once per page and an index of every guide and recipe for the Cloud crawler', async ({ request }) => {
+  for (const path of ['/', '/guider/barnehagebursdag', '/oppskrifter/bursdagsmuffins', '/personvern']) {
+    const html = await (await request.get(path)).text();
+    expect(html.match(/agentprose\.min\.js/g), path).toHaveLength(1);
+    expect(html, path).toContain('data-key="pk_fJJtZLOFInWKFuyN"');
+  }
+  const response = await request.get('/agentprose.json');
+  expect(response.status()).toBe(200);
+  const index = await response.json();
+  expect(index.site.url).toBe('https://kakeklar.no/');
+  expect(index.posts.length).toBeGreaterThanOrEqual(20);
+  const muffins = index.posts.find((p: { url: string }) => p.url === 'https://kakeklar.no/oppskrifter/bursdagsmuffins');
+  expect(muffins.markdown).toContain('## Ingredienser');
+});
