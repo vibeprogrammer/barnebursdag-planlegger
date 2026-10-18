@@ -30,9 +30,9 @@ Hvis du velger «Sjekk pris», sendes søkeordet (varenavnet) til vår server og
 
 ## Innhold for AI-agenter (agentprose)
 
-Sidene laster et lite skript fra [agentprose](https://agentprose.cloud) via jsDelivr (cdn.jsdelivr.net). Det gjør guidene og oppskriftene lesbare for AI-assistenter som bruker nettleseren din (WebMCP), og gir dem et søk i innholdet på kakeklar.no. Skriptet setter ingen informasjonskapsler og lagrer ingenting i nettleseren.
+Sidene laster et lite skript fra [agentprose](https://agentprose.cloud) (agentprose.cloud). Det gjør guidene og oppskriftene lesbare for AI-assistenter som bruker nettleseren din (WebMCP), og gir dem et søk i innholdet på kakeklar.no. Skriptet setter ingen informasjonskapsler og lagrer ingenting i nettleseren.
 
-Skriptet sender bare noe når en AI-agent faktisk bruker et av verktøyene: da sendes navnet på verktøyet, hvor lang tid det tok, adressen til siden og eventuelt søkeordet agenten brukte til agentprose.cloud, sammen med nettstedets offentlige nøkkel. Det sendes ikke navn, kontaktinformasjon eller annet som identifiserer deg. Når du laster skriptet, ser jsDelivr IP-adressen din slik alle nettjenester gjør.
+Skriptet sender bare noe når en AI-agent faktisk bruker et av verktøyene: da sendes navnet på verktøyet, hvor lang tid det tok, adressen til siden og eventuelt søkeordet agenten brukte til agentprose.cloud, sammen med nettstedets offentlige nøkkel. Det sendes ikke navn, kontaktinformasjon eller annet som identifiserer deg. Når du laster skriptet, ser agentprose.cloud IP-adressen din slik alle nettjenester gjør.
 
 ## Annonser fra Google AdSense
 

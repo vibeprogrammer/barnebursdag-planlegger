@@ -20,8 +20,10 @@ export const AUTHOR = {
 // agentprose (https://agentprose.cloud): makes the guides and recipes readable for AI agents through WebMCP
 // (read-only tools: search, list, get article) and powers hosted search for this site. The key is the public
 // site key from the agentprose.cloud dashboard. Injected once into every page's <head> by scripts/prerender.mjs.
+// /v/0/ is the evergreen 0.x channel: it always serves the latest compatible 0.x release (cached ~1 h), so fixes
+// arrive without a code change. To pin instead, use an exact version, e.g. https://agentprose.cloud/v/0.1.0/agentprose.min.js.
 export const AGENTPROSE_KEY = 'pk_fJJtZLOFInWKFuyN';
-export const AGENTPROSE_SNIPPET = `<script src="https://cdn.jsdelivr.net/npm/agentprose@0.1/dist/agentprose.min.js" data-cloud="https://agentprose.cloud" data-key="${AGENTPROSE_KEY}" defer></script>`;
+export const AGENTPROSE_SNIPPET = `<script src="https://agentprose.cloud/v/0/agentprose.min.js" data-cloud="https://agentprose.cloud" data-key="${AGENTPROSE_KEY}" defer></script>`;
 export const CONTENT_DIR = path.resolve('content');
 
 export const CATEGORIES = {
