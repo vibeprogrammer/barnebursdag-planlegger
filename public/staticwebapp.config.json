@@ -5,6 +5,12 @@
       "headers": {
         "Cache-Control": "no-cache"
       }
+    },
+    {
+      "route": "/agentprose.json",
+      "headers": {
+        "Cache-Control": "public, max-age=3600"
+      }
     }
   ],
   "navigationFallback": {

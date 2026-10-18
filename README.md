@@ -21,6 +21,19 @@ decorations) plus a printable checklist and timeline. Everything else is optiona
 - **Norwegian-first, GDPR-clean** — no cookies, no tracking, no account.
 - **Refined, accessible UI** — a calm Scandinavian look (self-hosted type, warm-paper + berry palette) rather than a generic kids theme; keyboard-focusable, `prefers-reduced-motion`-aware, and print-friendly.
 
+## 🤖 AI agents (agentprose)
+
+Every page loads the [agentprose](https://agentprose.cloud) snippet once in `<head>` (key and tag in
+`scripts/content.mjs` → `AGENTPROSE_SNIPPET`, injected by `scripts/prerender.mjs`). It exposes read-only WebMCP
+tools (search, list, get article, citations) next to the calculator's own `plan_birthday_party` /
+`get_shopping_list`, and powers hosted search for agents.
+
+`npm run build` ends with `npm run index:agents` (`agentprose build dist --base-url https://kakeklar.no/ --inline`),
+which writes `dist/agentprose.json`: all guides and recipes with dates, categories and full Markdown. agentprose
+Cloud reads that file first when it indexes the site, and the snippet uses it for `list_posts` / `get_post`.
+After a deploy that changes content, click **Re-index now** on the site's Search index tab in agentprose.cloud
+(or wait for the scheduled crawl).
+
 ## 🧱 Stack
 
 | Layer | Tech |

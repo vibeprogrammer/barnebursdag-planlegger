@@ -19,6 +19,22 @@ self.addEventListener('fetch', (e) => {
   if (url.pathname.startsWith('/api/')) return; // never cache API
   if (e.request.method !== 'GET') return;
 
+  // The AI-agent index changes with every content deploy: network first, cached copy only when offline.
+  if (url.pathname === '/agentprose.json') {
+    e.respondWith(
+      fetch(e.request)
+        .then(async (response) => {
+          if (response.ok) {
+            const cache = await caches.open(CACHE);
+            await cache.put(e.request, response.clone());
+          }
+          return response;
+        })
+        .catch(() => caches.match(e.request).then((hit) => hit || Response.error()))
+    );
+    return;
+  }
+
   if (e.request.mode === 'navigate') {
     const cacheKey = url.pathname === '/' || url.pathname === '/index.html' ? '/' : e.request;
     e.respondWith(

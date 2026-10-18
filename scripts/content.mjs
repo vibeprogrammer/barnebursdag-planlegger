@@ -17,6 +17,11 @@ export const AUTHOR = {
   sameAs: ['https://www.linkedin.com/in/webmax/', 'https://github.com/webmaxru'],
   bio: 'Maxim Salnikov er forelder, utvikler i Oslo og laget Kakeklar for å slippe hoderegning før barnebursdager. Han skriver og vedlikeholder guidene og kalkulatoren.'
 };
+// agentprose (https://agentprose.cloud): makes the guides and recipes readable for AI agents through WebMCP
+// (read-only tools: search, list, get article) and powers hosted search for this site. The key is the public
+// site key from the agentprose.cloud dashboard. Injected once into every page's <head> by scripts/prerender.mjs.
+export const AGENTPROSE_KEY = 'pk_fJJtZLOFInWKFuyN';
+export const AGENTPROSE_SNIPPET = `<script src="https://cdn.jsdelivr.net/npm/agentprose@0.1/dist/agentprose.min.js" data-cloud="https://agentprose.cloud" data-key="${AGENTPROSE_KEY}" defer></script>`;
 export const CONTENT_DIR = path.resolve('content');
 
 export const CATEGORIES = {
