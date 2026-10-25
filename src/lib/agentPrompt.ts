@@ -35,7 +35,8 @@ const ALLERGY_LABEL_PROMPT: Record<string, string> = {
 /**
  * Search words that find the item in a Norwegian online grocery. Checked against
  * Oda's product search on 25.10.2026: where the calculator's own search word gave
- * poor hits (e.g. «pappkrus» → coffee cups, «papirduk hvit» → snus), the prompt
+ * poor hits (e.g. «pappkrus» → coffee cups, «papirduk hvit» → snus,
+ * «sjokolade uten nøtter» → nut products), the prompt
  * uses the words below instead. Everything else uses the catalog's search word.
  */
 export const PROMPT_SEARCH: Record<string, string> = {
@@ -45,7 +46,8 @@ export const PROMPT_SEARCH: Record<string, string> = {
   servietter: 'servietter',
   duk: 'bordduk papir',
   'melk-kake': 'vegansk muffins',
-  'nott-godt': 'sjokolade uten nøtter'
+  // A keyword search containing «nøtter» returns nut products, so point to sweets that are usually nut-free.
+  'nott-godt': 'vingummi'
 };
 
 /** Items Oda's search did not carry on 25.10.2026 – many grocery shops don't, so the agent may skip them. */
