@@ -53,6 +53,19 @@ test('goods sold by weight report the weight bought, and prices follow whole pac
   expect(line('kake').priceSource).toBeUndefined(); // estimate, flagged «anslag» in the list
 });
 
+test('pølse-only allergy substitutes follow the main dish', () => {
+  const allergies = { gluten: 2, svin: 1 };
+  const ids = (cfg: Partial<PartyConfig>) =>
+    computePlan(DEFAULT_CATALOG, { ...base, allergies, ...cfg }).groups.flatMap((g) => g.items.map((it) => it.id));
+  // With pølser: glutenfri lompe for the gluten kids, kyllingpølser for the kids who skip pork.
+  expect(ids({})).toEqual(expect.arrayContaining(['gluten-brod', 'svin-polser', 'gluten-kake']));
+  // With pizza there are no lomper or pølser to replace, so neither substitute is listed.
+  const pizza = ids({ mainDish: 'pizza' });
+  expect(pizza).not.toContain('gluten-brod');
+  expect(pizza).not.toContain('svin-polser');
+  expect(pizza).toContain('gluten-kake'); // still not tied to the main dish
+});
+
 test('the numbers in the guides and on the home page match the calculator', async () => {
   const total = (cfg: Partial<PartyConfig>) => computePlan(DEFAULT_CATALOG, { ...base, ...cfg });
 

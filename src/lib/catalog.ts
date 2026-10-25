@@ -1,7 +1,7 @@
 import type { GoodItem } from './types';
 
 /** Bump when the default catalog shape/content changes (invalidates saved copies). */
-export const CATALOG_VERSION = 8;
+export const CATALOG_VERSION = 9;
 
 /**
  * Where the default prices come from. Items with `priceSource: 'oda'` use ordinary
@@ -79,7 +79,9 @@ export const DEFAULT_CATALOG: GoodItem[] = [
     mode: 'perChild', perChild: { '3-4': 1.5, '5-6': 2, '7-9': 2.5 },
     // Engers Lefsebakeri glutenfrie lomper 6 stk 32,50 (the only one at Oda).
     packSize: 6, packUnit: 'pakke (6 stk)', priceMinNok: 32.5, priceMaxNok: 32.5, priceSource: 'oda',
-    allergyScope: 'gluten', kassalSearch: 'glutenfri lompe', enabled: true
+    allergyScope: 'gluten', kassalSearch: 'glutenfri lompe',
+    // Stands in for lomper/pølsebrød, so only when pølser are on the menu.
+    showIf: { mainDish: 'polser' }, enabled: true
   },
   {
     id: 'svin-polser', name: 'Kyllingpølser (uten svin)', emoji: '🌭', category: 'mat', unit: 'stk',
@@ -87,7 +89,9 @@ export const DEFAULT_CATALOG: GoodItem[] = [
     // Åkeberg Skoglunn grillpølse kylling 6 stk/400 g 42,90; Solvinge 460 g 33,60
     // (weight only, counted as 6).
     packSize: 6, packWeightG: 400, packUnit: 'pakke (400–460 g ≈ 6 stk)', priceMinNok: 33.6, priceMaxNok: 42.9,
-    priceSource: 'oda', allergyScope: 'svin', kassalSearch: 'grillpølser kylling', enabled: true
+    priceSource: 'oda', allergyScope: 'svin', kassalSearch: 'grillpølser kylling',
+    // Stands in for the pork pølser, so only when pølser are on the menu.
+    showIf: { mainDish: 'polser' }, enabled: true
   },
   {
     id: 'kake', name: 'Bursdagskake', emoji: '🎂', category: 'mat', unit: 'stk',
