@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Garland from './components/Garland';
 import MenyCart from './components/MenyCart';
 import AgentPrompt from './components/AgentPrompt';
+import FeaturedGuides from './components/FeaturedGuides';
 import { computePlan } from './lib/engine';
 import { krRange } from './lib/format';
 import { loadCatalog, saveCatalog, parseConfig, writeConfig, shareUrl } from './lib/store';
@@ -158,6 +159,8 @@ export default function App() {
           {view === 'app' && <AgentPrompt plan={plan} cfg={cfg} onToast={showToast} />}
         </div>
       </header>
+
+      <FeaturedGuides />
 
       {view === 'app' ? (
         <>
