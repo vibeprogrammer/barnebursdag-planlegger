@@ -1,0 +1,44 @@
+name: Content and homepage validation
+
+on:
+  push:
+    branches:
+      - content/kakeklar-adsense-value
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'content/**'
+      - 'src/**'
+      - 'e2e/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'playwright.config.ts'
+      - '.github/workflows/content-validation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run test:api
+      - run: npm run test:content
+      - run: npm run typecheck
+      - run: npm run build
+
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+
+      - run: npm run test:e2e
