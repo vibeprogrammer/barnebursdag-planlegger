@@ -110,6 +110,28 @@ Du kan registrere antall gjester med gluten-, melk-, egg- eller nøttehensyn, el
 
 Kalkulatoren viser et spenn for varer med standardpris. For mange matvarer er prisgrunnlaget ordinære priser hos Oda hentet 25. oktober 2026; varelisten beskriver hvilke produkter og pakninger som ble brukt. Varer Oda ikke selger, som kake, papirduk og bursdagskrone, har et grovt anslag. Frukt og smågodt har ingen standardpris. Prisene er datert, ikke en garanti for dagens pris eller lagerstatus. Kalkulatoren kan også hente produktpriser fra norske butikker når en slik pris er tilgjengelig. Se [budsjettguiden](/guider/budsjett-for-barnebursdag) for prisgrunnlaget og eksempler.
 
+Disse produkt- og pakkeeksemplene forklarer prisintervallet i standardlisten. De er hentet fra Kakeklars prisgrunnlag for 25. oktober 2026, ikke en fullstendig prissammenligning. Butikkens sortiment og priser kan endres; sjekk varen og pakningen før du handler.
+
+| Vare i Kakeklar | Produkter og pakker i prisgrunnlaget | Pris per pakke |
+|---|---|---:|
+| Pølser | Gilde Go' & Magrere, 600 g; Gilde Grillpølser, 600 g | 39,00–64,90 kr |
+| Lomper | Vår Laveste Pris frosne lomper, 10 stk; Buer Lomper Original, 10 stk | 10,90–17,20 kr |
+| Pølsebrød | Prima Lavpris, 12 stk; Hatting grove pølsebrød, 10 stk (modellen bruker 10) | 18,90–26,70 kr |
+| Ketchup | Idun Tomatketchup, 530 g; Heinz Tomatketchup, 1 kg | 26,90–54,40 kr |
+| Sennep | Idun Pølsesennep, 490 g; Bergbys Sennep, 510 g | 22,90–29,90 kr |
+| Stekt løk | Prima Lavpris sprøstekt løk, 100 g; P.S. sprøstekt løk, 100 g | 9,90–19,70 kr |
+| Glutenfrie lomper | Engers Lefsebakeri glutenfrie lomper, 6 stk | 32,50 kr |
+| Kyllingpølser uten svin | Solvinge, 460 g; Åkeberg Skoglunn grillpølse kylling, 6 stk / 400 g | 33,60–42,90 kr |
+| Snacks / potetgull | KiMs Salt crunch, 200 g; Maarud classic salt, 240 g | 37,20–41,90 kr |
+| Saftkonsentrat | Prima Lavpris husholdningssaft, 1,5 l; Lerum uten tilsatt sukker, 1,5 l | 36,40–69,40 kr |
+| Brus | Solo Super, 10 × 0,33 l; Coca-Cola, 10 × 0,33 l | 89,00–97,40 kr |
+| Papptallerkener | REMA 1000, 18 cm / 25 stk; dyp tallerken, 19 cm / 25 stk | 31,40–36,50 kr |
+| Pappkopper | R drikkebeger, 200 ml / 80 stk | 53,60 kr |
+| Servietter | Prima Lavpris, 75 stk; R hvite servietter, 33 cm / 50 stk | 22,40–28,60 kr |
+| Bestikk | R engangsgafler og -skjeer av tre, 20 av hver | 42,60 kr |
+
+Pakkene i eksemplene er ikke nødvendigvis like store. For eksempel bruker modellen 10 pølsebrød per pakke selv om produktet fra Prima Lavpris er oppført med 12. Derfor viser tabellen prisgrunnlaget, mens kalkulatoren bruker pakkestørrelsen som står i den redigerbare varelisten.
+
 ## Slik endrer du varelisten
 
 Under «Tilpass» kan du endre navn, enhet, mengde per aldersgruppe, antall per gjest eller bord, pakningsstørrelse og pris. Du kan også slå varer av og på, importere eller eksportere varelisten som en JSON-fil og tilbakestille til standardlisten. Endringene lagres i nettleseren din.
