@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Slider from './Slider';
 import Footer from './Footer';
 import Garland from './Garland';
+import FeaturedGuides from './FeaturedGuides';
 import type { MainDish, PartyConfig } from '../lib/types';
 import { track } from '../lib/analytics';
 import { BARNEHAGE_INFO, HJEMME_INFO } from '../lib/checklist';
@@ -63,6 +64,8 @@ export default function Wizard({ cfg, onChange, onFinish, onSkip }: Props) {
           Hopp over
         </button>
       </header>
+
+      <FeaturedGuides />
 
       <div className="wizard-progress" role="progressbar" aria-label={`Steg ${step} av 3`} aria-valuemin={1} aria-valuemax={3} aria-valuenow={step}>
         {[1, 2, 3].map((n) => (

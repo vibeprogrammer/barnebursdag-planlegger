@@ -1,0 +1,53 @@
+.home-guides {
+  margin: 0 0 18px;
+  padding: 14px 0 4px;
+}
+
+.home-guides h2 {
+  margin: 0 0 6px;
+  font-size: 1.12rem;
+  letter-spacing: -0.02em;
+}
+
+.home-guides-lead {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.home-guides-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.home-guide {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 44px;
+  padding: 10px 13px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  text-decoration: none;
+}
+
+.home-guide:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow);
+}
+
+.home-guide strong {
+  color: var(--berry-deep);
+  font-family: var(--font-display);
+  font-size: 0.94rem;
+}
+
+.home-guide span {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
