@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { marked } from 'marked';
 import { REDIRECTS } from './content-routes.mjs';
+import { loadPrisindeks, prisindeksDataset } from './prisindeks.mjs';
 
 export { REDIRECTS };
 
@@ -90,7 +91,9 @@ export function loadPages() {
     for (const s of p.related || []) if (!bySlug.has(s)) errors.push(`${p.file}: related slug not found: ${s}`);
     for (const m of p.body.matchAll(/\]\((\/[^)\s#]*)/g)) {
       const href = m[1].replace(/\/$/, '') || '/';
-      if (href !== '/' && !byPath.has(href) && !REDIRECTS[href] && !['/guider', '/oppskrifter'].includes(href)) errors.push(`${p.file}: link to unknown page ${href}`);
+      if (href !== '/' && !byPath.has(href) && !REDIRECTS[href] && !['/guider', '/oppskrifter'].includes(href) && !isPublicFile(href)) {
+        errors.push(`${p.file}: link to unknown page ${href}`);
+      }
     }
   }
   if (errors.length) {
@@ -99,6 +102,15 @@ export function loadPages() {
   }
   pages.sort((a, b) => (b.date || '').localeCompare(a.date || '') || a.title.localeCompare(b.title, 'nb'));
   return { pages, byPath, bySlug };
+}
+
+/** Links such as /prisindeks/2026-11.csv point at files in public/, not at content pages. */
+function isPublicFile(href) {
+  const rel = href.replace(/^\/+/, '');
+  if (!rel || rel.includes('..')) return false;
+  const root = path.resolve('public');
+  const file = path.resolve(root, rel);
+  return file.startsWith(root + path.sep) && fs.existsSync(file) && fs.statSync(file).isFile();
 }
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -274,9 +286,14 @@ export function jsonLd(page, bySlug) {
   };
   const pageImage = page.image?.png ? SITE + page.image.png : SITE + '/og-image.png';
   if (page.section === 'guider') {
-    graph.push({ '@type': 'Article', '@id': url + '#article', headline: page.title, description: page.description, inLanguage: 'nb',
+    const article = { '@type': 'Article', '@id': url + '#article', headline: page.title, description: page.description, inLanguage: 'nb',
       mainEntityOfPage: url, datePublished: page.date, dateModified: page.updated || page.date, author, publisher,
-      image: pageImage, wordCount: page.words, articleSection: CATEGORIES[page.category] || page.category });
+      image: pageImage, wordCount: page.words, articleSection: CATEGORIES[page.category] || page.category };
+    const index = page.slug === 'prisindeks-bursdagskurv' ? loadPrisindeks() : null;
+    if (index && index.guide === page.path) {
+      article.hasPart = { '@id': url + '#dataset' };
+      graph.push(article, prisindeksDataset(index, SITE));
+    } else graph.push(article);
   } else if (page.section === 'oppskrifter' && page.recipe) {
     const r = page.recipe;
     graph.push({ '@type': 'Recipe', '@id': url + '#recipe', name: r.name || page.title, description: page.description, inLanguage: 'nb',

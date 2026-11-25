@@ -162,6 +162,93 @@
         border-bottom: 1px solid #ECE4D8;
       }
 
+      .prisindeks-teaser {
+        margin-top: 1.25rem;
+        padding: 1.15rem 1.25rem 1.2rem;
+        border: 1px solid #ECE4D8;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: inset 0 3px 0 #a4122f;
+      }
+      .prisindeks-teaser .pi-kicker {
+        margin: 0 0 0.2rem;
+        color: #a4122f;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .prisindeks-teaser h2 {
+        margin: 0 0 0.35rem;
+        font-size: 1.35rem;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
+      }
+      .prisindeks-teaser > p {
+        margin: 0 0 0.85rem;
+        color: #5c5164;
+      }
+      .pi-prices {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .pi-prices li {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-height: 44px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: #f7f2ea;
+      }
+      .pi-prices .is-cheapest {
+        background: #fde8ec;
+      }
+      .pi-store {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 6px;
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+      .pi-store em {
+        font-style: normal;
+        font-size: 0.68rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #a4122f;
+      }
+      .pi-prices strong {
+        font-variant-numeric: tabular-nums;
+        font-size: 1.25rem;
+        letter-spacing: -0.03em;
+      }
+      .pi-prices small {
+        color: #5c5164;
+        font-size: 0.78rem;
+      }
+      .pi-link {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        margin-top: 0.75rem;
+        font-weight: 800;
+      }
+      .pi-link:focus-visible {
+        outline: 3px solid #a4122f;
+        outline-offset: 3px;
+      }
+      @media (max-width: 640px) {
+        .pi-prices { grid-template-columns: 1fr; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .prisindeks-teaser { scroll-behavior: auto; }
+      }
       @media print {
         .home-info {
           display: none;
@@ -280,6 +367,7 @@
       </div>
     </div>
     <div class="home-info" id="om-kalkulatoren">
+      <!-- prisindeks -->
       <section class="hi-card" aria-labelledby="hi-how">
         <h2 id="hi-how">Slik bruker du kalkulatoren</h2>
         <ol>
@@ -345,6 +433,7 @@
       <section class="hi-card" aria-labelledby="hi-guides">
         <h2 id="hi-guides">Guider til barnebursdag</h2>
         <ul>
+          <li><a href="/guider/prisindeks-bursdagskurv">Prisindeks for barnebursdag: hva kurven koster hos Oda, MENY og REMA 1000</a></li>
           <li><a href="/guider/planlegg-barnebursdag-steg-for-steg">Planlegg barnebursdagen steg for steg</a></li>
           <li><a href="/guider/hvor-mye-mat-til-barnebursdag">Hvor mye mat til barnebursdag? Mengder per barn</a></li>
           <li><a href="/guider/hvor-mye-drikke-til-barnebursdag">Hvor mye drikke trenger du?</a></li>
