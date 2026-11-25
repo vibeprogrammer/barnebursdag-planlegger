@@ -59,7 +59,17 @@ test('content is crawlable with unique metadata and real not-found responses', a
   expect(missing.status()).toBe(404);
   expect(await missing.text()).toContain('Fant ikke siden');
   const sitemap = await request.get('/sitemap.xml');
-  expect((await sitemap.text()).match(/<loc>/g)).toHaveLength(30);
+  expect((await sitemap.text()).match(/<loc>/g)).toHaveLength(31);
+  const home = await (await request.get('/')).text();
+  expect(home).toContain('Ny: Prisindeks for barnebursdag – november 2026');
+  expect(home).toContain('679,50 kr');
+  expect(home).toContain('href="/guider/prisindeks-bursdagskurv"');
+  const index = await (await request.get('/guider/prisindeks-bursdagskurv')).text();
+  expect(index).toContain('"@type":"Dataset"');
+  expect(index).toContain('https://kakeklar.no/prisindeks/2026-11.csv');
+  const csv = await request.get('/prisindeks/2026-11.csv');
+  expect(csv.status()).toBe(200);
+  expect(await csv.text()).toContain('REMA 1000');
   await context.close();
 });
 

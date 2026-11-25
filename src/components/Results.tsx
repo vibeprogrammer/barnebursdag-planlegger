@@ -11,6 +11,7 @@ import { loadChecked, saveChecked, planToText, planToCsv, downloadFile, fileStem
 import { affiliateLinksFor, AFFILIATE_DISCLOSURE } from '../lib/affiliates';
 import { shareUrl } from '../lib/store';
 import { PRICE_SOURCE } from '../lib/catalog';
+import prisindeks from '../../content/prisindeks/latest.json';
 import type { Category } from '../lib/types';
 
 function PriceLookup({ search }: { search: string }) {
@@ -81,6 +82,19 @@ function Row({ it, done, onToggle }: { it: LineItem; done: boolean; onToggle: ()
       {it.note && <p className="row-note">{it.note.startsWith('Trygt') ? '✅' : '⚠️'} {it.note}</p>}
       {it.kassalSearch && <PriceLookup search={it.kassalSearch} />}
     </li>
+  );
+}
+
+function PrisindeksNote() {
+  const cheapest = prisindeks.stores.find((store) => store.cheapest);
+  const others = prisindeks.stores.filter((store) => !store.cheapest);
+  if (!cheapest) return null;
+  return (
+    <p className="prisindeks-note" data-testid="prisindeks-note">
+      Samme type kurv for {prisindeks.guests} barn kostet {cheapest.total} kr hos {cheapest.name} i {prisindeks.periodLabel}
+      {others.length ? `, mot ${others.map((store) => `${store.total} kr hos ${store.name}`).join(' og ')}` : ''}.{' '}
+      <a href={prisindeks.guide}>Se prisindeksen</a>
+    </p>
   );
 }
 
@@ -198,6 +212,7 @@ export default function Results({
             </p>
           </>
         )}
+        {cfg.type !== 'barnehage' && <PrisindeksNote />}
         <p className="method-note" data-testid="method-note">
           Slik regner vi: hver vare har en mengde per barn (etter aldersgruppe), per gjest eller per bord. Voksne regnes med der
           de spiser, og alt rundes opp til hele pakker. Prisene går fra billigste variant til kjent merke og er ikke dagens pris i din butikk.{' '}

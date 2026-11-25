@@ -1,0 +1,15 @@
+{
+  "title": "Ny: Prisindeks for barnebursdag – november 2026",
+  "lead": "Kjernekurv for 10 barn, samlet 25. november 2026. REMA 1000 var billigst.",
+  "collected": "2026-11-25",
+  "period": "2026-11",
+  "periodLabel": "november 2026",
+  "guide": "/guider/prisindeks-bursdagskurv",
+  "csv": "/prisindeks/2026-11.csv",
+  "guests": 10,
+  "stores": [
+    { "name": "REMA 1000", "total": "679,50", "perChild": "ca. 68 kr per barn", "cheapest": true },
+    { "name": "MENY", "total": "813,10", "perChild": "81,31 kr per barn" },
+    { "name": "Oda", "total": "825,00", "perChild": "82,50 kr per barn" }
+  ]
+}
