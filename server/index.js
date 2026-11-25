@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import apiHandlers from '../api/shared/handlers.cjs';
-import { REDIRECTS } from '../scripts/content-routes.mjs';
+import { canonicalLocation } from '../scripts/content-routes.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -41,15 +41,32 @@ app.use('/api', (_req, res) => {
   res.status(404).json({ error: 'Fant ikke API-endepunktet.' });
 });
 
-// --- Static SPA ---
-for (const [from, to] of Object.entries(REDIRECTS)) {
-  app.get(from, (_req, res) => res.redirect(301, to));
-}
-app.use(express.static(DIST, { maxAge: '1h', index: 'index.html', redirect: false }));
-// Prerendered content pages live at dist/<path>/index.html; anything else is a real 404 (no SPA catch-all).
+// Canonical URL: one 301 for www / azure hosts, trailing slashes and legacy guide paths.
+// Registered before static files so a directory index cannot answer /kontakt/ with 200.
+app.use((req, res, next) => {
+  const search = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+  const location = canonicalLocation({ hostname: req.hostname, pathname: req.path, search });
+  if (!location) return next();
+  const status = req.method === 'GET' || req.method === 'HEAD' ? 301 : 308;
+  res.redirect(status, location);
+});
+
+// index:false so express.static does not serve dist/<page>/index.html for a trailing slash.
+// redirect:false so it does not add a slash of its own. The catch-all below serves the
+// extensionless page, and anything else is a real 404 (no SPA catch-all).
+app.use(express.static(DIST, { maxAge: '1h', index: false, redirect: false }));
 app.get('*', (req, res) => {
-  const page = path.join(DIST, req.path.replace(/\/$/, ''), 'index.html');
-  if (req.path !== '/' && page.startsWith(DIST) && fs.existsSync(page)) return res.sendFile(page);
+  const bare = req.path === '/' ? '/' : req.path.replace(/\/+$/, '') || '/';
+  if (bare !== req.path) {
+    const search = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+    return res.redirect(301, bare + search);
+  }
+  const page = bare === '/' ? path.join(DIST, 'index.html') : path.join(DIST, bare, 'index.html');
+  const root = path.resolve(DIST);
+  const resolved = path.resolve(page);
+  if ((resolved === path.join(root, 'index.html') || resolved.startsWith(root + path.sep)) && fs.existsSync(resolved)) {
+    return res.sendFile(resolved);
+  }
   res.status(404).sendFile(path.join(DIST, '404.html'), (err) => err && res.sendFile(path.join(DIST, 'index.html')));
 });
 

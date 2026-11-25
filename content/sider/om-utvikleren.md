@@ -1,27 +1,33 @@
 ---
 {
   "title": "Om utvikleren: Maxim Salnikov",
-  "description": "Maxim Salnikov er forelder i Oslo og utvikleren bak Kakeklar. Her er hvem han er, hvorfor han laget kalkulatoren og hvordan innholdet lages.",
+  "description": "Jeg heter Maxim Salnikov, bor i Oslo og er far til to barn på 15 og 4 år. Jeg laget Kakeklar til min egen familie, og det fungerte.",
   "date": "2026-10-17",
-  "updated": "2026-10-25",
+  "updated": "2026-11-25",
   "section": "sider",
   "slug": "om-utvikleren",
-  "lead": "Forelder, utvikler i Oslo og mannen bak kalkulatoren, guidene og oppskriftene på Kakeklar."
+  "lead": "Jeg bor i Oslo og er far til to barn på 15 og 4 år. Kakeklar laget jeg til min egen familie.",
+  "photo": {
+    "src": "/img/maxim.jpg",
+    "alt": "Portrett av Maxim Salnikov",
+    "width": 400,
+    "height": 400
+  }
 }
 ---
-Maxim Salnikov er forelder, bor i Oslo og er utvikleren som har laget Kakeklar. Han står bak kalkulatoren og har ansvaret for guidene og oppskriftene på nettstedet, og han oppdaterer dem når noe endrer seg – for eksempel pakningsstørrelser, prisnivå eller feil som blir meldt inn.
-
-<!-- TODO Maxim: legg inn 1–2 setninger med egen erfaring her, for eksempel hvor mange barn du har og hvilke aldre, og hvor mange barnebursdager du har arrangert. Del bare det du er komfortabel med. Kommentaren vises ikke på siden. -->
+Jeg er far til to barn, på 15 og 4 år, og kjenner utfordringene med barnebursdag hjemmefra. Hvor mye mat trengs, og hva går tomt først? Jeg laget Kakeklar for å løse det for min egen familie. Det fungerte, og derfor ligger kalkulatoren, guidene og oppskriftene åpent ute.
 
 ## Hvorfor Kakeklar finnes
 
-Kakeklar startet som et praktisk verktøy for et spørsmål de fleste foreldre kjenner igjen: Hvor mye mat, drikke og pynt trenger man egentlig til en barnebursdag? Svarene ligger spredt i forum, på baksiden av pakker og i egen erfaring. Kakeklar samler dem i én kalkulator som gir en handleliste rundet opp til vanlige pakningsstørrelser, slik at det verken går tomt for lomper eller blir tre poser godteri til overs.
+Kakeklar startet som et verktøy for et spørsmål jeg stilte meg selv: Hvor mye mat, drikke og pynt trenger jeg egentlig til en barnebursdag? Svarene ligger spredt i forum, på baksiden av pakker og i egen erfaring. Kakeklar samler dem i én kalkulator som gir en handleliste rundet opp til vanlige pakningsstørrelser, slik at det verken går tomt for lomper eller blir tre poser godteri til overs.
+
+Jeg skriver guidene og oppskriftene selv, og jeg oppdaterer sidene når noe endrer seg, for eksempel pakningsstørrelser eller prisnivå.
 
 ## Bakgrunn
 
-Maxim har jobbet med webutvikling i mange år og er kjent i det internasjonale utviklermiljøet for arbeidet sitt med progressive webapper (PWA) og kunstig intelligens i nettleseren. Han holder foredrag og arrangerer konferanser for utviklere. Den erfaringen preger hvordan Kakeklar er bygget: Siden skal være rask på mobilen, gratis og fri for innlogging, og den skal fungere like godt i butikken som ved kjøkkenbordet.
+Jeg har vært utvikler i over tjue år og har laget webapplikasjoner siden slutten av 1990-tallet. Til daglig er jeg Senior Solution Engineer hos Microsoft, med hovedvekt på AI-verktøy og plattformer for utviklere. På fritiden organiserer jeg noen av Norges største fagmiljøer og fagmøter innen web, AI og sky. Jeg holder foredrag på internasjonale konferanser, og jeg grunnla Prompt Engineering Conference.
 
-<!-- TODO Maxim: vil du nevne arbeidsgiveren din her? Kakeklar er et privat prosjekt, så det er utelatt med vilje. -->
+Den erfaringen preger hvordan Kakeklar er bygget. Siden skal være rask på mobilen, gratis og uten innlogging, og den skal fungere like godt i butikken som ved kjøkkenbordet. Kakeklar er et privat prosjekt, ikke et produkt fra Microsoft.
 
 ## Slik lages innholdet
 
@@ -32,6 +38,4 @@ Maxim har jobbet med webutvikling i mange år og er kjent i det internasjonale u
 
 ## Kontakt
 
-Fant du en feil i en mengde, eller har du et forslag til en guide? Bruk [kontaktsiden](/kontakt). Du finner også Maxim på [LinkedIn](https://www.linkedin.com/in/webmax/) og [GitHub](https://github.com/webmaxru), der kildekoden til Kakeklar ligger åpent.
-
-<!-- TODO Maxim: valgfritt portrettbilde. Legg et kvadratisk bilde i public/img/maxim.jpg (minst 400 × 400 px) og legg til "photo": { "src": "/img/maxim.jpg", "alt": "Maxim Salnikov" } i front matter øverst. -->
+Fant du en feil i en mengde, eller har du et forslag til en guide? Bruk [kontaktsiden](/kontakt). Jeg er også på [GitHub](https://github.com/webmaxru), [Sessionize](https://sessionize.com/maxim-salnikov) og [LinkedIn](https://www.linkedin.com/in/webmax/).
