@@ -49,8 +49,9 @@ jobs:
           test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://localhost:8081/guider/barnehagebursdag)" = 200
           test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://localhost:8081/barnehagebursdag)" = 301
           test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://localhost:8081/kontakt/)" = 301
-          test "$(curl --silent --dump-header - --output /dev/null http://localhost:8081/kontakt/ | tr -d '\r' | grep -i '^location: ')" = "location: /kontakt"
-          test "$(curl --silent --dump-header - --output /dev/null -H 'Host: www.kakeklar.no' http://localhost:8081/kontakt/ | tr -d '\r' | grep -i '^location: ')" = "location: https://kakeklar.no/kontakt"
+          # grep -i does not lowercase the matched line; Express sends "Location:".
+          test "$(curl --silent --dump-header - --output /dev/null http://localhost:8081/kontakt/ | tr -d '\r' | tr '[:upper:]' '[:lower:]' | grep '^location: ')" = "location: /kontakt"
+          test "$(curl --silent --dump-header - --output /dev/null -H 'Host: www.kakeklar.no' http://localhost:8081/kontakt/ | tr -d '\r' | tr '[:upper:]' '[:lower:]' | grep '^location: ')" = "location: https://kakeklar.no/kontakt"
           test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://localhost:8081/en-side-som-ikke-finnes)" = 404
 
       - name: Build production artifact
