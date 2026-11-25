@@ -16,4 +16,6 @@ test('homepage exposes its three practical guides before the calculator', async 
   await page.getByTestId('wizard-skip').click();
   await expect(page.getByTestId('app')).toBeVisible();
   await expect(page.getByTestId('featured-guides')).toBeVisible();
+  await expect(page.getByTestId('prisindeks-note')).toContainText('679,50 kr');
+  await expect(page.getByTestId('prisindeks-note').getByRole('link')).toHaveAttribute('href', '/guider/prisindeks-bursdagskurv');
 });

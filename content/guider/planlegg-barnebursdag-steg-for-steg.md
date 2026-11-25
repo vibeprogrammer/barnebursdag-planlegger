@@ -6,7 +6,7 @@
   "section": "guider",
   "category": "planlegging",
   "date": "2026-10-17",
-  "updated": "2026-10-25",
+  "updated": "2026-11-25",
   "related": [
     "invitasjon-til-barnebursdag",
     "hvor-mye-mat-til-barnebursdag",
@@ -75,6 +75,8 @@ Uken før er et godt tidspunkt å kjøpe alt som tåler å stå:
 - premier eller småting til lekene
 
 Skriv også en enkel plan for selve festen: når gjestene kommer, når dere spiser, når det er leker, og når det er kake. Barn trives med struktur, og du slipper å finne på noe mens ti barn ser på deg.
+
+Før du handler, kan [prisindeksen for barnebursdag](/guider/prisindeks-bursdagskurv) vise hvilken av Oda, MENY og REMA 1000 som sist var billigst for en vanlig pølsekurv.
 
 ## Dagen før: ferskvarer og forberedelser
 

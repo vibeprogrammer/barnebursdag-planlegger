@@ -7,7 +7,8 @@ const food = bySlug.get('hvor-mye-mat-til-barnebursdag');
 const method = bySlug.get('slik-beregner-kakeklar');
 
 test('food quantities are labeled as editable estimates with reproducible examples', () => {
-  assert.equal(food.updated, '2026-11-16');
+  assert.equal(food.updated, '2026-11-25');
+  assert.match(food.body, /prisindeksen for barnebursdag/);
   assert.match(food.body, /Kakeklars egne redigerbare planleggingsforslag/);
   assert.match(food.body, /ikke offisielle porsjons- eller ernæringsråd/);
   assert.match(food.body, /8 × 2 × 0,5 × 1,15 = 9,2/);

@@ -10,6 +10,8 @@ All editorial pages live as Markdown in `content/`:
 
 The hubs `/guider` and `/oppskrifter` are generated from the lists.
 
+The monthly party-basket price index is the guide `content/guider/prisindeks-bursdagskurv.md`. How to publish the next month is in [prisindeks.md](prisindeks.md).
+
 ## File format
 
 JSON front matter between two `---` lines, then Markdown (GFM tables and lists are fine):

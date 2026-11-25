@@ -6,7 +6,7 @@
   "section": "guider",
   "category": "mengder",
   "date": "2026-10-17",
-  "updated": "2026-11-16",
+  "updated": "2026-11-25",
   "related": [
     "hvor-mye-drikke-til-barnebursdag",
     "hvor-stor-bursdagskake",
@@ -101,6 +101,8 @@ For å gjøre regnestykket konkret: ti seksåringer, pølser som hovedrett, halv
 - Smågodt til poser: 1 kg
 
 Pakningsstørrelsene er beregningsverdier, ikke en garanti for hva som finnes i butikken. Sjekk etiketten på varen du kjøper, og endre pakkestørrelsen hvis du bruker en annen pakke.
+
+Hva en handleliste som denne kostet i butikk, måler jeg hver måned i [prisindeksen for barnebursdag](/guider/prisindeks-bursdagskurv).
 
 ## Hva med de voksne?
 
