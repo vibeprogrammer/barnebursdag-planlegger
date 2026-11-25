@@ -3,12 +3,17 @@
   "title": "Nytt på Kakeklar",
   "description": "Hva som er nytt og endret på Kakeklar, med dato: nye guider, prisindeksen, endringer i kalkulatoren og oppdaterte sider om hvem som står bak.",
   "date": "2026-11-25",
-  "updated": "2026-11-25",
+  "updated": "2026-12-02",
   "section": "sider",
   "slug": "nytt"
 }
 ---
 Her står de viktigste endringene på Kakeklar, med den nyeste øverst. Små rettelser av skrivefeil og tekniske endringer som du ikke merker som leser, er ikke med. Hele historikken ligger åpent på [GitHub](https://github.com/webmaxru/barnebursdag-planlegger).
+
+## Desember 2026
+
+**2. desember 2026**
+- Ny: [Bursdag på lekeland eller hjemme? Prisene for 10 barn](/guider/lekeland-eller-hjemme-pris). Jeg sjekket bursdagspakker hos ti lekeland, trampolineparker, bowling- og klatresentre og sammenlignet dem med hjemmefesten. Tallene ligger i en [nedlastbar datafil (CSV)](/prisindeks/lekeland-2026-11.csv).
 
 ## November 2026
 

@@ -6,7 +6,7 @@
   "section": "guider",
   "category": "planlegging",
   "date": "2026-11-25",
-  "updated": "2026-11-25",
+  "updated": "2026-12-02",
   "related": [
     "budsjett-for-barnebursdag",
     "hvor-mye-mat-til-barnebursdag",
@@ -126,7 +126,7 @@ REMA 1000 var billigst i november, omtrent 134 kr under MENY og 146 kr under Oda
 4. **Handler du på nett, sjekk tilbudene.** Samme dag var Maarud-potetgull og druer på tilbud hos henholdsvis Oda og MENY. Det kan gjøre en dyr butikk billig akkurat den uka.
 5. **Ikke kjør til to butikker for 20 kroner.** Kombinerer du billigste mat og billigste servise, sparer du lite. Det lønner seg sjelden med en ekstra tur.
 
-Kurven er bevisst enkel. Mange kjøper ferdig kake og iskake, og da øker summen raskt. [Budsjettguiden](/guider/budsjett-for-barnebursdag) viser hele bildet, og [guiden om mengder](/guider/hvor-mye-mat-til-barnebursdag) forklarer hvor mye mat som går med. Skal dere ha pølsefest, finnes det også en egen [guide til pølsefest](/guider/polsefest-barnebursdag). Vil du ha en handleliste for ditt eget antall barn og din egen meny, kan du bruke [kalkulatoren](/).
+Kurven er bevisst enkel. Mange kjøper ferdig kake og iskake, og da øker summen raskt. [Budsjettguiden](/guider/budsjett-for-barnebursdag) viser hele bildet, og [guiden om mengder](/guider/hvor-mye-mat-til-barnebursdag) forklarer hvor mye mat som går med. Skal dere ha pølsefest, finnes det også en egen [guide til pølsefest](/guider/polsefest-barnebursdag). Vil du sammenligne kurven med bursdag på lekeland, trampolinepark, bowling eller klatring, se [lekeland eller hjemme](/guider/lekeland-eller-hjemme-pris). Vil du ha en handleliste for ditt eget antall barn og din egen meny, kan du bruke [kalkulatoren](/).
 
 ## Begrensninger
 

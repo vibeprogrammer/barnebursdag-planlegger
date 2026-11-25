@@ -9,7 +9,7 @@ const { bySlug } = loadPages();
 const guide = bySlug.get('prisindeks-bursdagskurv');
 
 test('the current price index has one cheapest store, a CSV, and totals that match the article', () => {
-  assert.equal(guide.updated, data.collected);
+  assert.ok(guide.updated >= data.collected, `${guide.updated} is before ${data.collected}`);
   assert.equal(guide.path, data.guide);
   assert.match(guide.body, new RegExp(data.csv.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
   for (const store of data.stores) {

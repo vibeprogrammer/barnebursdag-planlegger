@@ -59,11 +59,17 @@ test('content is crawlable with unique metadata and real not-found responses', a
   expect(missing.status()).toBe(404);
   expect(await missing.text()).toContain('Fant ikke siden');
   const sitemap = await request.get('/sitemap.xml');
-  expect((await sitemap.text()).match(/<loc>/g)).toHaveLength(32);
+  expect((await sitemap.text()).match(/<loc>/g)).toHaveLength(33);
+  const venue = await request.get('/guider/lekeland-eller-hjemme-pris');
+  expect(venue.status()).toBe(200);
+  expect(await venue.text()).toContain('2 190 til 3 990 kr');
+  const venueCsv = await request.get('/prisindeks/lekeland-2026-11.csv');
+  expect(venueCsv.status()).toBe(200);
   const changelog = await (await request.get('/nytt')).text();
   expect(changelog).toContain('Nytt på Kakeklar');
   expect(changelog).toContain('href="/nytt"');
   expect(changelog).toContain('Handlelisten kan sendes til en handlekurv hos MENY');
+  expect(changelog).toContain('2. desember 2026');
   const home = await (await request.get('/')).text();
   expect(home).toContain('Ny: Prisindeks for barnebursdag – november 2026');
   expect(home).toContain('679,50 kr');
