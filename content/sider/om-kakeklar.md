@@ -3,7 +3,7 @@
   "title": "Om Kakeklar",
   "description": "Hvem som lager Kakeklar, hvorfor kalkulatoren finnes, hvordan mengdene beregnes og hvordan nettstedet finansieres.",
   "date": "2026-08-07",
-  "updated": "2026-10-25",
+  "updated": "2026-11-25",
   "section": "sider",
   "slug": "om-kakeklar"
 }
@@ -18,7 +18,7 @@ Målet er ikke å treffe på gram. Målet er en liste som gjør at det ikke går
 
 ## Hvem står bak
 
-Kakeklar er et selvstendig, norsk prosjekt laget av [Maxim Salnikov](/om-utvikleren), utvikler bosatt i Oslo og selv forelder. Prosjektet utvikles åpent: kildekoden ligger på [GitHub](https://github.com/webmaxru/barnebursdag-planlegger), og du kan melde fra om feil, foreslå nye varer eller rette i en guide der.
+Kakeklar er et selvstendig, norsk prosjekt laget av [Maxim Salnikov](/om-utvikleren), utvikler bosatt i Oslo og far til to barn på 15 og 4 år. Prosjektet utvikles åpent: kildekoden ligger på [GitHub](https://github.com/webmaxru/barnebursdag-planlegger), og du kan melde fra om feil, foreslå nye varer eller rette i en guide der.
 
 Jeg har ansvaret for guidene og oppskriftene. De bygger på informasjon fra produsentenes pakninger og vanlige norske pakningsstørrelser. Der en guide oppgir butikkpriser, står det hvor og når prisene er hentet. Når en guide bygger på råd fra offentlige etater, som Mattilsynet, Helsedirektoratet eller DSB, lenker den til kilden.
 

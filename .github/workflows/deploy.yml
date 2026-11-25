@@ -48,6 +48,9 @@ jobs:
           curl --fail --silent --show-error --retry 10 --retry-all-errors --retry-delay 1 http://localhost:8081/api/health > /dev/null
           test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://localhost:8081/guider/barnehagebursdag)" = 200
           test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://localhost:8081/barnehagebursdag)" = 301
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://localhost:8081/kontakt/)" = 301
+          test "$(curl --silent --dump-header - --output /dev/null http://localhost:8081/kontakt/ | tr -d '\r' | grep -i '^location: ')" = "location: /kontakt"
+          test "$(curl --silent --dump-header - --output /dev/null -H 'Host: www.kakeklar.no' http://localhost:8081/kontakt/ | tr -d '\r' | grep -i '^location: ')" = "location: https://kakeklar.no/kontakt"
           test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://localhost:8081/en-side-som-ikke-finnes)" = 404
 
       - name: Build production artifact

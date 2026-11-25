@@ -94,15 +94,15 @@ unique value, show ongoing curation and structural maintenance, and generate gen
    visitors: Search Console impressions, a few links from Norwegian parent communities, sharing the calculator.
 2. **Site/content age.** Most of the content is ten days old. Waiting several weeks before the next review lets
    Google crawl the new versions and see the site being maintained.
-3. **Author signals.** The TODO notes on /om-utvikleren (a sentence of real experience, an optional photo) are still
-   open, and only Maxim can fill them.
+3. **Author signals.** The TODO notes on /om-utvikleren were open at the time of this audit.
+   They are filled in the later canonical/trust change (parent of a 15- and 4-year-old, photo, role).
 
 ## Checklist for Maxim
 
 1. Review and merge this PR (deploy runs on push to main).
 2. Search Console: request indexing for `/`, `/guider/budsjett-for-barnebursdag`, `/guider/barnehagebursdag` and
    `/om-kakeklar`, and resubmit `sitemap.xml`.
-3. Optionally fill the /om-utvikleren TODOs in your own words.
+3. The /om-utvikleren TODOs are filled in the later canonical/trust change. Read that page before the next review.
 4. Wait at least 2–4 weeks with real traffic before requesting a new review (AdSense → Sites → Request review).
 
 ## Follow-ups not in this PR

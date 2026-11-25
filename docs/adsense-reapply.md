@@ -78,9 +78,9 @@ https://kakeklar.no/ads.txt — keep it; verify the publisher ID matches the one
    - `https://kakeklar.no/sitemap.xml` lists ~27 URLs; `https://kakeklar.no/robots.txt` still points to it.
    - `https://kakeklar.no/personvern`, `/vilkar`, `/kontakt`, `/om-kakeklar` render.
    - Rich results test on one guide and one recipe: https://search.google.com/test/rich-results
-3. **Contact e-mail**: set the GitHub Actions variable `CONTACT_EMAIL`; `deploy.yml` passes it as
-   `VITE_CONTACT_EMAIL` so `/kontakt` shows a real address — Google reviewers look for one. Without it,
-   both the static page and the React fallback show usable GitHub/LinkedIn contact links.
+3. **Contact e-mail**: `/kontakt` shows `salnikov@gmail.com` from the build default, so a missing
+   `CONTACT_EMAIL` variable no longer hides the address. Set the Actions variable only to override it.
+   `deploy.yml` still passes `CONTACT_EMAIL` as `VITE_CONTACT_EMAIL` when the variable is set.
 4. **Search Console**: add the property if missing, submit `https://kakeklar.no/sitemap.xml`, then use URL
    Inspection → "Request indexing" on `/`, `/guider`, `/oppskrifter` and 3–5 guides. Wait until Pages → Indexed
    shows the new URLs (typically days to 2–3 weeks). Fix anything under "Not indexed" → "Duplicate, Google chose

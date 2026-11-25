@@ -105,7 +105,48 @@ PWA scope, canonical URLs, and existing shared links.
 3. Lower DNS TTL before cutover.
 4. Point the domain to Static Web Apps and wait for its managed certificate.
 5. Re-test on `https://kakeklar.no`.
-6. Configure and verify `www.kakeklar.no` as the second custom domain.
+6. Configure and verify `www.kakeklar.no` as the second custom domain, then set `kakeklar.no` as the
+   **default** custom domain (see below). Until that is set, `www` serves the same pages with HTTP 200.
+
+## Canonical host (portal step, still required)
+
+`staticwebapp.config.json` matches paths only. It cannot 301 `www.kakeklar.no`,
+`*.azurestaticapps.net` or any other hostname. Azure does that when one custom domain is
+the app's default: every other hostname on that Static Web App, including `www` and the
+generated `*.azurestaticapps.net` name, then returns 301 to the default.
+
+The live app's generated hostname is `jolly-cliff-01972b603.7.azurestaticapps.net`.
+The Bicep in this repo names the resource `kakeklar` in `rg-barnebursdag`; confirm you
+are on the Static Web App that actually serves the site (the one behind the deployment token).
+
+1. Azure portal → that Static Web App → **Custom domains**.
+2. Confirm `kakeklar.no` and `www.kakeklar.no` are both listed and validated. Free allows two
+   custom domains. Both already resolve and answer HTTP 200, so they are already attached.
+3. Select **`kakeklar.no`** (the apex, not `www`) → **Set default**.
+4. If Azure reports that a default is already set, select that domain → **Unset default**,
+   then set `kakeklar.no`. A new default will not replace an existing one in one step.
+5. Refresh the table. `kakeklar.no` is marked Default.
+6. Check, without following redirects:
+
+   ```bash
+   curl -sI https://www.kakeklar.no/kontakt | head -n 15
+   curl -sI https://jolly-cliff-01972b603.7.azurestaticapps.net/kontakt | head -n 15
+   curl -sI https://kakeklar.no/kontakt/ | head -n 15
+   ```
+
+   The first two must be `301` with `Location: https://kakeklar.no/kontakt` after this portal
+   change. The third (`/kontakt/` → `/kontakt`) comes from `trailingSlash: never` in the
+   deployed config, not from the portal. There is no `az staticwebapp hostname set --default`
+   flag; the portal action is the supported control
+   ([Manage the default domain](https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain-default)).
+
+Setting the default domain redirects every other hostname on that app, including preview
+hostnames if any are enabled. This workflow deploys only from `main`, not from pull requests.
+
+`kakeklar.push.foo` did not resolve when checked on 25 Nov 2026, and the old Container App
+is already deleted (see below). A hostname that is not attached to this Static Web App is
+not redirected by the default-domain setting. If such a record still exists in DNS, delete
+it or point it at a host that returns 301. Do not add a client-side redirect in its place.
 
 `public/sw.js` uses a new cache version for this migration, while the Static Web Apps route explicitly
 serves `/sw.js` with `Cache-Control: no-cache`. HTML navigations are network-first so future
@@ -125,7 +166,7 @@ If validation fails, redeploy a prior Git commit through the same Static Web App
 | Symptom | Cause / fix |
 |--------|-------------|
 | Deploy action reports an invalid token | Refresh `AZURE_STATIC_WEB_APPS_API_TOKEN` from `az staticwebapp secrets list`. |
-| A content URL returns 404 | Confirm `dist/staticwebapp.config.json` exists and contains the `/index.html` navigation fallback. |
+| A content URL returns 404 | Confirm `dist/<path>/index.html` was prerendered. The deployed config has no navigation fallback; unknown paths are real 404s. Do not add a catch-all rewrite back. |
 | `/api/*` returns 404 | Confirm the workflow uploads `api/` and `apiRuntime` is `node:22`. |
 | Applying Bicep changes API settings | It should not: API settings are intentionally outside the template to protect live secrets. |
 | Price lookup returns 503 | Add `KASSAL_API_KEY` to the Production environment variables. |

@@ -5,7 +5,8 @@
 // crawlers the whole site was one page. Google needs each page's own HTML, title and canonical.
 import fs from 'node:fs';
 import path from 'node:path';
-import { loadPages, renderBody, hubPages, jsonLd, breadcrumbsHtml, pageMeta, metaHtml, esc, SITE, SITE_NAME, REDIRECTS, AUTHOR, AGENTPROSE_SNIPPET } from './content.mjs';
+import { loadPages, renderBody, hubPages, jsonLd, breadcrumbsHtml, pageMeta, metaHtml, esc, SITE, SITE_NAME, AUTHOR, AGENTPROSE_SNIPPET, resolveContactEmail } from './content.mjs';
+import { staticWebAppConfig } from './content-routes.mjs';
 
 const dist = path.resolve('dist');
 const indexHtml = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
@@ -16,7 +17,7 @@ const DEFAULT_ADSENSE_CLIENT = 'ca-pub-6118980043742623';
 const adsenseEnv = (process.env.VITE_ADSENSE_CLIENT ?? '').trim();
 const adsenseClient = /^(off|false|0|none)$/i.test(adsenseEnv) ? '' : adsenseEnv || DEFAULT_ADSENSE_CLIENT;
 const AD_SLOTS = { inArticle: '4250080584', multiplex: '3563684870' };
-const contactEmail = process.env.VITE_CONTACT_EMAIL || '';
+const contactEmail = resolveContactEmail();
 const today = new Date().toISOString().slice(0, 10);
 // Affiliate «Hvor kjøpe» boxes: OFF unless VITE_AFFILIATE_LINKS=1, and only entries with a url (content/affiliates.json).
 const affiliatesOn = (process.env.VITE_AFFILIATE_LINKS ?? '').trim() === '1';
@@ -26,7 +27,7 @@ const fontFiles = fs.readdirSync(path.join(dist, 'assets')).filter((f) => /^(han
 const fontPreloads = fontFiles.map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin />`).join('\n    ');
 
 const { pages, bySlug } = loadPages();
-const all = [...pages.map((p) => ({ ...p, html: renderBody(p, bySlug) })), ...hubPages(pages)];
+const all = [...pages.map((p) => ({ ...p, html: renderBody(p, bySlug, contactEmail) })), ...hubPages(pages)];
 
 // The account meta tag goes on every page (site connection/verification, support.google.com/adsense/answer/7584263).
 // The loader script only goes on pages that actually carry ad units (guides and recipes), so trust pages, hubs and the
@@ -201,18 +202,11 @@ fs.writeFileSync(path.join(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="
 const llms = fs.existsSync(path.join(dist, 'llms.txt')) ? fs.readFileSync(path.join(dist, 'llms.txt'), 'utf8').split('\n## Sider')[0].trimEnd() : `# ${SITE_NAME}`;
 fs.writeFileSync(path.join(dist, 'llms.txt'), `${llms}\n\n## Sider\n${all.map((p) => `- [${p.title}](${SITE + p.path}): ${p.description}`).join('\n')}\n`);
 
-// Static Web Apps config: explicit routes for every prerendered page, 301s for moved URLs,
-// a real 404, and no catch-all rewrite to index.html (that was the soft-404 / duplicate-content cause).
+// Static Web Apps config: 301s for moved URLs, trailingSlash never (no per-page rewrite —
+// a folder route matches both /path and /path/ and would return 200 for the slash),
+// a real 404, and no catch-all rewrite to index.html (that was the soft-404).
 const base = JSON.parse(fs.readFileSync(path.join(dist, 'staticwebapp.config.json'), 'utf8'));
-const routes = [
-  ...(base.routes || []).filter((r) => r.route !== '/sw.js' || true),
-  ...Object.entries(REDIRECTS).map(([from, to]) => ({ route: from, redirect: to, statusCode: 301 })),
-  ...all.map((p) => ({ route: p.path, rewrite: `${p.path}/index.html` }))
-];
-delete base.navigationFallback;
-base.routes = routes;
-base.trailingSlash = 'never';
-base.responseOverrides = { ...(base.responseOverrides || {}), 404: { rewrite: '/404.html', statusCode: 404 } };
-fs.writeFileSync(path.join(dist, 'staticwebapp.config.json'), JSON.stringify(base, null, 2) + '\n');
+const swa = staticWebAppConfig(base);
+fs.writeFileSync(path.join(dist, 'staticwebapp.config.json'), JSON.stringify(swa, null, 2) + '\n');
 
-console.log(`prerender: ${count} pages, sitemap ${urls.length} urls, ${routes.length} routes${adsenseClient ? `, AdSense on (${adsenseClient}), ad units on ${adPages} pages` : ', AdSense off (VITE_ADSENSE_CLIENT=off)'}${contactEmail ? ', contact e-mail on' : ''}`);
+console.log(`prerender: ${count} pages, sitemap ${urls.length} urls, ${swa.routes.length} routes${adsenseClient ? `, AdSense on (${adsenseClient}), ad units on ${adPages} pages` : ', AdSense off (VITE_ADSENSE_CLIENT=off)'}, contact ${contactEmail}`);

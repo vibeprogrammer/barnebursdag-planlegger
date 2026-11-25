@@ -10,12 +10,33 @@ export { REDIRECTS };
 
 export const SITE = 'https://kakeklar.no';
 export const SITE_NAME = 'Kakeklar';
+export const DEFAULT_CONTACT_EMAIL = 'salnikov@gmail.com';
+
+/** Published address when VITE_CONTACT_EMAIL is missing or blank. A set value overrides it. */
+export function resolveContactEmail(explicit = process.env.VITE_CONTACT_EMAIL ?? '') {
+  const value = String(explicit ?? '').trim();
+  return value || DEFAULT_CONTACT_EMAIL;
+}
+
+/** Visible mailto link. `@` is written as &#64; so the raw address is not one scrapable string. */
+export function emailLink(address) {
+  const encoded = esc(address).replaceAll('@', '&#64;');
+  return `<a href="mailto:${encoded}">${encoded}</a>`;
+}
+
 export const AUTHOR = {
   name: 'Maxim Salnikov',
   path: '/om-utvikleren',
   url: 'https://kakeklar.no/om-utvikleren',
-  sameAs: ['https://www.linkedin.com/in/webmax/', 'https://github.com/webmaxru'],
-  bio: 'Maxim Salnikov er forelder, utvikler i Oslo og laget Kakeklar for å slippe hoderegning før barnebursdager. Han skriver og vedlikeholder guidene og kalkulatoren.'
+  jobTitle: 'Senior Solution Engineer',
+  worksFor: { '@type': 'Organization', name: 'Microsoft' },
+  image: 'https://kakeklar.no/img/maxim.jpg',
+  sameAs: [
+    'https://github.com/webmaxru',
+    'https://sessionize.com/maxim-salnikov',
+    'https://www.linkedin.com/in/webmax/'
+  ],
+  bio: 'Maxim Salnikov bor i Oslo og er far til to barn, 15 og 4 år. Han laget Kakeklar til sin egen familie og skriver guidene og kalkulatoren.'
 };
 // agentprose (https://agentprose.cloud): makes the guides and recipes readable for AI agents through WebMCP
 // (read-only tools: search, list, get article) and powers hosted search for this site. The key is the public
@@ -170,20 +191,20 @@ function withCalcCta(page, html) {
 }
 
 /** Renders the inner article HTML (shared by the prerendered page and the SPA fallback). */
-export function renderBody(page, bySlug, contactEmail = process.env.VITE_CONTACT_EMAIL || '') {
+export function renderBody(page, bySlug, contactEmail = process.env.VITE_CONTACT_EMAIL ?? '') {
   let html = marked.parse(page.body);
   if (page.path === '/kontakt') {
-    const contact = contactEmail.trim();
-    const paragraph = contact
-      ? `<p>Send gjerne en e-post til <a href="mailto:${esc(contact)}">${esc(contact)}</a>. Vi svarer normalt innen noen dager.</p>`
-      : `<p>Den raskeste veien er <a href="https://github.com/webmaxru/barnebursdag-planlegger/issues">GitHub Issues</a>, eller en melding til utvikleren på <a href="https://www.linkedin.com/in/webmax/" rel="noopener noreferrer">LinkedIn</a>.</p>`;
+    const contact = resolveContactEmail(contactEmail);
+    const paragraph = `<p>Send en e-post til ${emailLink(contact)}. Jeg svarer normalt innen noen dager.</p>`;
     html = html.replace(/<p>\{\{contact_email\}\}<\/p>|\{\{contact_email\}\}/g, paragraph);
   }
   const card = recipeCard(page.recipe);
   if (html.includes('{{recipe}}')) html = html.replace(/<p>\{\{recipe\}\}<\/p>|\{\{recipe\}\}/, card);
   else if (card) html += card;
   html = withCalcCta(page, html);
-  const photo = page.photo?.src ? `<img class="author-photo" src="${esc(page.photo.src)}" width="160" height="160" alt="${esc(page.photo.alt || '')}" decoding="async" />` : '';
+  const photo = page.photo?.src
+    ? `<img class="author-photo" src="${esc(page.photo.src)}" width="${Number(page.photo.width) || 400}" height="${Number(page.photo.height) || 400}" alt="${esc(page.photo.alt || AUTHOR.name)}" decoding="async" />`
+    : '';
   return `${photo}${figureHtml(page)}${html}${faqHtml(page.faq)}${sourcesHtml(page.sources)}${authorBoxHtml(page)}${relatedHtml(page, bySlug)}`;
 }
 
@@ -247,7 +268,10 @@ export function jsonLd(page, bySlug) {
     itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: c.item }))
   }];
   const publisher = { '@type': 'Organization', name: SITE_NAME, url: SITE + '/', logo: { '@type': 'ImageObject', url: SITE + '/icon-512.png' } };
-  const author = { '@type': 'Person', '@id': AUTHOR.url + '#person', name: AUTHOR.name, url: AUTHOR.url, sameAs: AUTHOR.sameAs };
+  const author = {
+    '@type': 'Person', '@id': AUTHOR.url + '#person', name: AUTHOR.name, url: AUTHOR.url,
+    jobTitle: AUTHOR.jobTitle, worksFor: AUTHOR.worksFor, image: AUTHOR.image, sameAs: AUTHOR.sameAs
+  };
   const pageImage = page.image?.png ? SITE + page.image.png : SITE + '/og-image.png';
   if (page.section === 'guider') {
     graph.push({ '@type': 'Article', '@id': url + '#article', headline: page.title, description: page.description, inLanguage: 'nb',
@@ -301,7 +325,7 @@ export function metaHtml(page) {
   if (!article) return `<p class="content-meta">Sist oppdatert ${time(updated)}</p>`;
   const cat = page.section === 'guider' && CATEGORIES[page.category] ? ` · <a href="/guider#hub-${esc(page.category)}">${esc(CATEGORIES[page.category])}</a>` : '';
   return `<p class="content-meta">Sist oppdatert ${time(updated)}${page.date && page.date !== updated ? ` · Publisert ${time(page.date)}` : ''} · ${page.readMinutes} min lesetid${cat}</p>
-        <p class="content-byline">Av <a href="${AUTHOR.path}" rel="author">${esc(AUTHOR.name)}</a>, forelder og utvikleren bak Kakeklar</p>`;
+        <p class="content-byline">Av <a href="${AUTHOR.path}" rel="author">${esc(AUTHOR.name)}</a>, far til to barn på 15 og 4 år og utvikleren bak Kakeklar</p>`;
 }
 
 export { esc };

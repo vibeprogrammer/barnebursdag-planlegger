@@ -879,7 +879,21 @@ input[type='range']::-moz-range-thumb {
 .content-figure { margin: 0 0 22px; }
 .content-figure img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; border-radius: var(--radius); background: var(--paper-2); }
 .content-figure figcaption { margin-top: 6px; font-size: 0.8rem; color: var(--ink-soft); }
-.author-photo { float: right; width: 112px; height: 112px; margin: 0 0 12px 16px; border-radius: 50%; object-fit: cover; }
+.content-body img.author-photo {
+  float: right;
+  width: 168px;
+  height: 168px;
+  margin: 2px 0 14px 18px;
+  border-radius: 50%;
+  object-fit: cover;
+  aspect-ratio: 1;
+  border: 3px solid var(--surface);
+  box-shadow: var(--shadow);
+}
+.content-body:has(img.author-photo)::after { content: ""; display: block; clear: both; }
+@media (max-width: 560px) {
+  .content-body img.author-photo { float: none; display: block; margin: 0 auto 16px; }
+}
 .calc-cta { margin: 22px 0; padding: 16px 18px; border-radius: var(--radius); background: var(--berry-tint); border: 1px solid #f4c9cf; }
 .calc-cta p { margin: 0 0 10px; }
 .calc-cta .calc-cta-title { font-weight: 800; color: var(--berry-deep); margin-bottom: 4px; }
