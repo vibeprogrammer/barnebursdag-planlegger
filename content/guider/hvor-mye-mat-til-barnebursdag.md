@@ -1,12 +1,12 @@
 ---
 {
   "title": "Hvor mye mat til barnebursdag? Mengder per barn (3–9 år)",
-  "description": "Hvor mange pølser, pizzaer og kakestykker per barn? Tabell for 3–9 år, regneeksempler for 8 og 12 barn og handleliste for 10 barn.",
+  "description": "Se Kakeklars mengdeforslag for pølser, minipizza, kake, frukt og snacks, med regnestykker for 8, 10 og 12 barn og avrunding til faktiske pakker.",
   "slug": "hvor-mye-mat-til-barnebursdag",
   "section": "guider",
   "category": "mengder",
   "date": "2026-10-17",
-  "updated": "2026-10-17",
+  "updated": "2026-11-16",
   "related": [
     "hvor-mye-drikke-til-barnebursdag",
     "hvor-stor-bursdagskake",
@@ -15,121 +15,117 @@
   ],
   "faq": [
     {
-      "q": "Hvor mange pølser per barn i bursdag?",
-      "a": "Regn 1,5 pølser per barn for 3–4 år, 2 for 5–6 år og 2,5 for 7–9 år. Kjøp like mange lomper eller pølsebrød, og legg til rundt 15 prosent ekstra brød."
+      "q": "Hvor mange pølser regner Kakeklar per barn?",
+      "a": "Standardforslaget er 1,5 pølser per barn i gruppen 3–4 år, 2 i gruppen 5–6 år og 2,5 i gruppen 7 år og eldre. Brød fordeles etter valget ditt, med 15 prosent ekstra på lomper og pølsebrød."
     },
     {
-      "q": "Hvor mye kake trenger jeg til 10 barn?",
-      "a": "Ett stykke per barn holder for de yngste, og 1,25 stykke per barn for 7–9-åringer. En langpanne på ca. 30 × 40 cm gir rundt 20–24 stykker og holder godt til 10 barn."
+      "q": "Er mengdene offisielle porsjonsråd?",
+      "a": "Nei. Dette er redigerbare planleggingsforslag i Kakeklar, ikke offisielle porsjons- eller ernæringsråd. Juster dem etter menyen, hvor lenge dere skal feire og det du vet om gruppen."
     },
     {
-      "q": "Må jeg regne mat til foreldrene også?",
-      "a": "Ja, hvis de blir igjen. Regn en voksen som en 7–9-åring: 2,5 pølser, et godt kakestykke og litt frukt og snacks."
+      "q": "Hvor mange pølser trenger jeg til 10 seksåringer?",
+      "a": "Kakeklar regner 2 per barn i aldersgruppen 5–6 år, altså 20 pølser. Med kalkulatorens modell på omtrent 8 pølser per pakke blir det 3 pakker."
     },
     {
-      "q": "Hvor mye frukt per barn?",
-      "a": "Rundt 120 g oppkuttet frukt per barn for 3–4 år, 130 g for 5–6 år og 140 g for 7–9 år. Det tilsvarer en liten skål per barn."
+      "q": "Regner Kakeklar med voksne?",
+      "a": "Ja, hvis du legger dem inn. For varer som regnes per barn, bruker kalkulatoren mengden fra den eldste aldersgruppen for hver voksen."
+    },
+    {
+      "q": "Hvor mye frukt regner Kakeklar per barn?",
+      "a": "Standardforslaget er 120 g oppkuttet frukt i gruppen 3–4 år, 130 g i gruppen 5–6 år og 140 g i gruppen 7 år og eldre."
     }
   ],
   "sources": []
 }
 ---
-Regn med 1,5 pølser eller minipizzaer per barn for 3–4-åringer, 2 for 5–6-åringer og 2,5 for 7–9-åringer, pluss ett kakestykke per barn (1,25 for de eldste). Legg til rundt 120–140 g oppkuttet frukt og 30–40 g snacks per barn, så har du nok uten å sitte igjen med en hel kjøleskapshylle med rester. Under finner du hele tabellen, regneeksempler og en ferdig handleliste for 10 barn.
+
+Jeg bruker mengdene under som startpunkt i handlelisten. De viser hva Kakeklar regner med for hver aldersgruppe, og hvordan regnestykket blir til pakker du kan kjøpe. Tilpass listen når du vet hvor mange som kommer, hva dere skal servere, og om voksne blir med.
+
+Viktig om tallene: Dette er Kakeklars egne redigerbare planleggingsforslag, ikke offisielle porsjons- eller ernæringsråd. De er ikke en måling av hvor mye barn flest spiser. Kalkulatoren justerer heller ikke matmengden etter festens varighet. Bruk tallene som et utgangspunkt, og endre dem når gruppen eller menyen tilsier det.
 
 ## Mengder per barn, fordelt på alder
 
-Tallene under er de samme som [Kakeklar-kalkulatoren](/) bruker. De er beregnet for en vanlig bursdag på et par timer der det serveres én hovedrett, kake og litt å småspise på.
+Kakeklar bruker tre beregningsgrupper: til og med 4 år, 5–6 år og 7 år eller eldre. Den siste gruppen bruker mengdene som vises som 7–9 år i tabellen.
 
-| Per barn | 3–4 år | 5–6 år | 7–9 år |
+| Per barn | 3–4 år | 5–6 år | 7 år og eldre |
 |---|---|---|---|
 | Pølser | 1,5 stk | 2 stk | 2,5 stk |
 | Lomper eller pølsebrød | 1,5 stk | 2 stk | 2,5 stk |
-| Minipizza (i stedet for pølser) | 1,5 stk | 2 stk | 2,5 stk |
+| Minipizza, i stedet for pølser | 1,5 stk | 2 stk | 2,5 stk |
 | Bursdagskake | 1 stykke | 1 stykke | 1,25 stykke |
 | Frukt, oppkuttet | 120 g | 130 g | 140 g |
-| Snacks/potetgull | 30 g | 35 g | 40 g |
-| Smågodt (til godteposer) | 50 g | 100 g | 125 g |
+| Snacks / potetgull | 30 g | 35 g | 40 g |
+| Smågodt til godteposer | 50 g | 100 g | 125 g |
 
-Noen ting å vite om tabellen:
+Tallene for pølser, lomper og pølsebrød er likt satt opp i standardlisten. Kalkulatoren legger bare på brødbuffer når pølser er valgt som hovedrett; den legger ikke til en ekstra hovedrett hvis du velger pizza. Drikke, servering og pynt beregnes på egne måter. Se [slik beregner Kakeklar mengdene](/guider/slik-beregner-kakeklar) for hele modellen.
 
-- Halve pølser og halve pizzaer høres rart ut, men går fint opp når du ganger med antall barn. Rund alltid opp til hele pakker til slutt.
-- Brød regnes med 15 prosent ekstra. Lomper revner, pølsebrød blir mast, og noen barn vil ha brødet uten pølse. Velger du halvt om halvt lomper og pølsebrød, deler du antallet på to og legger til buffer på begge.
-- Kake er regnet i vanlige stykker. Mange barn spiser bare halve, men noen vil gjerne ha en bit til, så det jevner seg ut.
+## Slik blir behovet til pakker
 
-Vil du vite mer om hver rett, har vi egne guider til [pølsefest](/guider/polsefest-barnebursdag) og [hvor stor kaken bør være](/guider/hvor-stor-bursdagskake).
+Kakeklar ganger mengden per barn med antall barn. Når du velger pølser, fordeles brødet etter prosentvalget ditt, og modellen legger 15 prosent ekstra på både lomper og pølsebrød. Deretter rundes behovet opp til hele enheter og hele pakker etter pakkestørrelsen som står i varelisten.
 
-## Hvorfor spiser barn så lite?
+### Eksempel: 8 barn på 5 år
 
-Det overrasker mange hvor lite som går med. Barn i bursdag er opptatt av lek, gaver og hverandre, ikke av maten. De yngste spiser ofte en halv pølse, tar en bit kake og løper videre. Sju- og åtteåringer spiser mer, særlig gutter og jenter som har vært ute og løpt på forhånd, men selv de stopper sjelden på mer enn to–tre pølser.
+Femåringer bruker gruppen 5–6 år. Med pølser som hovedrett og en fordeling på 50 prosent lomper og 50 prosent pølsebrød blir regnestykket slik:
 
-Det er også derfor tallene for 3–4 år er lavere enn du kanskje tror. Det er bedre å ha et par ekstra pølser i fryseren enn å koke tre pakker som ingen spiser.
+| Vare | Beregnet behov | Hva kalkulatoren legger til i handlelisten |
+|---|---:|---|
+| Pølser | 8 × 2 = 16 stk | 2 pakker på 600 g, regnet som omtrent 8 pølser per pakke |
+| Lomper | 8 × 2 × 0,5 × 1,15 = 9,2 stk | Rundet opp til 10; én pakke à 10 |
+| Pølsebrød | 8 × 2 × 0,5 × 1,15 = 9,2 stk | Rundet opp til 10; én pakke à 10 i kalkulatorens modell |
+| Bursdagskake | 8 × 1 = 8 stykker | Kake beregnes separat fra hovedretten |
+| Frukt | 8 × 130 g = 1 040 g | Omtrent 1 kg oppkuttet frukt |
+| Snacks | 8 × 35 g = 280 g | 2 poser; kalkulatoren regner 200 g per pose |
 
-## Regneeksempel: 8 barn på 5 år
+For pølsene er pakkestørrelsen et overslag ut fra vekt: kalkulatoren regner en pakke på 600 g som omtrent 8 pølser. Sjekk antall og vekt på produktet du kjøper. For brød viser handlelisten pakkene slik standardvarelisten er satt opp; du kan endre pakkestørrelsen under «Tilpass».
 
-En femåring havner i aldersgruppen 5–6 år. Med åtte barn og pølser som hovedrett blir det slik:
+### Eksempel: 12 barn på 8 år
 
-| Vare | Behov | Kjøp |
-|---|---|---|
-| Pølser | 8 × 2 = 16 stk | 2 pakker à 8 |
-| Lomper (halvparten + 15 %) | 10 stk | 2 pakker à 8 |
-| Pølsebrød (halvparten + 15 %) | 10 stk | 2 pakker à 8 |
-| Ketchup, sennep, stekt løk | 1 av hver | 1 av hver |
-| Bursdagskake | 8 stykker | 1 langpanne |
-| Frukt | 8 × 130 g ≈ 1 kg | for eksempel druer, melon og jordbær |
-| Snacks | 8 × 35 g = 280 g | 2 poser à 165 g |
+Åtteåringer bruker gruppen 7 år og eldre. Tolv barn gir 30 pølser. Kakeklar regner 4 pakker à 600 g, omtrent 32 pølser med standardens antakelse om 8 i hver pakke.
 
-Du får noen lomper og pølsebrød til overs, og det er meningen. Kaken holder med god margin: en langpanne gir rundt 20 stykker, så det blir igjen til de voksne og til dagen etter.
+Med halvparten lomper og halvparten pølsebrød blir behovet for hver type 30 × 0,5 × 1,15 = 17,25. Kalkulatoren viser 18 av hver som beregnet behov. Pakkestørrelsen er 10 lomper og 10 pølsebrød per modellpakke, så den legger til 2 pakker av hver. Det faktiske antallet i en butikkpakke kan variere.
 
-## Regneeksempel: 12 barn på 8 år
+For resten av menyen blir standardberegningen 15 kakestykker (12 × 1,25), 1,68 kg frukt og 480 g snacks. Med 200 g per pose potetgull betyr det 3 poser i handlelisten. Dette er modellverdier; juster dem hvis dere serverer andre retter eller vet at gruppen trenger noe annet.
 
-Åtteåringer er i den eldste gruppen, og tolv barn er en ganske stor bursdag. Her gir 2,5 pølser per barn 30 pølser, altså 4 pakker à 8 (32 stk). Med halvt om halvt lomper og pølsebrød trenger du 18 av hver, som blir 3 pakker av hver.
+## Handleliste: 10 barn på 6 år
 
-Kaken: 12 × 1,25 = 15 stykker, som fortsatt går inn i én langpanne. Frukt: 12 × 140 g ≈ 1,7 kg. Snacks: 12 × 40 g = 480 g, altså 3 poser. Ketchup, sennep og stekt løk holder med én av hver, siden kalkulatoren regner én ketchup per 20 gjester, én sennep per 25 og én boks stekt løk per 15.
+For å gjøre regnestykket konkret: ti seksåringer, pølser som hovedrett, halvparten lomper og halvparten pølsebrød, ingen voksne som spiser med.
 
-Velger du minipizza i stedet, blir det også 30 stykker. En vanlig pakke minipizza har rundt 8 biter, så du trenger 4.
+- Pølser: behov 20 stk; 3 pakker à 600 g, regnet som omtrent 8 pølser per pakke
+- Lomper: behov 11,5, vist som 12; 2 modellpakker à 10
+- Pølsebrød: behov 11,5, vist som 12; 2 modellpakker à 10
+- Ketchup, sennep og stekt løk: én av hver
+- Bursdagskake: 10 stykker; kalkulatorens modellpakke er en kake på omtrent 20 biter
+- Frukt: 1,3 kg oppkuttet
+- Snacks: 350 g; 2 poser når modellen regner 200 g per pose
+- Saft: 5 liter ferdig blandet; kalkulatoren regner én flaske konsentrat på 1,5 liter som omtrent 7,5 liter ferdig saft
+- Smågodt til poser: 1 kg
+
+Pakningsstørrelsene er beregningsverdier, ikke en garanti for hva som finnes i butikken. Sjekk etiketten på varen du kjøper, og endre pakkestørrelsen hvis du bruker en annen pakke.
 
 ## Hva med de voksne?
 
-Foreldre som blir igjen, spiser også. Kakeklar regner voksne med samme mengder som 7–9-åringer: 2,5 pølser, 1,25 kakestykke, 140 g frukt og 40 g snacks per voksen. Smågodt og godteposer regnes bare for barna.
+Legg inn voksne som faktisk skal spise. For varer som regnes per barn, bruker kalkulatoren satsen fra gruppen 7 år og eldre for hver voksen. Voksne regnes også med på vanlige varer per gjest og per bord. Godteposer, ballonger og andre varer merket for barn regnes bare for barna.
 
-En tommelfingerregel: Ved 3–4-årsbursdager blir det ofte en forelder per barn igjen, og da kan de voksne spise like mye som barna til sammen. For 7–9-åringer leverer de fleste og henter, og da trenger du bare å tenke på en eller to ekstra voksne som hjelper til.
+Dette er en fast regel i modellen, ikke en vurdering av hvor mye en bestemt voksen spiser. Juster handlelisten hvis dere serverer voksenmat eller hvis flere foreldre blir igjen.
 
 ## Barnehage eller hjemme
 
-I barnehagen er det vanligvis enklere. Mange barnehager har egne retningslinjer for bursdagsfeiring, og flere ønsker frukt, grønnsaker eller en enkel rett i stedet for kake, snacks og godteri. Spør de ansatte før du handler.
+Velg barnehage i veiviseren når maten skal tas med dit. Kalkulatoren fjerner varer som er merket «bare hjemme», blant annet kake, snacks, brus, godteposer og godteri. Spør barnehagen hva som er greit før du handler; praksis og ønsker kan variere. I [guiden om barnehagebursdag](/guider/barnehagebursdag) står det mer om planleggingen.
 
-Kalkulatoren tar hensyn til dette: Velger du barnehagemodus, tas kake, snacks, brus, godteposer og smågodt ut av listen. Det som står igjen, er hovedrett, frukt og saft. Tips om hva som pleier å fungere, finner du i [guiden om fruktspyd og sunn bursdagsmat](/oppskrifter/fruktspyd-og-sunn-bursdagsmat).
+Hjemme velger du selv hva som passer. Velg én hovedrett, og bruk resten av listen som en sjekk på mengder og pakker. Du trenger ikke aktivere alle forslagene i varelisten.
 
-Hjemme har du mer frihet, men det er lurt å holde det enkelt. Én hovedrett, én kake, frukt og litt snacks er nok. Barn blir sjelden mer fornøyde av fire ulike retter.
+## Slik unngår du unødvendige rester
 
-## Slik unngår du store rester
+- Tell voksne separat fra barna, og legg bare inn dem som skal spise.
+- Velg én hovedrett før du leser mengdene. Pølser og minipizza vises som alternativer.
+- Sjekk hvor mange enheter en faktisk pakke inneholder; avrunding kan være grunnen til at handlelisten viser mer enn behovet.
+- Slå av varer dere ikke skal bruke, og endre pakkestørrelse eller mengde under «Tilpass».
+- Hvis du vil vente med å sette ut alt, begynn med en mindre servering og ha resten tilgjengelig.
 
-- Kjøp pølser og brød som tåler frysing. Uåpnede pakker kan gå rett i fryseren etter festen.
-- Kok eller varm pølsene i to omganger. Start med halvparten, og legg i flere når du ser hvor fort det går.
-- Kutt frukten rett før servering, men ikke alt på en gang. En halv melon som ikke er kuttet, holder seg til neste dag.
-- Server snacks i små skåler i stedet for hele poser. Det som ikke er åpnet, kan brukes senere.
-- Kake som blir til overs, kan fryses i stykker og brukes i matpakken eller på søndagen.
+## Husk allergier og matrestriksjoner
 
-## Handleliste for 10 barn på 6 år
+Spør foreldrene i god tid om allergier og matrestriksjoner. Kakeklar kan legge inn egne varer for enkelte valgte hensyn, men den vet ikke hva som står på produktet i butikken og kan ikke bekrefte at en vare passer for et bestemt barn. Les ingredienslisten, og avklar spørsmål med foreldrene. Se [guiden om allergier i barnebursdag](/guider/allergier-i-barnebursdag).
 
-Ti barn på 6 år, pølser som hovedrett, halvt om halvt lomper og pølsebrød, ingen voksne regnet med:
+## Regn ut din egen liste
 
-- Pølser: 20 stk – 3 pakker à 8
-- Lomper: 12 stk – 2 pakker à 8
-- Pølsebrød: 12 stk – 2 pakker à 8
-- Ketchup: 1 flaske
-- Sennep: 1 tube
-- Stekt løk: 1 boks
-- Bursdagskake: 10 stykker – 1 langpanne
-- Frukt: ca. 1,3 kg oppkuttet
-- Snacks: 350 g – 3 poser à 165 g
-- Saft: 5 liter ferdig blandet – 2 flasker konsentrat
-- Smågodt til godteposer: ca. 1 kg
-- Kakelys: 7 stk
-- Pappkrus og papptallerkener: 12 av hver
-
-Saft og drikke har vi skrevet mer om i [guiden om hvor mye drikke du trenger](/guider/hvor-mye-drikke-til-barnebursdag).
-
-## Husk allergier
-
-Spør foreldrene om allergier når du sender invitasjonen, ikke dagen før. Pølser kan inneholde melk eller gluten, lomper og pølsebrød inneholder ofte hvete, og mange typer smågodt inneholder gelatin fra svin. Les alltid ingredienslisten og allergenmerkingen på pakken, og kjøp heller én pakke glutenfri lompe eller kyllingpølser ekstra enn at ett barn står uten mat.
+Velg antall barn, alder, eventuelle voksne og hovedrett i [kalkulatoren på forsiden](/). Gå deretter gjennom de foreslåtte mengdene og pakkene. Endre dem etter planen din, ikke etter en regel om at alle bursdager skal være like.

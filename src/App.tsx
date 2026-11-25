@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Controls from './components/Controls';
 import Results from './components/Results';
 import ConfigEditor from './components/ConfigEditor';
@@ -6,10 +6,14 @@ import Wizard from './components/Wizard';
 import Footer from './components/Footer';
 import Garland from './components/Garland';
 import MenyCart from './components/MenyCart';
+import AgentPrompt from './components/AgentPrompt';
+import FeaturedGuides from './components/FeaturedGuides';
 import { computePlan } from './lib/engine';
+import { krRange } from './lib/format';
 import { loadCatalog, saveCatalog, parseConfig, writeConfig, shareUrl } from './lib/store';
 import type { GoodItem, PartyConfig } from './lib/types';
 import { track } from './lib/analytics';
+import { posthogLogger } from './lib/posthog';
 import { isMenyEnabled } from './lib/meny';
 import { useWebMcpTools } from './lib/webmcp';
 import ContentPage, { isContentPath } from './components/ContentPage';
@@ -25,6 +29,8 @@ export default function App() {
     return hasParams || localStorage.getItem('kk.wizardDone') === '1' ? 'app' : 'wizard';
   });
   const [toast, setToast] = useState('');
+  const [manualLink, setManualLink] = useState('');
+  const manualRef = useRef<HTMLInputElement>(null);
   const [editOpen, setEditOpen] = useState(false);
   const [menyEnabled] = useState(() => isMenyEnabled());
 
@@ -71,26 +77,44 @@ export default function App() {
     window.setTimeout(() => setToast(''), 2200);
   };
 
-  const share = async () => {
-    const url = shareUrl(cfg);
-    const data = {
-      title: 'Kakeklar',
-      text: `Handleliste for ${cfg.guests} gjester på ${cfg.age} år 🎂`,
-      url
-    };
+  // Copy the link; when the clipboard is unavailable (old browser, http, denied),
+  // show the link in a field so it can be copied by hand.
+  const copyLink = async (url = shareUrl(cfg)) => {
     try {
-      if (navigator.share) {
-        await navigator.share(data);
-        track('plan_shared', { method: 'webshare', guests: cfg.guests, age: cfg.age });
-      } else {
-        await navigator.clipboard.writeText(url);
-        showToast('Lenke kopiert ✓');
-        track('plan_shared', { method: 'clipboard', guests: cfg.guests, age: cfg.age });
-      }
+      await navigator.clipboard.writeText(url);
+      setManualLink('');
+      showToast('Lenke kopiert ✓');
+      track('plan_shared', { method: 'clipboard', guests: cfg.guests, age: cfg.age });
+      posthogLogger.info('plan share completed', { method: 'clipboard' });
     } catch {
-      /* user cancelled share */
+      setManualLink(url);
     }
   };
+
+  const share = async () => {
+    const url = shareUrl(cfg);
+    const cost = plan.hasPrice ? `, ca. ${krRange(plan.priceMin, plan.priceMax)}` : '';
+    const data = {
+      title: 'Kakeklar',
+      text: `Handleliste for ${cfg.guests} gjester på ${cfg.age} år${cost} 🎂`,
+      url
+    };
+    if (typeof navigator.share === 'function' && (!navigator.canShare || navigator.canShare(data))) {
+      try {
+        await navigator.share(data);
+        track('plan_shared', { method: 'webshare', guests: cfg.guests, age: cfg.age });
+        posthogLogger.info('plan share completed', { method: 'webshare' });
+        return;
+      } catch (e) {
+        if (e instanceof DOMException && e.name === 'AbortError') return; // user closed the share sheet
+      }
+    }
+    await copyLink(url);
+  };
+
+  useEffect(() => {
+    if (manualLink) manualRef.current?.select();
+  }, [manualLink]);
 
   const printPlan = () => {
     track('plan_printed', { guests: cfg.guests, age: cfg.age });
@@ -132,12 +156,15 @@ export default function App() {
           {menyEnabled && view === 'app' && (
             <MenyCart plan={plan} cfg={cfg} onToast={showToast} />
           )}
+          {view === 'app' && <AgentPrompt plan={plan} cfg={cfg} onToast={showToast} />}
         </div>
       </header>
 
+      <FeaturedGuides />
+
       {view === 'app' ? (
         <>
-          <Results plan={plan} cfg={cfg} onChange={setCfg} onOpenConfig={openConfig} onShare={share} onPrint={printPlan} />
+          <Results plan={plan} cfg={cfg} onChange={setCfg} onOpenConfig={openConfig} onShare={share} onCopyLink={() => copyLink()} onPrint={printPlan} />
           <section className="edit-block no-print">
             <button
               type="button"
@@ -156,6 +183,14 @@ export default function App() {
       )}
 
       <Footer />
+
+      {manualLink && (
+        <div className="share-fallback no-print" role="dialog" aria-label="Kopier lenken" data-testid="share-fallback">
+          <label htmlFor="share-link">Kopier lenken til listen:</label>
+          <input id="share-link" ref={manualRef} readOnly value={manualLink} onFocus={(e) => e.currentTarget.select()} />
+          <button type="button" className="btn btn--secondary" onClick={() => setManualLink('')}>Lukk</button>
+        </div>
+      )}
 
       {toast && <div className="toast" role="status">{toast}</div>}
     </div>

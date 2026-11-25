@@ -6,7 +6,7 @@
   "section": "guider",
   "category": "planlegging",
   "date": "2026-10-17",
-  "updated": "2026-10-17",
+  "updated": "2026-10-25",
   "related": [
     "invitasjon-til-barnebursdag",
     "budsjett-for-barnebursdag",
@@ -33,7 +33,7 @@
   "sources": []
 }
 ---
-En vanlig tommelfingerregel er «alder pluss én»: en treåring kan ha fire gjester, en seksåring sju. Det gir en fest barnet klarer å ha oversikt over, og som du klarer å gjennomføre. Mange velger likevel å invitere hele gruppen eller klassen, og det fungerer også, bare med litt mer planlegging.
+En vanlig tommelfingerregel er «alder pluss én» – en treåring kan ha fire gjester, en seksåring sju. Jeg liker den fordi den gir en fest barnet klarer å ha oversikt over, og som du klarer å gjennomføre. Å invitere hele gruppen eller klassen fungerer også. Det krever bare litt mer planlegging.
 
 ## Regelen «alder pluss én»
 
@@ -49,7 +49,7 @@ Regelen er populær fordi den følger barnets utvikling. Små barn blir fort ove
 | 8 år | 9 |
 | 9 år | 10 |
 
-Kakeklar-kalkulatoren bruker samme regel som forslag når du velger alder, men du kan selvsagt endre antallet. Regelen er et utgangspunkt, ikke en fasit.
+Kakeklar-kalkulatoren bruker samme regel som forslag når du velger alder, men du kan selvsagt endre antallet. Regelen er bare et utgangspunkt.
 
 ## Hele klassen eller noen få venner?
 
@@ -82,14 +82,14 @@ Det er vanlig at en forelder blir med de yngste barna. Det betyr flere personer 
 
 Kostnaden øker ikke helt i takt med antall barn, fordi noe er likt uansett: kaken, bursdagskronen, duken og ketchupen. Samtidig kjøper du hele pakker, så kostnaden går i trinn.
 
-Med kalkulatorens standardpriser for en seksårsbursdag med pølser i lompe ser spennet slik ut (uten frukt og smågodt, som du må prise selv):
+Med kalkulatorens standardpriser (ordinære priser hos Oda 25. oktober 2026, og anslag for det Oda ikke selger) ser spennet for en seksårsbursdag med pølser i lompe slik ut. Frukt og smågodt er ikke med, dem må du prise selv:
 
 | Antall barn | Typisk spenn |
 |---|---|
-| 4 | ca. 760–1 420 kr |
-| 7 | ca. 1 050–1 980 kr |
-| 12 | ca. 1 330–2 490 kr |
-| 20 | ca. 1 860–3 450 kr |
+| 4 | ca. 780–1 280 kr |
+| 7 | ca. 910–1 510 kr |
+| 12 | ca. 1 200–2 000 kr |
+| 20 | ca. 1 540–2 580 kr |
 
 Prisene er typiske spenn, og det er stor forskjell mellom butikker og merker. Legg inn ditt eget antall i [kalkulatoren på forsiden](/) for en liste som passer festen din. Les mer om å holde kostnadene nede i [guiden om budsjett for barnebursdag](/guider/budsjett-for-barnebursdag).
 

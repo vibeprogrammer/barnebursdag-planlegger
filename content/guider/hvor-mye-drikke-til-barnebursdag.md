@@ -6,7 +6,7 @@
   "section": "guider",
   "category": "mengder",
   "date": "2026-10-17",
-  "updated": "2026-10-17",
+  "updated": "2026-10-25",
   "related": [
     "hvor-mye-mat-til-barnebursdag",
     "barnehagebursdag",
@@ -15,7 +15,7 @@
   "faq": [
     {
       "q": "Hvor mye saft trenger jeg til 10 barn?",
-      "a": "Regn 4–6 dl ferdig saft per barn avhengig av alder. For 10 barn på 6 år blir det rundt 5 liter, som tilsvarer 2 flasker konsentrat på 0,5 liter."
+      "a": "Regn 4–6 dl ferdig saft per barn avhengig av alder. For 10 barn på 6 år blir det rundt 5 liter. Det rekker én flaske husholdningssaft på 1,5 liter, som gir 7,5–9 liter ferdig saft."
     },
     {
       "q": "Hvor mye drikker et barn i bursdag?",
@@ -27,13 +27,13 @@
     },
     {
       "q": "Hvordan blander jeg saftkonsentrat?",
-      "a": "Det vanligste er rundt 1 del saft til 5–7 deler vann, men blandingsforholdet varierer mellom merker. Sjekk flasken, og bland gjerne litt tynnere til barn."
+      "a": "Det varierer mellom merker. Prima Lavpris husholdningssaft på 1,5 liter gir 9 liter ferdig saft (1 del saft til 5 deler vann), mens Lerum uten tilsatt sukker blandes 1 til 4. Sjekk flasken, og bland gjerne litt tynnere til barn."
     }
   ],
   "sources": []
 }
 ---
-Regn med rundt 4 dl ferdig drikke per barn for 3–4-åringer, 5 dl for 5–6-åringer og 6 dl for 7–9-åringer, for en bursdag på cirka to timer. Det tilsvarer omtrent 2–3 dl i timen, eller to–tre kopper per barn. Ha i tillegg alltid vann tilgjengelig, og for de eldste kan én boks brus per barn være en fin ekstra.
+Regn rundt 4 dl ferdig drikke per barn for 3–4-åringer, 5 dl for 5–6-åringer og 6 dl for 7–9-åringer. Det er tallene kalkulatoren bruker, og de gjelder en bursdag på cirka to timer. Det blir omtrent 2–3 dl i timen, eller to–tre kopper per barn. Sett alltid frem vann i tillegg. For de eldste kan én boks brus per barn være en fin ekstra.
 
 ## Drikke per barn, fordelt på alder
 
@@ -56,19 +56,19 @@ Et grovt anslag er 2 dl i timen for de minste og 3 dl i timen for de eldste. Var
 
 ## Saftkonsentrat: hvor mange flasker?
 
-Kalkulatoren regner forsiktig med at én flaske konsentrat på 0,5 liter gir rundt 3 liter ferdig saft. Mange husholdningssafter skal blandes tynnere, for eksempel 1 del saft til 7 deler vann, og da rekker flasken lenger. Blandingsforholdet varierer mellom merker og typer, så sjekk flasken.
+Husholdningssaft selges som regel i flasker på 1,5 liter. Hos Oda oppgir Prima Lavpris husholdningssaft at flasken gir 9 liter ferdig saft (1 del saft til 5 deler vann). Lerum uten tilsatt sukker blandes 1 til 4, og da gir flasken 7,5 liter. Kalkulatoren regner forsiktig med 7,5 liter per flaske. Blandingsforholdet varierer mellom merker og typer, så sjekk flasken.
 
 Regneeksempler med kalkulatorens tall:
 
-- 8 barn på 4 år: 8 × 4 dl = 32 dl, altså litt over 3 liter. Det blir 2 flasker konsentrat, men du bruker antakelig bare én og litt.
-- 10 barn på 6 år: 10 × 5 dl = 5 liter ferdig saft. 2 flasker.
-- 12 barn på 8 år: 12 × 6 dl = 7,2 liter saft, altså 3 flasker, pluss 12 bokser brus (2 sekspakninger).
+- 8 barn på 4 år: 8 × 4 dl = 32 dl, altså litt over 3 liter. Én flaske, og du får mye til overs.
+- 10 barn på 6 år: 10 × 5 dl = 5 liter ferdig saft. Én flaske.
+- 12 barn på 8 år: 12 × 6 dl = 7,2 liter saft. Det går akkurat med én flaske, så kjøp gjerne to hvis det er varmt. I tillegg 12 bokser brus (2 tipakninger).
 
 Et tips: Bland saften litt svakere enn du ville gjort til deg selv. Barn drikker ofte mer når saften ikke er så søt, og den slukker tørsten bedre.
 
 ## Kjøpe ferdig drikke i 1,5-literflasker
 
-Vil du slippe å blande, kan du kjøpe ferdig drikke eller brus i 1,5-literflasker. Da regner du slik: totalt antall desiliter delt på 15, og runder opp.
+Vil du slippe å blande, kan du kjøpe ferdig drikke eller brus i 1,5-literflasker. Da regner du slik – totalt antall desiliter delt på 15, og runder opp.
 
 | Antall barn | 5–6 år (5 dl) | 7–9 år (6 dl) |
 |---|---|---|

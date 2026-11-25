@@ -38,8 +38,10 @@ Lead paragraph …
 ```
 
 - `{{recipe}}` on its own line marks where the ingredient/step card is rendered from the `recipe` object.
-- `{{contact_email}}` (kontakt page only) becomes a mailto paragraph when `VITE_CONTACT_EMAIL` is set at build time,
-  or links to GitHub/LinkedIn when unset. The shared renderer resolves it for both static HTML and `content.json`.
+- `{{contact_email}}` (kontakt page only) becomes a mailto paragraph. The address defaults to
+  `salnikov@gmail.com` so the prerendered HTML does not depend on an environment variable.
+  `VITE_CONTACT_EMAIL` (production: the Actions variable `CONTACT_EMAIL`) overrides it when set.
+  The shared renderer resolves it for both static HTML and `content.json`. `@` is written as `&#64;`.
 - Internal links (`/guider/...`, `/oppskrifter/...`) and `related` slugs are validated at build time; an unknown
   target fails the build (set `CONTENT_LENIENT=1` to warn instead while drafting).
 
@@ -65,8 +67,8 @@ Optional build-time env:
   Injects the account meta into every page, but the loader (`adsbygoogle.js`, once per page) only into guides and recipes, with
   the in-article (4250080584) + multiplex (3563684870) units into guides and recipes (`withAds` in
   `scripts/prerender.mjs`). Publish the AdSense consent message (CMP) before deploying.
-- `VITE_CONTACT_EMAIL=…` — shows an e-mail address on `/kontakt`. Production builds receive the Actions
-  variable `CONTACT_EMAIL`; no address is invented when it is unset.
+- `VITE_CONTACT_EMAIL=…` — optional override for the address on `/kontakt`. When it is unset, the build
+  uses `salnikov@gmail.com`. Production builds still pass the Actions variable `CONTACT_EMAIL` when it is set.
 
 The privacy page's consent button loads Google's consent manager on demand through `public/consent.js`,
 independently of the ad loader. The same helper supports the React fallback. It queues revocation until
@@ -85,7 +87,7 @@ smoke-tests the compatibility container (health, content, redirect and 404) befo
 - `image` (recipes): `{ "src": "/img/...svg", "png": "/img/...png", "width": 1200, "height": 800, "alt": "...", "caption": "..." }` —
   `src` is shown on the page, `png` goes into the Recipe/Article JSON-LD and `og:image`. Use only your own images or
   images whose licence you have checked; the current ones are Kakeklar's own SVG illustrations.
-- `photo` (author page): `{ "src": "/img/maxim.jpg", "alt": "Maxim Salnikov" }`.
+- `photo` (author page): `{ "src": "/img/maxim.jpg", "alt": "Portrett av Maxim Salnikov", "width": 400, "height": 400 }`.
 - HTML comments (`<!-- ... -->`) in markdown are editor notes and are stripped from the build.
 - Every guide and recipe gets: «Sist oppdatert» date line, byline linked to `/om-utvikleren`, a calculator box after the
   first paragraph (presets per slug in `CALC_PRESETS`, `scripts/content.mjs`) and an author box before «Les også».

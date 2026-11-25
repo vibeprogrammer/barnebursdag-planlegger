@@ -308,6 +308,25 @@ h1, h2, h3 {
   color: var(--ink-faint);
 }
 
+/* Agent prompt dialog (the alternative to the MENY cart) */
+.agent-hint { margin: 0 0 12px; font-size: 0.84rem; color: var(--ink-soft); }
+.agent-hint code { font-size: 0.8rem; background: var(--surface-2); padding: 1px 5px; border-radius: 6px; }
+.agent-label { display: block; margin: 0 0 6px; font-size: 0.78rem; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.04em; }
+.agent-preview {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  font: 0.78rem/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--ink);
+  resize: vertical;
+  white-space: pre-wrap;
+}
+.agent-manual { margin: 10px 0 0; font-size: 0.84rem; font-weight: 600; color: var(--berry-deep); }
+
+
 @keyframes meny-spin { to { transform: rotate(360deg); } }
 @keyframes meny-fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes meny-rise { from { transform: translateY(16px); opacity: 0.6; } to { transform: translateY(0); opacity: 1; } }
@@ -628,6 +647,11 @@ input[type='range']::-moz-range-thumb {
   font-variant-numeric: tabular-nums;
 }
 .price { color: var(--ok); font-size: 0.84rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.price-flag {
+  color: var(--ink-soft); font-size: 0.74rem; font-weight: 600;
+  border: 1px dashed var(--line); border-radius: 8px; padding: 1px 7px;
+}
+.price-source { margin: 2px 0 8px; font-size: 0.8rem; color: var(--ink-soft); }
 .row-note {
   margin: 8px 0 0; font-size: 0.83rem; color: var(--warn-ink);
   background: var(--warn-bg); border: 1px solid var(--warn-line);
@@ -736,6 +760,14 @@ input[type='range']::-moz-range-thumb {
   background: var(--ink); color: #fff; padding: 11px 20px; border-radius: var(--radius-pill);
   font-size: 0.9rem; font-weight: 600; z-index: 40; box-shadow: var(--shadow-lg);
 }
+
+.share-fallback {
+  position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); transform: translateX(-50%);
+  width: min(92vw, 520px); display: grid; gap: 8px; z-index: 41;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 12px 14px; box-shadow: var(--shadow-lg); font-size: 0.9rem;
+}
+.share-fallback input { width: 100%; font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 9px; }
 
 /* ---------- Integration / polish ---------- */
 .wizard-head h1 { font-size: clamp(1.45rem, 5.6vw, 1.9rem); line-height: 1.12; margin: 2px 0 0; }
@@ -847,7 +879,21 @@ input[type='range']::-moz-range-thumb {
 .content-figure { margin: 0 0 22px; }
 .content-figure img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; border-radius: var(--radius); background: var(--paper-2); }
 .content-figure figcaption { margin-top: 6px; font-size: 0.8rem; color: var(--ink-soft); }
-.author-photo { float: right; width: 112px; height: 112px; margin: 0 0 12px 16px; border-radius: 50%; object-fit: cover; }
+.content-body img.author-photo {
+  float: right;
+  width: 168px;
+  height: 168px;
+  margin: 2px 0 14px 18px;
+  border-radius: 50%;
+  object-fit: cover;
+  aspect-ratio: 1;
+  border: 3px solid var(--surface);
+  box-shadow: var(--shadow);
+}
+.content-body:has(img.author-photo)::after { content: ""; display: block; clear: both; }
+@media (max-width: 560px) {
+  .content-body img.author-photo { float: none; display: block; margin: 0 auto 16px; }
+}
 .calc-cta { margin: 22px 0; padding: 16px 18px; border-radius: var(--radius); background: var(--berry-tint); border: 1px solid #f4c9cf; }
 .calc-cta p { margin: 0 0 10px; }
 .calc-cta .calc-cta-title { font-weight: 800; color: var(--berry-deep); margin-bottom: 4px; }

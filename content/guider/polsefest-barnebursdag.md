@@ -6,7 +6,7 @@
   "section": "guider",
   "category": "mengder",
   "date": "2026-10-17",
-  "updated": "2026-10-17",
+  "updated": "2026-10-25",
   "related": [
     "hvor-mye-mat-til-barnebursdag",
     "pizza-til-barnebursdag",
@@ -16,7 +16,7 @@
   "faq": [
     {
       "q": "Hvor mange pølser trenger jeg til 10 barn?",
-      "a": "Til 10 barn på 5–6 år trenger du 20 pølser, altså 3 pakker à 8. For 7–9 år blir det 25 pølser, og for 3–4 år 15."
+      "a": "Til 10 barn på 5–6 år trenger du 20 pølser, altså 3 pakker à 600 g (regnet som 8 pølser per pakke). For 7–9 år blir det 25 pølser, og for 3–4 år 15."
     },
     {
       "q": "Hvor mange lomper per barn?",
@@ -34,7 +34,7 @@
   "sources": []
 }
 ---
-Pølser i lompe er den klassiske barnebursdagsmaten i Norge, og med god grunn: billig, enkelt og noe nesten alle barn spiser. Regn 1,5 pølser per barn for 3–4-åringer, 2 for 5–6-åringer og 2,5 for 7–9-åringer, og like mange lomper eller pølsebrød pluss 15 prosent ekstra. Én flaske ketchup og én tube sennep holder til de fleste bursdager.
+Pølser i lompe er den klassiske barnebursdagsmaten i Norge. Det er billig og enkelt, og de fleste barn spiser det. Regn 1,5 pølser per barn for 3–4-åringer, 2 for 5–6-åringer og 2,5 for 7–9-åringer. Kjøp like mange lomper eller pølsebrød, pluss 15 prosent ekstra. Én flaske ketchup og én tube sennep holder til de fleste bursdager.
 
 ## Mengder per barn
 
@@ -43,13 +43,13 @@ Pølser i lompe er den klassiske barnebursdagsmaten i Norge, og med god grunn: b
 | Pølser | 1,5 | 2 | 2,5 |
 | Lomper/pølsebrød (før buffer) | 1,5 | 2 | 2,5 |
 
-[Kalkulatoren på forsiden](/) bruker disse tallene, og runder opp til hele pakker à 8. Voksne som blir igjen og spiser, regnes som 7–9-åringer.
+[Kalkulatoren på forsiden](/) bruker disse tallene og runder opp til hele pakker. Lomper og pølsebrød regnes i pakker à 10. Grillpølser selges etter vekt, så en pakke på 600 g regnes som 8 pølser (pakkene hos Oda som oppgir både vekt og antall, ligger på 62–80 g per pølse). Voksne som blir igjen og spiser, regnes som 7–9-åringer.
 
 ## Lompe eller pølsebrød?
 
 Mange gjør halvt om halvt, for barn har sterke meninger om dette. Lompe er det mest tradisjonelle, er lett å holde og passer godt til de minste. Pølsebrød er mer mettende og blir ofte valgt av større barn.
 
-Kalkulatoren lar deg velge fordelingen og legger 15 prosent ekstra på brødet uansett. Det er fordi lomper revner og pølsebrød blir klemt, og fordi noen barn spiser brødet uten pølse. Eksempel: Ti barn på 6 år trenger 20 pølser. Med halvt om halvt blir det 10 lomper og 10 pølsebrød, og med buffer 12 av hver, altså to pakker av hver. Pakker du ikke åpner, kan gå rett i fryseren.
+Kalkulatoren lar deg velge fordelingen og legger 15 prosent ekstra på brødet uansett. Det er fordi lomper revner og pølsebrød blir klemt, og fordi noen barn spiser brødet uten pølse. Eksempel: Ti barn på 6 år trenger 20 pølser. Med halvt om halvt blir det 10 lomper og 10 pølsebrød, og med buffer 12 av hver, altså to pakker à 10 av hver. Pakker du ikke åpner, kan gå rett i fryseren.
 
 ## Wienerpølser eller grillpølser?
 

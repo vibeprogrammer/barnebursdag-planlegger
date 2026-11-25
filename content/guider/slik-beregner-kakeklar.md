@@ -1,12 +1,12 @@
 ---
 {
   "title": "Slik beregner Kakeklar mengdene",
-  "description": "Hvordan Kakeklar regner ut handlelisten: aldersgrupper, mengde per barn og per bord, avrunding til hele pakker, brødbuffer, voksne, allergier og prisspenn.",
+  "description": "Se hvilke redigerbare standardmengder Kakeklar bruker, hvordan alder, voksne, menyvalg og pakningsstørrelser påvirker handlelisten, og hva beregningen ikke kan vite.",
   "slug": "slik-beregner-kakeklar",
   "section": "guider",
   "category": "mengder",
   "date": "2026-10-17",
-  "updated": "2026-10-17",
+  "updated": "2026-11-16",
   "related": [
     "hvor-mye-mat-til-barnebursdag",
     "hvor-mye-drikke-til-barnebursdag",
@@ -16,109 +16,128 @@
   "faq": [
     {
       "q": "Hvilke aldersgrupper bruker Kakeklar?",
-      "a": "Kalkulatoren deler inn i tre grupper: 3–4 år, 5–6 år og 7–9 år. Yngre barn regnes som 3–4 år, og barn over 9 som 7–9 år."
+      "a": "For mengdeberegningen bruker Kakeklar gruppene til og med 4 år, 5–6 år og 7 år eller eldre. Den siste gruppen bruker satsene som vises som 7–9 år i tabellen. Dette er beregningsgrupper, ikke en vurdering av det enkelte barnet."
     },
     {
-      "q": "Hvorfor får jeg flere pølser enn jeg trenger?",
-      "a": "Kakeklar runder alltid opp til hele pakker. Trenger du 20 pølser og pakken har 8, får du 3 pakker, altså 24 pølser."
+      "q": "Hvorfor får jeg flere pølser enn beregnet behov?",
+      "a": "Kakeklar regner en pakke på 600 g som omtrent 8 pølser. Et beregnet behov på 20 pølser rundes derfor opp til 3 pakker, omtrent 24 pølser. Sjekk antall og vekt på pakken du kjøper."
     },
     {
       "q": "Regner Kakeklar med voksne?",
-      "a": "Ja, hvis du legger inn voksne som blir. De regnes med på mat, drikke og servise, med samme mengde som 7–9-åringer, men ikke på godteposer og ballonger."
+      "a": "Ja, hvis du legger dem inn. Voksne får mengden fra aldersgruppen 7 år og eldre på varer som regnes per barn, og regnes også med på vanlige varer per gjest eller bord. Varer merket for barn, som godteposer og ballonger, regnes bare for barna."
     },
     {
-      "q": "Kan jeg endre mengdene i kalkulatoren?",
-      "a": "Ja. Under «Tilpass» kan du endre mengder per aldersgruppe, pakkestørrelser og priser, skru varer av og på, og eksportere eller importere varelisten som en JSON-fil."
+      "q": "Kan jeg endre standardmengdene?",
+      "a": "Ja. Under «Tilpass» kan du endre mengder, pakningsstørrelser, priser og hvilke varer som er med. Brødfordelingen mellom lomper og pølsebrød kan også endres i veiviseren."
     },
     {
-      "q": "Er prisene i Kakeklar oppdaterte?",
-      "a": "Standardprisene er typiske spenn per pakke, ikke dagens pris i en bestemt butikk. Sjekk alltid prisen der du handler."
+      "q": "Er porsjonsmengdene offisielle råd?",
+      "a": "Nei. De er Kakeklars egne redigerbare planleggingsforslag, ikke offisielle porsjons- eller ernæringsråd og ikke målte gjennomsnitt for barn. Kalkulatoren tilpasser ikke mengden etter festens varighet eller det enkelte barnets behov."
+    },
+    {
+      "q": "Hvor kommer standardprisene fra?",
+      "a": "De fleste standardprisene er ordinære priser hos Oda, hentet 25. oktober 2026. Noen varer Oda ikke selger, har et grovt anslag. Prisene er datert og kan være utdaterte; sjekk alltid prisen i butikken du handler i."
     }
   ],
-  "sources": []
+  "sources": [
+    {
+      "title": "Oda: nettbutikk",
+      "url": "https://oda.com/no/"
+    }
+  ]
 }
 ---
-Kakeklar regner ut handlelisten fra tre ting: antall barn, barnets alder og hvilke valg du gjør (hjemme eller barnehage, pølser eller pizza, voksne og allergier). Hver vare har en mengde per barn, per gjest eller per bord, og resultatet rundes alltid opp til hele pakker. Her er metoden, forklart enkelt, og det kalkulatoren ikke gjør.
 
-## Tre aldersgrupper
+Kakeklar regner handlelisten fra antall barn, alder og valgene dine (hjemme eller barnehage, pølser eller pizza, voksne og registrerte matrestriksjoner). Hver vare beregnes per barn, per gjest, per bord, etter alder eller som et fast antall. Resultatet rundes opp etter modellen og pakningsstørrelsen i varelisten.
 
-Barn spiser og drikker ulikt etter alder. Kakeklar bruker tre aldersgrupper:
+Mengdene under er Kakeklars egne standardforslag. De kan endres i kalkulatoren, og er ikke offisielle porsjons- eller ernæringsråd. De er ikke presentert som målte gjennomsnitt av hva barn spiser. Festens varighet og det enkelte barnets behov påvirker ikke beregningen; bruk «Tilpass» når forslaget ikke passer planen din.
 
-| Alder | Gruppe |
-|---|---|
-| Til og med 4 år | 3–4 år |
-| 5 og 6 år | 5–6 år |
-| 7 år og eldre | 7–9 år |
+## Tre beregningsgrupper
 
-Alle varer som regnes «per barn», har en egen mengde for hver gruppe. Noen eksempler fra standardlisten:
+Kalkulatoren bruker aldersgrensene i koden: til og med 4 år, 5–6 år og 7 år eller eldre. Den siste gruppen bruker mengdene som vises som 7–9 år i tabellen. Det er en praktisk måte å velge en sats på, ikke en påstand om at alle barn i samme gruppe spiser likt.
 
-| Vare | 3–4 år | 5–6 år | 7–9 år |
-|---|---|---|---|
-| Pølser | 1,5 | 2 | 2,5 |
-| Lomper / pølsebrød | 1,5 | 2 | 2,5 |
-| Minipizza | 1,5 | 2 | 2,5 |
-| Bursdagskake (biter) | 1 | 1 | 1,25 |
-| Frukt, oppkuttet | 120 g | 130 g | 140 g |
+| Vare | 3–4 år | 5–6 år | 7 år og eldre |
+|---|---:|---:|---:|
+| Pølser | 1,5 stk | 2 stk | 2,5 stk |
+| Lomper eller pølsebrød | 1,5 stk | 2 stk | 2,5 stk |
+| Minipizza | 1,5 stk | 2 stk | 2,5 stk |
+| Bursdagskake | 1 stykke | 1 stykke | 1,25 stykke |
+| Oppkuttet frukt | 120 g | 130 g | 140 g |
 | Snacks | 30 g | 35 g | 40 g |
 | Saft, ferdig blandet | 4 dl | 5 dl | 6 dl |
-| Brus (boks) | 0 | 0 | 1 |
+| Brus | 0 | 0 | 1 boks |
 | Smågodt til poser | 50 g | 100 g | 125 g |
 
-Tallene finner du forklart nærmere i [guiden om mat per barn](/guider/hvor-mye-mat-til-barnebursdag) og [guiden om drikke](/guider/hvor-mye-drikke-til-barnebursdag).
+Tallene stemmer med standardverdiene i Kakeklar. Se [matguiden med regneeksempler](/guider/hvor-mye-mat-til-barnebursdag) og [drikkeguiden](/guider/hvor-mye-drikke-til-barnebursdag).
 
-## Fem måter å regne på
+## Fem måter å beregne en vare på
 
-Ikke alt passer å regne per barn. Hver vare har derfor én av fem beregningsmåter:
+- **Per barn etter alder:** Hovedrett, frukt, drikke og noen andre matvarer ganger satsen for aldersgruppen med antall barn.
+- **Per gjest:** Tallerkener og kopper regnes med 1,2 per gjest, servietter med 2, og bestikk med 1 sett. Ballonger regnes med 2 per barn; de legges ikke til for voksne.
+- **Per bord:** Ketchup regnes som én flaske per 20 gjester, sennep som én tube per 25, stekt løk per 15, papirduk per 8 og iskake per 10. Antallet bordvarer rundes opp.
+- **Antall etter alder:** Kakelys beregnes som alder pluss én.
+- **Fast antall:** Bursdagskronen er én, uansett antall gjester.
 
-- **Per barn, etter alder:** mat og drikke, som i tabellen over.
-- **Per gjest:** et fast antall per person, for eksempel 1,2 tallerkener og 1,2 kopper (litt ekstra fordi noen søler eller bytter), 2 servietter, ett sett bestikk og 2 ballonger per gjest.
-- **Per bord:** noe man deler. Kakeklar regner én ketchup per 20 gjester, én sennep per 25, én boks stekt løk per 15, én papirduk per 8 og én iskake per 10. Antallet rundes opp, så 21 gjester gir to flasker ketchup.
-- **Antall etter alder:** kakelys er alder pluss én.
-- **Fast antall:** én bursdagskrone, uansett antall gjester.
+Dette er ulike regler i varelisten, ikke en generell regel om at alle varer følger samme forholdstall. Hvilke varer som kommer med, avhenger også av menyen og om du har valgt barnehage.
 
-## Avrunding til hele pakker
+## Avrunding og pakningsstørrelser
 
-Du kan ikke kjøpe 1,5 pakke pølser. Derfor regner Kakeklar først ut hvor mye du trenger, og runder så opp til hele pakker. Pølser, lomper og pølsebrød regnes i 8-pakninger, potetgull i poser på 165 g, og en flaske saftkonsentrat regnes som ca. 3 liter ferdig saft.
+Kakeklar regner først ut behovet, og bruker deretter pakningsstørrelsen som ligger i katalogen. For hele enheter rundes beregnet behov opp. Pølser regnes som omtrent 8 per pakke på 600 g, lomper som 10 per pakke og pølsebrød som 10 per modellpakke (produktene kan ha 10–12). Potetgull regnes som 200 g per pose. En flaske saftkonsentrat på 1,5 liter regnes i modellen som omtrent 7,5 liter ferdig saft.
 
-Eksempel: 10 barn på 5 år trenger 20 pølser. Med 8 i pakken blir det 3 pakker, altså 24 pølser. De fire ekstra er buffer, ikke svinn.
+Eksempel: 10 barn i gruppen 5–6 år trenger 10 × 2 = 20 pølser. Med 8 i modellpakken blir det 3 pakker, omtrent 24 pølser eller 1,8 kg. Det er pakningsavrunding, ikke et nytt behov på 24 pølser. Sjekk alltid antall, vekt og blandingsforhold på den faktiske pakken.
 
-## 15 prosent ekstra brød
+## Brødfordeling og 15 prosent margin
 
-Når hovedretten er pølser, kan du velge hvor stor andel som skal være lomper og hvor mye som skal være pølsebrød. Standard er halvparten av hver. Fordi barn ofte ombestemmer seg, legger Kakeklar 15 prosent ekstra på begge brødtypene.
+Når pølser er valgt, kan du stille inn hvor mye av brødet som skal være lomper og hvor mye som skal være pølsebrød. Standard er 50/50. Modellen legger 15 prosent margin på begge brødtypene før den runder opp.
 
-For de samme 10 barna blir det 20 × 0,5 × 1,15 = 11,5 lomper, rundet opp til 12, altså 2 pakker. Det samme for pølsebrød.
+Med 10 barn på 5–6 år blir behovet for hver type ved halv fordeling 20 × 0,5 × 1,15 = 11,5. Kalkulatoren viser 12 som beregnet antall. Med 10 per modellpakke blir det 2 pakker lomper og 2 pakker pølsebrød. Endrer du fordelingen, endres begge beregningene. Hvis mengden ikke passer, kan du endre standardverdiene i «Tilpass».
 
 ## Voksne som blir
 
-Legger du inn voksne, regnes de med på mat, drikke og servise. For varer som regnes per barn, får voksne samme mengde som 7–9-åringer. Med 2 voksne i eksemplet over blir det 20 + 2 × 2,5 = 25 pølser, altså 4 pakker. Voksne regnes ikke med på godteposer, smågodt og ballonger.
+Hvis du teller med voksne, bruker kalkulatoren satsen fra gruppen 7 år eller eldre på varer som beregnes per barn. De regnes også med på vanlige varer per gjest og per bord. Varer med målgruppe «barn», blant annet godteposer og ballonger, legges ikke til for voksne.
+
+Eksempel: 10 barn på 5–6 år trenger 20 pølser. Legger du til 2 voksne, regner modellen 20 + 2 × 2,5 = 25 pølser. Det blir 4 pakker à 600 g etter modellens omtrentlige telling på 8 pølser per pakke.
 
 ## Barnehage eller hjemme
 
-I barnehagemodus fjernes varer som er merket «bare hjemme»: kake, iskake, snacks, brus, godteposer og godteri, og de allergivennlige kake- og godterialternativene. Resten, som frukt, drikke, servise og bursdagskrone, blir stående. Valget er basert på at mange barnehager ønsker mindre søtt ved feiringer, men sjekk alltid hva din barnehage sier.
+I barnehagemodus fjernes varer som er merket «bare hjemme», blant annet kake, iskake, snacks, brus, godteposer og godteri. Hovedrett, frukt, drikke og servise kan fortsatt stå på listen. Spør barnehagen om rammene før du handler; innstillingene i kalkulatoren erstatter ikke beskjedene fra barnehagen.
 
-## Allergier
+## Allergier og matrestriksjoner
 
-Du kan skru på gluten, melk, egg, nøtter og uten svin, og skrive hvor mange gjester det gjelder. Da legger Kakeklar til en egen vare beregnet for akkurat det antallet, for eksempel glutenfri lompe, melkefri eller eggfri kake, nøttefritt godteri eller kyllingpølser uten svin. Hvis en vanlig vare på listen ofte inneholder allergenet, vises et notat ved den. Kalkulatoren vet ikke hva som står på pakken i din butikk, så les alltid ingredienslisten. Se [guiden om allergier](/guider/allergier-i-barnebursdag).
+Du kan registrere antall gjester med gluten-, melk-, egg- eller nøttehensyn, eller som skal ha mat uten svin. Kakeklar legger da til varer som er ment å dekke det valgte antallet. Den leser ikke ingredienslistene på butikkens varer, og kan ikke bekrefte at et produkt passer for et bestemt barn. Sjekk alltid emballasjen, og avklar spørsmål med foreldrene. Se [guiden om allergier](/guider/allergier-i-barnebursdag).
 
-## Priser er spenn
+## Hvor kommer prisene fra?
 
-Hver vare med pris har et typisk spenn per pakke, og totalen er antall pakker ganget med spennet. Frukt og smågodt har ingen standardpris. Prisene er ment som et grovt anslag, ikke dagens pris i en bestemt butikk. Kalkulatoren kan også hente faktiske priser fra norske butikker for enkeltvarer når det er tilgjengelig. Les mer i [guiden om budsjett](/guider/budsjett-for-barnebursdag).
+Kalkulatoren viser et spenn for varer med standardpris. For mange matvarer er prisgrunnlaget ordinære priser hos Oda hentet 25. oktober 2026; varelisten beskriver hvilke produkter og pakninger som ble brukt. Varer Oda ikke selger, som kake, papirduk og bursdagskrone, har et grovt anslag. Frukt og smågodt har ingen standardpris. Prisene er datert, ikke en garanti for dagens pris eller lagerstatus. Kalkulatoren kan også hente produktpriser fra norske butikker når en slik pris er tilgjengelig. Se [budsjettguiden](/guider/budsjett-for-barnebursdag) for prisgrunnlaget og eksempler.
+
+Disse produkt- og pakkeeksemplene forklarer prisintervallet i standardlisten. De er hentet fra Kakeklars prisgrunnlag for 25. oktober 2026, ikke en fullstendig prissammenligning. Butikkens sortiment og priser kan endres; sjekk varen og pakningen før du handler.
+
+| Vare i Kakeklar | Produkter og pakker i prisgrunnlaget | Pris per pakke |
+|---|---|---:|
+| Pølser | Gilde Go' & Magrere, 600 g; Gilde Grillpølser, 600 g | 39,00–64,90 kr |
+| Lomper | Vår Laveste Pris frosne lomper, 10 stk; Buer Lomper Original, 10 stk | 10,90–17,20 kr |
+| Pølsebrød | Prima Lavpris, 12 stk; Hatting grove pølsebrød, 10 stk (modellen bruker 10) | 18,90–26,70 kr |
+| Ketchup | Idun Tomatketchup, 530 g; Heinz Tomatketchup, 1 kg | 26,90–54,40 kr |
+| Sennep | Idun Pølsesennep, 490 g; Bergbys Sennep, 510 g | 22,90–29,90 kr |
+| Stekt løk | Prima Lavpris sprøstekt løk, 100 g; P.S. sprøstekt løk, 100 g | 9,90–19,70 kr |
+| Glutenfrie lomper | Engers Lefsebakeri glutenfrie lomper, 6 stk | 32,50 kr |
+| Kyllingpølser uten svin | Solvinge, 460 g; Åkeberg Skoglunn grillpølse kylling, 6 stk / 400 g | 33,60–42,90 kr |
+| Snacks / potetgull | KiMs Salt crunch, 200 g; Maarud classic salt, 240 g | 37,20–41,90 kr |
+| Saftkonsentrat | Prima Lavpris husholdningssaft, 1,5 l; Lerum uten tilsatt sukker, 1,5 l | 36,40–69,40 kr |
+| Brus | Solo Super, 10 × 0,33 l; Coca-Cola, 10 × 0,33 l | 89,00–97,40 kr |
+| Papptallerkener | REMA 1000, 18 cm / 25 stk; dyp tallerken, 19 cm / 25 stk | 31,40–36,50 kr |
+| Pappkopper | R drikkebeger, 200 ml / 80 stk | 53,60 kr |
+| Servietter | Prima Lavpris, 75 stk; R hvite servietter, 33 cm / 50 stk | 22,40–28,60 kr |
+| Bestikk | R engangsgafler og -skjeer av tre, 20 av hver | 42,60 kr |
+
+Pakkene i eksemplene er ikke nødvendigvis like store. For eksempel bruker modellen 10 pølsebrød per pakke selv om produktet fra Prima Lavpris er oppført med 12. Derfor viser tabellen prisgrunnlaget, mens kalkulatoren bruker pakkestørrelsen som står i den redigerbare varelisten.
 
 ## Slik endrer du varelisten
 
-Alt i varelisten kan endres under «Tilpass». Der kan du:
+Under «Tilpass» kan du endre navn, enhet, mengde per aldersgruppe, antall per gjest eller bord, pakningsstørrelse og pris. Du kan også slå varer av og på, importere eller eksportere varelisten som en JSON-fil og tilbakestille til standardlisten. Endringene lagres i nettleseren din.
 
-- endre navn, enhet og beregningsmåte
-- endre mengde per aldersgruppe, antall per gjest eller gjester per bord
-- endre pakkestørrelse og prisspenn
-- skru varer av og på (sugerør, vimpler, premier og pinata er av som standard)
-- eksportere varelisten som JSON-fil og importere den igjen, for eksempel for å dele med en annen forelder
-- tilbakestille til standardlisten
+## Dette beregner Kakeklar ikke
 
-Endringene lagres i nettleseren din.
+Kakeklar teller ikke hva du allerede har hjemme, tilpasser ikke mengdene etter festens varighet og tar ikke hensyn til det enkelte barnets appetitt eller planer for annen mat. Aldersgruppene er faste beregningsregler. Prisene kan være utdaterte, og pakningsstørrelser kan variere fra butikk til butikk. Matrestriksjonsvalg er hjelp til planlegging, ikke en garanti for at en vare er trygg.
 
-## Begrensninger
-
-Kakeklar er en forenkling. Mengdene er gjennomsnitt for en vanlig barnebursdag, ikke ernæringsråd. Barn er forskjellige, og en gjeng fotballspillere på 9 år spiser mer enn en rolig gruppe treåringer. Festens lengde endrer foreløpig ikke mengdene. Kalkulatoren kjenner ikke til hva du har hjemme fra før, og den erstatter ikke en samtale med foreldrene om allergier.
-
-Bruk tallene som et trygt utgangspunkt, og juster etter det du kjenner til. Prøv selv i [kalkulatoren på forsiden](/).
+Bruk handlelisten som et forslag, og gjør endringene som passer for gjestene og menyen. Prøv selv i [kalkulatoren på forsiden](/).
