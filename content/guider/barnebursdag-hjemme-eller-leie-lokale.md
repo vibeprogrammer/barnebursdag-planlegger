@@ -6,7 +6,7 @@
   "section": "guider",
   "category": "planlegging",
   "date": "2026-10-17",
-  "updated": "2026-10-25",
+  "updated": "2026-12-02",
   "related": [
     "hvor-mange-gjester-i-barnebursdag",
     "budsjett-for-barnebursdag",
@@ -66,7 +66,7 @@ Priser varierer mye mellom steder, byer og ukedager, og endres ofte. Derfor gir 
 - **Skole- og idrettslokaler:** varierer fra gratis eller rimelig til mer, avhengig av eier og avtale.
 - **Aktivitetssentre:** som regel pris per barn, med mat inkludert eller som tillegg. Det kan fort bli den største enkeltutgiften.
 
-Sjekk alltid prisen hos stedet du vurderer, og spør hva som er inkludert. Vil du se hvordan resten av budsjettet ser ut, kan du lese [guiden om budsjett for barnebursdag](/guider/budsjett-for-barnebursdag).
+Sjekk alltid prisen hos stedet du vurderer, og spør hva som er inkludert. Konkrete pakkepriser for lekeland, trampoline, bowling og klatring, sammenlignet med hjemme, står i [Bursdag på lekeland eller hjemme?](/guider/lekeland-eller-hjemme-pris). Vil du se hvordan resten av budsjettet ser ut, kan du lese [guiden om budsjett for barnebursdag](/guider/budsjett-for-barnebursdag).
 
 ## Hva er inkludert?
 

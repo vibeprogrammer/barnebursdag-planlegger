@@ -6,7 +6,7 @@
   "section": "guider",
   "category": "planlegging",
   "date": "2026-10-17",
-  "updated": "2026-11-25",
+  "updated": "2026-12-02",
   "related": [
     "hvor-mange-gjester-i-barnebursdag",
     "hvor-mye-mat-til-barnebursdag",
@@ -113,7 +113,7 @@ Tre ting jeg la merke til:
 2. **Lomper og pølsebrød er billige.** En pakke med 10–12 stykker kostet 10,90–26,70 kroner. Før denne gjennomgangen regnet kalkulatoren 20–35 kroner for en pakke med 8. Nå bruker den Oda-prisene.
 3. **Grillpølser selges etter vekt.** Mange pakker oppgir gram, ikke antall pølser. Pakkene hos Oda som oppgir begge deler, ligger på 62–80 g per pølse. Kalkulatoren regner derfor en pakke på 600 g som 8 pølser. Sjekk antallet på pakken du kjøper.
 
-Oda er brukt fordi prisene står åpent på nettet. Hos lavpriskjedene kan de samme varene være billigere, særlig når de er på tilbud. Hva en fast bursdagskurv koster hos Oda, MENY og REMA 1000 akkurat nå, står i [prisindeksen for barnebursdag](/guider/prisindeks-bursdagskurv).
+Oda er brukt fordi prisene står åpent på nettet. Hos lavpriskjedene kan de samme varene være billigere, særlig når de er på tilbud. Hva en fast bursdagskurv koster hos Oda, MENY og REMA 1000 akkurat nå, står i [prisindeksen for barnebursdag](/guider/prisindeks-bursdagskurv). Prisen for å ta festen til lekeland, trampolinepark, bowling eller klatring i stedet står i [guiden om lekeland eller hjemme](/guider/lekeland-eller-hjemme-pris).
 
 ## Hvor går pengene?
 
